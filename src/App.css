@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  font-family: 'Poppins', serif !important; 
+  font-weight: 600 !important;
+  font-style: normal !important;
+
+  position: absolute;
+  background-image: url(./assets/nebula.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  position: relative;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.PH {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1d0b45;
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(
+    #1d0b45,
+    #7e0058,
+    #7e0058,
+    #7e0058,
+    #1d0b45
+  );
+  border-radius: 6px;
+}
