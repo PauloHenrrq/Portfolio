@@ -8,8 +8,8 @@ export default function AboutMe () {
   const icons = [GitHub, Instagram, LinkedIn]
 
   return (
-    <Janela>
-      <div className='flex justify-between gap-24 max-lg:flex-wrap-reverse max-lg:gap-10 max-lg:justify-center'>
+    <Janela margin="100px">
+      <div id='SobreMim' className='flex justify-between gap-24 max-lg:flex-wrap-reverse max-lg:gap-10 max-lg:justify-center'>
         <div className='flex flex-col gap-7 w-[60%] max-lg:w-auto'>
           <h1 className='text-7xl text-white drop-shadow-[4px_4px_rgba(0,0,0,0.60)] mt-3 max-lg:m-auto max-lg:text-5xl'>
             Sobre Mim

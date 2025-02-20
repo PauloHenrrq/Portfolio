@@ -10,13 +10,13 @@ export default function Projects () {
       p: 'Ver mais',
       h1: 'Furtos Fortaleza',
       p2: 'Projeto realizado com intuito acadêmico para geração de gráficos a partir do tratamento de dados.',
-      tecnologia: ['REACT', 'VITE', 'BOOTSTRAP', 'DASHBOARD', 'ANIMAÇÃO']
+      technology: ['REACT', 'VITE', 'BOOTSTRAP', 'DASHBOARD', 'ANIMAÇÃO']
     }
   ]
 
   return (
     <Janela>
-      <h1 className='text-center text-7xl mb-7 text-white drop-shadow-[4px_4px_rgba(0,0,0,0.60)] max-lg:text-5xl'>
+      <h1 id='Projetos' className='text-center text-7xl mb-7 text-white drop-shadow-[4px_4px_rgba(0,0,0,0.60)] max-lg:text-5xl'>
         Projetos
       </h1>
       <Link to='https://analise-furtos.vercel.app/' target='_blank'>
@@ -30,7 +30,7 @@ export default function Projects () {
                 <img
                   src={projects.img}
                   alt='Imagem do Projeto'
-                  className='h-full object-cover rounded-l-md object-[75%] blur-[0.6px] transition-all group-hover:blur-[1.5px] max-sm:w-full'
+                  className='h-full object-cover rounded-l-md object-[75%] blur-[0.6px] transition-all group-hover:blur-[1.5px] '
                 />
 
                 <p className='absolute inset-0 flex font-bold text-white text-lg underline items-center justify-center opacity-0 transition-all duration-500 group-hover:opacity-100 max-sm:opacity-100 max-sm:bg-black max-sm:bg-opacity-50'>
@@ -46,7 +46,7 @@ export default function Projects () {
                 </p>
 
                 <div className='grid grid-cols-2 gap-y-3 gap-x-5'>
-                  {projects.tecnologia.map((technology, index) => (
+                  {projects.technology.map((technology, index) => (
                     <div
                       key={index}
                       className={`w-fit bg-clip-text text-transparent transition-all m-auto ${
