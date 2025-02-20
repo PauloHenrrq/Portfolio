@@ -47,12 +47,12 @@ export default function Header () {
           </div>
 
           <div className='p-4'>
-            <ul className='flex flex-col gap-5 text-right text-2xl'>
+            <ul className='flex flex-col gap-8 text-right text-2xl'>
               {list.map((item, index) => (
                 <li key={index}>
                   <a
                     href={item.href}
-                    className='text-white hover:underline'
+                    className='text-white'
                     onClick={handleClose}
                   >
                     {item.name}
@@ -65,11 +65,9 @@ export default function Header () {
       </div>
 
       <nav className='flex justify-between items-center mx-12'>
-        <button className=''>
-          <h1 className='PH text-5xl bg-clip-text text-transparent transition-all bg-gradient-to-r from-fuchsia-900 from-20% to-rose-500 via-100% via-rose-600  w-24 h-[3.1rem] drop-shadow-[0px_5px_rgba(0,0,0,0.60)] hover:scale-110'>
-            PH
-          </h1>
-        </button>
+        <h1 className='PH cursor-default text-5xl bg-clip-text text-transparent transition-all bg-gradient-to-r from-fuchsia-900 from-20% to-rose-500 via-100% via-rose-600  w-24 h-[3.1rem] drop-shadow-[0px_5px_rgba(0,0,0,0.60)] hover:scale-110'>
+          PH
+        </h1>
 
         <img
           src={barras}
@@ -81,7 +79,7 @@ export default function Header () {
           {list.map((item, index) => (
             <li
               key={index}
-              className='cursor-pointer hover:scale-105 transition-transform hover:border-b-2 h-6'
+              className='cursor-pointer hover:scale-110 transition-transform hover:border-b-2 h-6'
             >
               <a href={item.href}>{item.name}</a>
             </li>
