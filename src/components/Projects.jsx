@@ -10,17 +10,20 @@ export default function Projects () {
       p: 'Ver mais',
       h1: 'Furtos Fortaleza',
       p2: 'Projeto realizado com intuito acadêmico para geração de gráficos a partir do tratamento de dados.',
-      technology: ['REACT', 'VITE', 'BOOTSTRAP', 'DASHBOARD', 'ANIMAÇÃO']
+      technology: ['REACT', 'BOOTSTRAP', 'DASHBOARD', 'ANIMAÇÃO']
     }
   ]
 
   return (
     <Janela>
-      <h1 id='Projetos' className='text-center text-7xl mb-7 text-white drop-shadow-[4px_4px_rgba(0,0,0,0.60)] max-lg:text-5xl'>
+      <h1
+        id='Projetos'
+        className='text-center text-7xl mb-7 text-white drop-shadow-[4px_4px_rgba(0,0,0,0.60)] max-lg:text-5xl'
+      >
         Projetos
       </h1>
-      <Link to='https://analise-furtos.vercel.app/' target='_blank'>
-        <div className='flex justify-evenly gap-5 flex-wrap'>
+      <div className='flex justify-evenly gap-5 flex-wrap'>
+        <Link to='https://analise-furtos.vercel.app/' target='_blank'>
           {Projects.map((projects, index) => (
             <div
               key={index}
@@ -64,8 +67,8 @@ export default function Projects () {
               </div>
             </div>
           ))}
-        </div>
-      </Link>
+        </Link>
+      </div>
     </Janela>
   )
 }
