@@ -287,6 +287,12 @@
   margin-left: 100px;
 }
 
+.hero__action-card-link {
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+}
+
 .hero__action-card {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
@@ -295,6 +301,7 @@
   padding: 16px 30px;
   border-radius: 4px;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
 }
 
 .hero__action-card:hover {
@@ -331,12 +338,13 @@
 /* ─── Typing Cursor ─── */
 .typing-cursor {
   display: inline-block;
-  width: 2px;
-  height: 0.8em;
+  width: 2.5px;
+  height: 0.88em;
   background-color: #ffffff;
   vertical-align: middle;
   margin-left: 4px;
-  animation: blink 0.8s step-end infinite;
+  animation: blink 1s step-end infinite;
+  transform: translateY(-10%);
 }
 
 .typing-ph {

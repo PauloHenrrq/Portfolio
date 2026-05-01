@@ -12,36 +12,30 @@ export function Navbar() {
 
   return (
     <header className={`topbar${scrolled ? ' scrolled' : ''}`} role="banner">
-      {/* Mobile only logo */}
-      <span className="topbar--mobile-logo" aria-hidden="true">
-        ◈ PH<span>.</span>dev
-      </span>
+      <nav className="topbar__nav" aria-label="Navegação Principal">
+        <div className="topbar__group">
+          <a
+            href="https://github.com/PauloHenrrq"
+            className="topbar__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GITHUB
+          </a>
+          <a
+            href="/cv.pdf"
+            className="topbar__link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CURRÍCULO
+          </a>
+        </div>
 
-      {/* Social links */}
-      <nav className="topbar__links" aria-label="Links externos">
-        <a
-          href="https://github.com/seu-perfil"
-          className="topbar__link"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          GitHub
-        </a>
-        <a
-          href="https://linkedin.com/in/seu-perfil"
-          className="topbar__link"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          LinkedIn
-        </a>
-
-        <div className="topbar__separator" aria-hidden="true" />
+        <div className="topbar__divider" aria-hidden="true" />
 
         <a href="#contact" className="topbar__cta">
-          Contato
+          CONTATO
         </a>
       </nav>
     </header>

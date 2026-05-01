@@ -1,107 +1,109 @@
-/* ═══════════════════════════════════════════════════════════
-   TopBar — Right-aligned social links + CTA
-   ═══════════════════════════════════════════════════════════ */
-
 .topbar {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: var(--z-topbar);
+  left: 0;
   width: 100%;
+  z-index: 1000;
+  padding: 32px 48px;
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-  gap: 0.375rem;
-  padding: 0.875rem var(--section-padding-x);
   background: transparent;
-  transition: background var(--duration-normal), border-color var(--duration-normal);
-  border-bottom: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .topbar.scrolled {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom-color: var(--color-border);
+  padding: 16px 48px;
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* ─── Social Links ─── */
-.topbar__links {
+.topbar__nav {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 32px;
+}
+
+.topbar__group {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .topbar__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.45rem 0.75rem;
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--color-text-secondary);
-  border-radius: var(--radius-sm);
-  transition: color var(--duration-fast), background var(--duration-fast);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
   text-decoration: none;
+  letter-spacing: 0.15em;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 4px 0;
+}
+
+.topbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent-primary);
+  transition: width 0.3s ease;
 }
 
 .topbar__link:hover {
-  color: var(--color-text-primary);
-  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
 }
 
-.topbar__separator {
+.topbar__link:hover::after {
+  width: 100%;
+}
+
+.topbar__divider {
   width: 1px;
-  height: 16px;
-  background: var(--color-border);
-  margin: 0 0.25rem;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* ─── CTA Button ─── */
 .topbar__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.5rem 1.125rem;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--color-text-primary);
-  background: var(--color-accent-primary);
-  border-radius: var(--radius-sm);
-  transition: background var(--duration-fast), transform var(--duration-fast), box-shadow var(--duration-fast);
-  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 20px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.15em;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .topbar__cta:hover {
-  background: var(--color-accent-light);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px var(--color-accent-glow);
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
 }
 
-/* ─── Mobile: show logo + links ─── */
-.topbar--mobile-logo {
-  display: none;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--color-text-primary);
-  margin-right: auto;
-}
-
-.topbar--mobile-logo span { color: var(--color-accent-primary); }
-
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .topbar {
-    justify-content: space-between;
-    padding: 0.75rem 1.5rem;
-    background: rgba(10, 10, 10, 0.9);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom-color: var(--color-border);
-    position: fixed;
-    top: 0;
+    padding: 24px;
+    justify-content: center;
+  }
+  
+  .topbar.scrolled {
+    padding: 12px 24px;
   }
 
-  .topbar--mobile-logo { display: block; }
+  .topbar__group {
+    gap: 16px;
+  }
+  
+  .topbar__nav {
+    gap: 16px;
+  }
 }

@@ -203,15 +203,6 @@ export function HeroSection() {
 
   return (
     <section ref={sectionRef} className="wf-hero-wrapper" id="hero">
-      <header className="wf-topbar">
-        <nav className="wf-topbar__nav">
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="wf-topbar__link">GitHub</a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="wf-topbar__link">LinkedIn</a>
-          <a href="/cv.pdf" target="_blank" rel="noreferrer" className="wf-topbar__link">CV ↓</a>
-        </nav>
-        <a href="#contact" className="wf-topbar__cta">Contato</a>
-      </header>
-
       <div className="wf-hero">
         <div className="hero__bg-gradient" />
         
@@ -246,14 +237,16 @@ export function HeroSection() {
           </div>
 
           <div className="hero__actions">
-            <div className="hero__action-card">
-              <a href="#projects" className="hero__action-link">
-                VER PROJETOS
-                <svg className="hero__action-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
+            <a href="#projects" className="hero__action-card-link">
+              <div className="hero__action-card">
+                <span className="hero__action-link">
+                  VER PROJETOS
+                  <svg className="hero__action-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+            </a>
             <a href="#contact" className="hero__action-link hero__action-link--alt">ENTRAR EM CONTATO →</a>
           </div>
         </div>
