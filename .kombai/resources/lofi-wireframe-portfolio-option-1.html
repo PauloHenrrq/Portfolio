@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe Option 1 — Immersive Full-Screen</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      background: #fff;
+      color: #333;
+    }
+
+    /* Legend */
+    .legend {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      border: 2px solid #333;
+      padding: 12px 16px;
+      z-index: 9999;
+      font-size: 12px;
+    }
+    .legend h4 { font-size: 13px; margin-bottom: 8px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .badge-green { background: #4CAF50; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; }
+    .badge-orange { background: #FF9800; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; }
+
+    /* Page header */
+    .page-header {
+      background: #f5f5f5;
+      border-bottom: 3px solid #333;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .page-header h1 { font-size: 16px; }
+    .page-header p { font-size: 12px; color: #666; }
+
+    /* BADGE SYSTEM */
+    .tagged { position: relative; display: block; }
+    .tagged-inline { position: relative; display: inline-block; }
+    .reuse-badge, .new-badge {
+      position: absolute;
+      top: -10px;
+      right: -4px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      z-index: 10;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .reuse-badge { background: #4CAF50; color: #fff; }
+    .new-badge   { background: #FF9800; color: #fff; }
+
+    /* ─── SECTIONS ─────────────────────────────────── */
+
+    /* NAVBAR */
+    .wf-navbar {
+      width: 100%;
+      border: 2px solid #333;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f5f5f5;
+      border-bottom: 2px dashed #999;
+    }
+    .wf-navbar__logo {
+      font-size: 18px;
+      font-weight: bold;
+      border: 2px solid #333;
+      padding: 4px 10px;
+    }
+    .wf-navbar__links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .wf-navbar__links li a {
+      font-size: 13px;
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px dashed #999;
+    }
+    .wf-navbar__cta {
+      border: 2px solid #333;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    .wf-navbar__note {
+      font-size: 11px;
+      color: #999;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* HERO */
+    .wf-hero {
+      width: 100%;
+      min-height: 520px;
+      border: 2px solid #333;
+      border-top: none;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 40px 80px;
+      background: #fff;
+    }
+    .wf-hero__bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 120px;
+      font-weight: 900;
+      color: #f0f0f0;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      pointer-events: none;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .wf-hero__inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+    }
+    .wf-hero__portrait {
+      width: 180px;
+      height: 240px;
+      background: #e0e0e0;
+      border: 2px solid #999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .wf-hero__portrait span { font-size: 12px; color: #666; }
+    .wf-hero__content { max-width: 400px; }
+    .wf-hero__tag {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #999;
+      border: 1px solid #ccc;
+      padding: 3px 10px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .wf-hero__title {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 16px;
+      border-bottom: 3px solid #333;
+      padding-bottom: 8px;
+    }
+    .wf-hero__title span { text-decoration: underline wavy #999; }
+    .wf-hero__desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      border-left: 3px solid #ccc;
+      padding-left: 12px;
+    }
+    .wf-hero__actions { display: flex; gap: 12px; }
+    .btn-primary {
+      border: 2px solid #333;
+      background: #333;
+      color: #fff;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    .btn-ghost {
+      border: 2px solid #333;
+      background: #fff;
+      color: #333;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    .wf-hero__scroll {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .wf-hero__scroll-line {
+      width: 2px;
+      height: 40px;
+      background: repeating-linear-gradient(to bottom, #999 0px, #999 4px, transparent 4px, transparent 8px);
+    }
+    .wf-hero__scroll-label { font-size: 10px; color: #999; letter-spacing: 0.1em; }
+    .wf-hero__new-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #FF9800;
+      color: #fff;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+
+    /* ENERGY CONNECTOR */
+    .wf-energy {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 0;
+      border-left: 2px solid #333;
+      border-right: 2px solid #333;
+      position: relative;
+    }
+    .wf-energy__line {
+      width: 2px;
+      height: 40px;
+      background: repeating-linear-gradient(to bottom, #999 0px, #999 4px, transparent 4px, transparent 8px);
+    }
+    .wf-energy__dot {
+      width: 8px;
+      height: 8px;
+      border: 2px solid #333;
+      border-radius: 50%;
+    }
+
+    /* SECTION WRAPPER */
+    .wf-section {
+      width: 100%;
+      border: 2px solid #333;
+      border-top: none;
+      padding: 60px 80px;
+    }
+    .wf-section--alt { background: #fafafa; }
+    .wf-section__label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #999;
+      margin-bottom: 8px;
+    }
+    .wf-section__title {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .wf-section__title u { text-decoration: underline wavy #aaa; }
+    .wf-section__desc {
+      font-size: 13px;
+      color: #555;
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      border-left: 3px solid #ccc;
+      padding-left: 12px;
+    }
+
+    /* ABOUT */
+    .wf-about__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+    .wf-about__card {
+      border: 2px solid #333;
+      padding: 24px;
+      background: #fff;
+      position: relative;
+    }
+    .wf-about__card-icon {
+      width: 36px; height: 36px;
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .wf-about__card h3 { font-size: 15px; margin-bottom: 8px; }
+    .wf-about__card p { font-size: 12px; color: #666; line-height: 1.5; }
+    .wf-about__stats { display: flex; gap: 40px; border-top: 2px solid #ccc; padding-top: 24px; }
+    .wf-about__stat-value { font-size: 36px; font-weight: 900; }
+    .wf-about__stat-label { font-size: 11px; color: #999; margin-top: 4px; }
+
+    /* PROJECTS */
+    .wf-projects__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .wf-projects__card {
+      border: 2px solid #333;
+      background: #fff;
+      position: relative;
+    }
+    .wf-projects__preview {
+      height: 160px;
+      background: #e0e0e0;
+      border-bottom: 2px solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wf-projects__preview span { font-size: 12px; color: #666; }
+    .wf-projects__info { padding: 20px; }
+    .wf-projects__title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .wf-projects__desc { font-size: 12px; color: #666; margin-bottom: 12px; }
+    .wf-projects__techs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .wf-tech-badge {
+      border: 1px solid #999;
+      padding: 2px 8px;
+      font-size: 11px;
+      color: #555;
+    }
+    .wf-projects__links { display: flex; gap: 10px; }
+    .wf-link { font-size: 12px; color: #333; border-bottom: 1px dashed #999; }
+
+    /* STACKS */
+    .wf-stacks__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .wf-stacks__group {
+      border: 2px solid #333;
+      padding: 20px;
+      background: #fff;
+      position: relative;
+    }
+    .wf-stacks__group-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+    .wf-stacks__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .wf-stacks__item-icon {
+      width: 24px;
+      height: 24px;
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .wf-stacks__item-name { font-size: 13px; }
+
+    /* CONTACT */
+    .wf-contact {
+      text-align: center;
+      position: relative;
+    }
+    .wf-contact__orb {
+      width: 200px;
+      height: 200px;
+      border: 2px dashed #ccc;
+      border-radius: 50%;
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ccc;
+      font-size: 12px;
+    }
+    .wf-contact__links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 480px;
+      margin: 32px auto 0;
+    }
+    .wf-contact__link {
+      border: 2px solid #333;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      text-decoration: none;
+      color: #333;
+      position: relative;
+    }
+    .wf-contact__link-label { font-size: 11px; color: #999; }
+    .wf-contact__link-value { font-size: 13px; }
+    .wf-contact__link-arrow { font-size: 16px; }
+    .wf-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid #ccc; font-size: 12px; color: #999; }
+
+    /* NEW COMPONENT: LoadingScreen */
+    .wf-loader {
+      border: 2px dashed #999;
+      padding: 20px 40px;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: #f5f5f5;
+      position: relative;
+    }
+    .wf-loader__bar {
+      width: 200px;
+      height: 4px;
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      position: relative;
+      overflow: hidden;
+    }
+    .wf-loader__fill {
+      width: 60%;
+      height: 100%;
+      background: repeating-linear-gradient(90deg, #999 0px, #999 4px, #ddd 4px, #ddd 8px);
+    }
+    .wf-loader__label { font-size: 13px; color: #555; }
+
+    /* Section divider annotation */
+    .wf-annotation {
+      background: #fffde7;
+      border: 1px dashed #f0c040;
+      padding: 6px 12px;
+      font-size: 11px;
+      color: #888;
+      font-style: italic;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LEGEND -->
+<div class="legend">
+  <h4>Component Tags</h4>
+  <div class="legend-item"><span class="badge-green">[REUSE]</span> Existing component</div>
+  <div class="legend-item"><span class="badge-orange">[NEW]</span> New component to create</div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div>
+    <h1>Wireframe Option 1 — Immersive Full-Screen</h1>
+    <p>Inspired by Lusion.co · Conservative approach (max component reuse) · GSAP-powered full-viewport sections</p>
+  </div>
+  <div style="font-size:12px; color:#666; text-align:right;">
+    Portfolio PH · Single Page<br/>
+    Sections: Hero → About → Projects → Stacks → Contact
+  </div>
+</div>
+
+<!-- ───────────────── LOADING SCREEN (NEW) ───────────────── -->
+<!-- NEW COMPONENT: LoadingScreen (src/components/LoadingScreen.tsx) -->
+<div class="wf-loader">
+  <div class="new-badge" style="position:absolute; top:-10px; right:4px; background:#FF9800; color:#fff; padding:2px 6px; border-radius:3px; font-size:10px; font-family:Arial,sans-serif; font-weight:bold; z-index:10;">[NEW] LoadingScreen</div>
+  <div class="wf-loader__bar"><div class="wf-loader__fill"></div></div>
+  <div class="wf-loader__label">Loading... PH</div>
+  <div style="font-size:11px; color:#999;">Animates out on mount via GSAP · Blocks scroll until loaded</div>
+</div>
+<div class="wf-annotation">↑ NEW: Full-screen loading overlay (src/components/LoadingScreen.tsx) — covers viewport with progress bar + logo reveal before main content appears</div>
+
+<!-- ───────────────── NAVBAR ───────────────── -->
+<!-- REUSABLE: Navbar from src/components/Navbar.tsx -->
+<div class="tagged">
+  <span class="reuse-badge" title="src/components/Navbar.tsx">[REUSE] Navbar</span>
+  <div class="wf-navbar">
+    <div class="tagged-inline" style="position:relative;">
+      <div class="wf-navbar__logo">◈ PH.dev</div>
+    </div>
+    <ul class="wf-navbar__links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Projetos</a></li>
+      <li><a href="#">Stacks</a></li>
+      <li><div class="wf-navbar__cta">Contato</div></li>
+    </ul>
+    <div style="font-size:11px; color:#999;">[ hamburger on mobile ]</div>
+  </div>
+  <div class="wf-annotation">REUSE Navbar — add glass blur backdrop + scroll-based opacity change (already implemented)</div>
+</div>
+
+<!-- ───────────────── HERO ───────────────── -->
+<!-- REUSABLE: HeroSection from src/sections/Hero.tsx -->
+<div class="tagged">
+  <span class="reuse-badge" title="src/sections/Hero.tsx" style="top:8px; right:8px;">[REUSE] HeroSection</span>
+  <div class="wf-hero">
+    <!-- Background oversized bg text -->
+    <div class="wf-hero__bg-text">DESENVOLVEDOR</div>
+
+    <!-- NEW: Cursor Trail indicator -->
+    <div style="position:absolute; top:16px; left:16px;">
+      <span style="background:#FF9800; color:#fff; padding:2px 6px; border-radius:3px; font-size:10px; font-family:Arial,sans-serif; font-weight:bold;">[NEW] CursorTrail</span>
+      <div style="margin-top:4px; font-size:11px; color:#999; border: 1px dashed #ccc; padding:4px 8px;">○ Cursor glow dot follows mouse (canvas/CSS)</div>
+    </div>
+
+    <div class="wf-hero__inner">
+      <!-- Portrait -->
+      <div class="wf-hero__portrait">
+        <span style="font-size:28px;">👤</span>
+        <span style="font-size:11px; margin-top:8px;">Portrait 300×400</span>
+        <span style="font-size:10px; color:#999;">/portrait.png</span>
+      </div>
+
+      <!-- Content -->
+      <div class="wf-hero__content">
+        <div class="wf-hero__tag">◈ Engineering Premium Experiences</div>
+        <div class="wf-hero__title">
+          PAULO<br/>
+          <span style="text-decoration: underline wavy #aaa;">HENRIQUE</span>
+        </div>
+        <div class="wf-hero__desc">
+          Especialista em arquitetura de software e design de interfaces de alta performance.
+          Focado em criar soluções que conectam <u>tecnologia</u> e <u>impacto visual</u>.
+        </div>
+        <div class="wf-hero__actions">
+          <!-- REUSABLE: .btn--primary / .btn--ghost from src/styles/buttons.css -->
+          <div class="tagged-inline" style="position:relative;">
+            <span class="reuse-badge" style="top:-10px; right:-4px;" title="src/styles/buttons.css">[REUSE] .btn--primary</span>
+            <div class="btn-primary">View Projects</div>
+          </div>
+          <div class="tagged-inline" style="position:relative; margin-left:8px;">
+            <span class="reuse-badge" style="top:-10px; right:-4px;" title="src/styles/buttons.css">[REUSE] .btn--ghost</span>
+            <div class="btn-ghost">Get in Touch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="wf-hero__scroll">
+      <div class="wf-hero__scroll-line"></div>
+      <div class="wf-hero__scroll-label">SCROLL</div>
+    </div>
+  </div>
+  <div class="wf-annotation">REUSE HeroSection — layout unchanged. Add portrait image when available. BG text parallax already implemented via GSAP ScrollTrigger.</div>
+</div>
+
+<!-- ───────────────── ENERGY CONNECTOR ───────────────── -->
+<!-- REUSABLE: EnergyConnector from src/components/EnergyConnector.tsx -->
+<div class="tagged" style="position:relative;">
+  <span class="reuse-badge" style="top:2px; right:8px;" title="src/components/EnergyConnector.tsx">[REUSE] EnergyConnector</span>
+  <div class="wf-energy">
+    <div class="wf-energy__line"></div>
+    <div class="wf-energy__dot"></div>
+    <div class="wf-energy__line"></div>
+  </div>
+</div>
+
+<!-- ───────────────── ABOUT ───────────────── -->
+<!-- REUSABLE: AboutSection from src/sections/About.tsx -->
+<div class="tagged">
+  <span class="reuse-badge" style="top:8px; right:8px;" title="src/sections/About.tsx">[REUSE] AboutSection</span>
+  <div class="wf-section">
+    <div class="wf-section__label">◈ SOBRE MIM</div>
+    <div class="wf-section__title">
+      Quem está por trás<br/>do <u>código</u>
+    </div>
+    <div class="wf-section__desc">
+      Sou um desenvolvedor Full Stack com forte inclinação para Design e experiências visuais impactantes.
+    </div>
+
+    <!-- Services Grid — glass-card reuse -->
+    <div class="wf-about__grid">
+      <!-- REUSABLE: glass-card CSS class from src/styles/global.css -->
+      <div class="tagged" style="position:relative;">
+        <span class="reuse-badge" style="top:4px; right:4px;" title="src/styles/global.css">[REUSE] glass-card</span>
+        <div class="wf-about__card">
+          <div class="wf-about__card-icon">⬜</div>
+          <h3>Web Development</h3>
+          <p>Aplicações web modernas com React, Next.js e TypeScript.</p>
+        </div>
+      </div>
+      <div class="wf-about__card">
+        <div class="wf-about__card-icon">📱</div>
+        <h3>App Development</h3>
+        <p>Aplicativos mobile cross-platform com React Native e Expo.</p>
+      </div>
+      <div class="wf-about__card">
+        <div class="wf-about__card-icon">🎨</div>
+        <h3>Design & UI/UX</h3>
+        <p>Interfaces que encantam. Prototipação e design systems.</p>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="wf-about__stats">
+      <div>
+        <div class="wf-about__stat-value">10+</div>
+        <div class="wf-about__stat-label">Projetos Completos</div>
+      </div>
+      <div>
+        <div class="wf-about__stat-value">95%</div>
+        <div class="wf-about__stat-label">Satisfação do Cliente</div>
+      </div>
+      <div>
+        <div class="wf-about__stat-value">2+</div>
+        <div class="wf-about__stat-label">Anos de Experiência</div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-annotation">REUSE AboutSection — layout unchanged. glass-card spotlight effect already in useCardSpotlight.ts</div>
+</div>
+
+<!-- ENERGY CONNECTOR -->
+<div class="tagged" style="position:relative;">
+  <span class="reuse-badge" style="top:2px; right:8px;" title="src/components/EnergyConnector.tsx">[REUSE] EnergyConnector</span>
+  <div class="wf-energy">
+    <div class="wf-energy__line"></div>
+    <div class="wf-energy__dot"></div>
+    <div class="wf-energy__line"></div>
+  </div>
+</div>
+
+<!-- ───────────────── PROJECTS ───────────────── -->
+<!-- REUSABLE: ProjectsSection from src/sections/Projects.tsx -->
+<div class="tagged">
+  <span class="reuse-badge" style="top:8px; right:8px;" title="src/sections/Projects.tsx">[REUSE] ProjectsSection</span>
+  <div class="wf-section wf-section--alt">
+    <div class="wf-section__label">◈ PROJETOS</div>
+    <div class="wf-section__title">Trabalhos <u>selecionados</u></div>
+    <div class="wf-section__desc">Cada projeto é uma oportunidade de resolver problemas reais com código de qualidade.</div>
+
+    <div class="wf-projects__grid">
+      <div class="tagged" style="position:relative;">
+        <span class="reuse-badge" style="top:4px; right:4px;" title="src/styles/global.css">[REUSE] glass-card</span>
+        <div class="wf-projects__card">
+          <div class="wf-projects__preview">
+            <span style="font-size:24px;">🖥️</span>
+            <span>Screenshot 600×300</span>
+          </div>
+          <div class="wf-projects__info">
+            <div class="wf-projects__title">Projeto 1</div>
+            <div class="wf-projects__desc">Descrição breve do projeto e o problema que ele resolve.</div>
+            <div class="wf-projects__techs">
+              <span class="wf-tech-badge">React</span>
+              <span class="wf-tech-badge">Node.js</span>
+              <span class="wf-tech-badge">PostgreSQL</span>
+            </div>
+            <div class="wf-projects__links">
+              <span class="wf-link">Demo ↗</span>
+              <span class="wf-link">GitHub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wf-projects__card">
+        <div class="wf-projects__preview"><span>🖥️</span><span>Screenshot 600×300</span></div>
+        <div class="wf-projects__info">
+          <div class="wf-projects__title">Projeto 2</div>
+          <div class="wf-projects__desc">Descrição breve do projeto e o problema que ele resolve.</div>
+          <div class="wf-projects__techs">
+            <span class="wf-tech-badge">Next.js</span><span class="wf-tech-badge">Prisma</span><span class="wf-tech-badge">TypeScript</span>
+          </div>
+          <div class="wf-projects__links"><span class="wf-link">Demo ↗</span><span class="wf-link">GitHub</span></div>
+        </div>
+      </div>
+      <div class="wf-projects__card">
+        <div class="wf-projects__preview"><span>🖥️</span><span>Screenshot 600×300</span></div>
+        <div class="wf-projects__info">
+          <div class="wf-projects__title">Projeto 3</div>
+          <div class="wf-projects__desc">Descrição breve do projeto e o problema que ele resolve.</div>
+          <div class="wf-projects__techs">
+            <span class="wf-tech-badge">React Native</span><span class="wf-tech-badge">Expo</span>
+          </div>
+          <div class="wf-projects__links"><span class="wf-link">Demo ↗</span><span class="wf-link">GitHub</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-annotation">REUSE ProjectsSection — replace emoji placeholder with real project mockup images (path: /mockup-projeto.webp)</div>
+</div>
+
+<!-- ENERGY CONNECTOR -->
+<div class="tagged" style="position:relative;">
+  <span class="reuse-badge" style="top:2px; right:8px;" title="src/components/EnergyConnector.tsx">[REUSE] EnergyConnector</span>
+  <div class="wf-energy">
+    <div class="wf-energy__line"></div>
+    <div class="wf-energy__dot"></div>
+    <div class="wf-energy__line"></div>
+  </div>
+</div>
+
+<!-- ───────────────── STACKS ───────────────── -->
+<!-- REUSABLE: StacksSection from src/sections/Stacks.tsx -->
+<div class="tagged">
+  <span class="reuse-badge" style="top:8px; right:8px;" title="src/sections/Stacks.tsx">[REUSE] StacksSection</span>
+  <div class="wf-section">
+    <div class="wf-section__label">◈ TECNOLOGIAS</div>
+    <div class="wf-section__title">Stack & <u>Ferramentas</u></div>
+    <div class="wf-section__desc">As ferramentas que uso para transformar ideias em produtos reais.</div>
+
+    <div class="wf-stacks__grid">
+      <div class="tagged" style="position:relative;">
+        <span class="reuse-badge" style="top:4px; right:4px;" title="src/styles/global.css">[REUSE] glass-card</span>
+        <div class="wf-stacks__group">
+          <div class="wf-stacks__group-title">Front-end</div>
+          <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">React</span></div>
+          <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Next.js</span></div>
+          <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">TypeScript</span></div>
+          <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">GSAP</span></div>
+        </div>
+      </div>
+      <div class="wf-stacks__group">
+        <div class="wf-stacks__group-title">Back-end</div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Node.js</span></div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Express</span></div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Prisma</span></div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">PostgreSQL</span></div>
+      </div>
+      <div class="wf-stacks__group">
+        <div class="wf-stacks__group-title">Mobile</div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">React Native</span></div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Expo</span></div>
+      </div>
+      <div class="wf-stacks__group">
+        <div class="wf-stacks__group-title">DevOps & Tools</div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Git</span></div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Docker</span></div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Vercel</span></div>
+        <div class="wf-stacks__item"><div class="wf-stacks__item-icon">⚡</div><span class="wf-stacks__item-name">Figma</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-annotation">REUSE StacksSection — swap ⚡ with real tech SVG icons via vite-plugin-svgr (coding_guidelines_vite_react: import Icon from './icon.svg?react')</div>
+</div>
+
+<!-- ENERGY CONNECTOR -->
+<div class="tagged" style="position:relative;">
+  <span class="reuse-badge" style="top:2px; right:8px;" title="src/components/EnergyConnector.tsx">[REUSE] EnergyConnector</span>
+  <div class="wf-energy">
+    <div class="wf-energy__line"></div>
+    <div class="wf-energy__dot"></div>
+    <div class="wf-energy__line"></div>
+  </div>
+</div>
+
+<!-- ───────────────── CONTACT ───────────────── -->
+<!-- REUSABLE: ContactSection from src/sections/Contact.tsx -->
+<div class="tagged">
+  <span class="reuse-badge" style="top:8px; right:8px;" title="src/sections/Contact.tsx">[REUSE] ContactSection</span>
+  <div class="wf-section wf-section--alt wf-contact">
+    <div class="wf-contact__orb">[ glowing orb ]</div>
+    <div class="wf-section__label" style="text-align:center;">◈ CONTATO</div>
+    <div class="wf-section__title" style="text-align:center;">
+      Vamos construir<br/>algo <u>juntos</u>?
+    </div>
+    <div class="wf-section__desc" style="text-align:center; max-width:400px; margin:0 auto 0 auto; border-left:none; padding-left:0;">
+      Estou disponível para oportunidades, freelances e conversas sobre tecnologia.
+    </div>
+
+    <div class="wf-contact__links">
+      <div class="tagged" style="position:relative;">
+        <span class="reuse-badge" style="top:4px; right:4px;" title="src/styles/global.css">[REUSE] glass-card</span>
+        <a class="wf-contact__link">
+          <span class="wf-contact__link-label">Email</span>
+          <span class="wf-contact__link-value">seu@email.com</span>
+          <span class="wf-contact__link-arrow">↗</span>
+        </a>
+      </div>
+      <a class="wf-contact__link">
+        <span class="wf-contact__link-label">LinkedIn</span>
+        <span class="wf-contact__link-value">linkedin.com/in/seu-perfil</span>
+        <span class="wf-contact__link-arrow">↗</span>
+      </a>
+      <a class="wf-contact__link">
+        <span class="wf-contact__link-label">GitHub</span>
+        <span class="wf-contact__link-value">github.com/seu-perfil</span>
+        <span class="wf-contact__link-arrow">↗</span>
+      </a>
+    </div>
+
+    <div class="wf-footer">
+      <p>Desenhado & Desenvolvido por <strong>Paulo Henrique</strong></p>
+      <p>© 2026</p>
+    </div>
+  </div>
+  <div class="wf-annotation">REUSE ContactSection — layout unchanged. Replace placeholder emails/links with real social profiles.</div>
+</div>
+
+<!-- SUMMARY PANEL -->
+<div style="background:#f5f5f5; border-top:3px solid #333; padding:24px 40px; font-size:13px;">
+  <strong>Option 1 — Immersive Full-Screen Summary:</strong>
+  <ul style="margin-top:10px; padding-left:20px; line-height:1.8;">
+    <li>Maximum component reuse — all existing sections intact</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> LoadingScreen (GSAP curtain reveal on load)</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> CursorTrail (magnetic cursor glow following mouse)</li>
+    <li>Hero: full-viewport with parallax bg text (already built)</li>
+    <li>All EnergyConnectors preserved as section separators</li>
+    <li>Minimal new work: add real portrait + real project screenshots + tech icons</li>
+  </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Projects Section (Option 3 Horizontal Scroller)
+   ========================================================================== */
+
+/* ─── Horizontal Scroller Container ─── */
+.wf-horiz-scroller {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  border: 1px dashed var(--color-border);
+  padding: 24px;
+  margin-top: 16px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  /* hide scrollbar standard */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-muted) transparent;
+}
+
+.wf-horiz-scroller::-webkit-scrollbar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.wf-horiz-scroller::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 4px;
+}
+
+/* ─── Project Card ─── */
+.wf-project-card-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 360px;
+}
+
+@media (max-width: 600px) {
+  .wf-project-card-wrap {
+    width: 300px;
+  }
+}
+
+.wf-project-card {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--color-bg);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wf-project-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 26, 26, 0.05);
+}
+
+/* ─── Card Preview ─── */
+.wf-project-card__preview {
+  height: 200px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+}
+
+.wf-project-card:hover .wf-project-card__preview {
+  background: rgba(255, 26, 26, 0.03);
+}
+
+.wf-project-card__icon {
+  font-size: 28px;
+  opacity: 0.8;
+}
+
+.wf-project-card__preview-text {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ─── Card Body ─── */
+.wf-project-card__body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.wf-project-card__num {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.1);
+  line-height: 1;
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+}
+
+.wf-project-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-text);
+  font-family: var(--font-display);
+}
+
+.wf-project-card__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.wf-project-card__techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.wf-tech-badge {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+}
+
+.wf-project-card__links {
+  display: flex;
+  gap: 16px;
+}
+
+.wf-link {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--color-text-muted);
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.wf-link:hover {
+  color: var(--color-accent-primary);
+  border-bottom-color: var(--color-accent-primary);
+}
+
+/* ─── Placeholder Card ─── */
+.wf-project-card-placeholder {
+  flex-shrink: 0;
+  width: 180px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.01);
+  transition: background 0.3s ease;
+}
+
+.wf-project-card-placeholder:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ─── Hint ─── */
+.wf-horiz-hint {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 16px;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}

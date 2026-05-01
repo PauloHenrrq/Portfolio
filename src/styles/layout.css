@@ -1,0 +1,216 @@
+/* ==========================================================================
+   Shell Layout & Sidebar (Option 3 Dark/Red Theme)
+   ========================================================================== */
+
+.wf-shell {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: clip;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+.wf-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  padding: 32px 24px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--color-bg-alt);
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+  z-index: 100;
+}
+
+/* Mobile: hide sidebar for now, we'll implement a mobile menu later if needed, 
+   or move it to bottom */
+@media (max-width: 992px) {
+  .wf-sidebar {
+    display: none;
+  }
+}
+
+.wf-sidebar__logo {
+  font-size: 1.2rem;
+  font-weight: 900;
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.wf-sidebar__logo span {
+  color: var(--color-accent-primary);
+}
+
+.wf-sidebar__nav {
+  flex: 1;
+}
+
+.wf-sidebar__nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  font-size: 0.85rem;
+  color: #fff;
+  opacity: 0.2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wf-sidebar__nav-item:hover {
+  opacity: 0.5;
+}
+
+.wf-sidebar__nav-item--active {
+  opacity: 1;
+  font-weight: 700;
+}
+
+.wf-sidebar__nav-dot {
+  width: 6px;
+  height: 6px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.wf-sidebar__nav-item--active .wf-sidebar__nav-dot {
+  background: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 8px rgba(255, 26, 26, 0.6);
+}
+
+.wf-sidebar__progress-container {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wf-sidebar__progress-bar {
+  width: 2px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin: 0 auto 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wf-sidebar__progress-fill {
+  width: 100%;
+  height: 0%; /* To be controlled by JS */
+  background: var(--color-accent-primary);
+  box-shadow: 0 0 10px rgba(255, 26, 26, 0.8);
+  transition: height 0.1s ease-out;
+}
+
+.wf-sidebar__progress-text {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+.wf-sidebar__footer {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+.wf-main {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+/* General Section Container for Option 3 */
+.wf-section {
+  padding: 80px 48px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .wf-section {
+    padding: 60px 24px;
+  }
+}
+
+.wf-section__aside {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .wf-section__aside {
+    display: none;
+  }
+  .wf-section__inner {
+    padding-left: 0 !important;
+  }
+}
+
+.wf-section__aside-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.wf-section__inner {
+  padding-left: 0;
+}
+
+.wf-section__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-primary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.wf-section__title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.wf-section__title span {
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.wf-section__desc {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}

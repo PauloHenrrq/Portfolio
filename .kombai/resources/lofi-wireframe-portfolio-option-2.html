@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe Option 2 — Editorial Grid</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+      background: #fff;
+      color: #333;
+    }
+
+    /* Legend */
+    .legend {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      border: 2px solid #333;
+      padding: 12px 16px;
+      z-index: 9999;
+      font-size: 12px;
+    }
+    .legend h4 { font-size: 13px; margin-bottom: 8px; border-bottom: 1px solid #ccc; padding-bottom: 4px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .badge-green { background: #4CAF50; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; }
+    .badge-orange { background: #FF9800; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; }
+
+    .page-header {
+      background: #f5f5f5;
+      border-bottom: 3px solid #333;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .page-header h1 { font-size: 16px; }
+    .page-header p { font-size: 12px; color: #666; }
+
+    .reuse-badge, .new-badge {
+      position: absolute;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      z-index: 10;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .reuse-badge { background: #4CAF50; color: #fff; top: -10px; right: 4px; }
+    .new-badge   { background: #FF9800; color: #fff; top: -10px; right: 4px; }
+
+    .wf-annotation {
+      background: #fffde7;
+      border: 1px dashed #f0c040;
+      padding: 6px 12px;
+      font-size: 11px;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* ─── NAVBAR (minimal, editorial style) ─── */
+    .wf-navbar {
+      width: 100%;
+      border-bottom: 2px solid #333;
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      position: relative;
+    }
+    .wf-navbar__logo { font-size: 16px; font-weight: 900; letter-spacing: 0.05em; }
+    .wf-navbar__num { font-size: 11px; color: #999; }
+    .wf-navbar__links { display: flex; gap: 32px; list-style: none; }
+    .wf-navbar__links li { font-size: 12px; color: #555; border-bottom: 1px solid transparent; }
+    .wf-navbar__links li:hover { border-bottom: 1px solid #333; }
+    .wf-navbar__indicator {
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 2px;
+      width: 30%;
+      background: repeating-linear-gradient(90deg, #333 0, #333 4px, transparent 4px, transparent 8px);
+    }
+
+    /* ─── HERO (editorial asymmetric split) ─── */
+    .wf-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+      border-bottom: 2px solid #333;
+    }
+    .wf-hero__left {
+      border-right: 2px solid #333;
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .wf-hero__section-num {
+      font-size: 80px;
+      font-weight: 900;
+      color: #f0f0f0;
+      line-height: 1;
+      margin-bottom: -10px;
+    }
+    .wf-hero__title {
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 0.9;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .wf-hero__role {
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: #999;
+      border: 1px dashed #ccc;
+      padding: 4px 12px;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+    .wf-hero__desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      max-width: 340px;
+      border-left: 3px solid #ccc;
+      padding-left: 12px;
+      margin-bottom: 32px;
+    }
+    .wf-hero__actions { display: flex; gap: 12px; }
+    .btn-primary {
+      border: 2px solid #333;
+      background: #333;
+      color: #fff;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-family: 'Comic Sans MS', cursive;
+      display: inline-block;
+    }
+    .btn-ghost {
+      border: 2px solid #333;
+      background: transparent;
+      color: #333;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-family: 'Comic Sans MS', cursive;
+      display: inline-block;
+    }
+    .wf-hero__right {
+      padding: 40px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: #fafafa;
+    }
+    .wf-hero__portrait-frame {
+      width: 260px;
+      height: 340px;
+      background: #e0e0e0;
+      border: 2px solid #999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .wf-hero__portrait-frame::before {
+      content: '';
+      position: absolute;
+      top: 12px; left: 12px; right: -12px; bottom: -12px;
+      border: 2px dashed #ccc;
+      pointer-events: none;
+    }
+    .wf-hero__scroll-v {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: #999;
+      writing-mode: vertical-rl;
+      letter-spacing: 0.15em;
+    }
+    .wf-hero__social {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: #555;
+    }
+    .wf-hero__social a { border-bottom: 1px solid #ccc; }
+
+    /* ─── SECTION SKELETON ─── */
+    .wf-section {
+      width: 100%;
+      border-bottom: 2px solid #333;
+    }
+    .wf-section__header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 32px 48px 0;
+      border-bottom: 1px dashed #ccc;
+      margin-bottom: 40px;
+    }
+    .wf-section__num {
+      font-size: 48px;
+      font-weight: 900;
+      color: #e0e0e0;
+      line-height: 1;
+    }
+    .wf-section__meta { flex: 1; }
+    .wf-section__label { font-size: 11px; letter-spacing: 0.15em; color: #999; }
+    .wf-section__title { font-size: 32px; font-weight: 900; margin: 4px 0 8px; }
+    .wf-section__title u { text-decoration: underline wavy #aaa; }
+    .wf-section__desc {
+      font-size: 13px;
+      color: #555;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+    .wf-section__body { padding: 0 48px 60px; }
+
+    /* ─── ABOUT (two-column split) ─── */
+    .wf-about__split {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+    }
+    .wf-about__bio {
+      border: 2px solid #333;
+      padding: 28px;
+      position: relative;
+    }
+    .wf-about__bio p { font-size: 13px; color: #555; line-height: 1.7; }
+    .wf-about__bio-quote {
+      font-size: 18px;
+      font-style: italic;
+      border-left: 4px solid #333;
+      padding-left: 16px;
+      margin-top: 20px;
+      color: #333;
+    }
+    .wf-about__right { display: flex; flex-direction: column; gap: 20px; }
+    .wf-about__card {
+      border: 2px solid #333;
+      padding: 20px;
+      position: relative;
+      background: #fafafa;
+    }
+    .wf-about__card-num { font-size: 28px; font-weight: 900; color: #e0e0e0; line-height: 1; }
+    .wf-about__card h3 { font-size: 14px; font-weight: 700; margin: 4px 0; }
+    .wf-about__card p { font-size: 12px; color: #666; }
+    .wf-about__stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 2px solid #333;
+      margin-top: 20px;
+    }
+    .wf-about__stat {
+      padding: 20px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+    }
+    .wf-about__stat:last-child { border-right: none; }
+    .wf-about__stat-value { font-size: 36px; font-weight: 900; }
+    .wf-about__stat-label { font-size: 11px; color: #999; margin-top: 4px; }
+
+    /* ─── PROJECTS (full-width stacked with number overlay) ─── */
+    .wf-project-row {
+      display: grid;
+      grid-template-columns: 0.5fr 1.5fr 1fr;
+      border: 2px solid #333;
+      border-bottom: none;
+      position: relative;
+    }
+    .wf-project-row:last-child { border-bottom: 2px solid #333; }
+    .wf-project__num {
+      font-size: 72px;
+      font-weight: 900;
+      color: #e0e0e0;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      border-right: 2px solid #333;
+    }
+    .wf-project__preview {
+      height: 200px;
+      background: #e0e0e0;
+      border-right: 2px solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .wf-project__preview span { font-size: 12px; color: #666; }
+    .wf-project__info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .wf-project__title { font-size: 20px; font-weight: 900; }
+    .wf-project__desc { font-size: 12px; color: #666; line-height: 1.5; }
+    .wf-project__techs { display: flex; flex-wrap: wrap; gap: 6px; }
+    .wf-tech-badge { border: 1px solid #999; padding: 2px 8px; font-size: 11px; color: #555; }
+    .wf-project__links { display: flex; gap: 12px; }
+    .wf-link { font-size: 12px; color: #333; border-bottom: 1px dashed #999; }
+
+    /* ─── STACKS (masonry tag cloud) ─── */
+    .wf-stacks__categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+    }
+    .wf-stacks__cat {
+      border: 2px solid #333;
+      border-top: none;
+      border-right: none;
+      padding: 28px;
+      position: relative;
+    }
+    .wf-stacks__cat:nth-child(odd) { border-left: 2px solid #333; }
+    .wf-stacks__cat:nth-child(1),
+    .wf-stacks__cat:nth-child(2) { border-top: 2px solid #333; }
+    .wf-stacks__cat-title {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #999;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    .wf-stacks__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .wf-stacks__tag {
+      border: 1px solid #333;
+      padding: 6px 14px;
+      font-size: 13px;
+    }
+    .wf-stacks__tag--large {
+      border: 2px solid #333;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 8px 16px;
+    }
+
+    /* ─── CONTACT (split big CTA + links) ─── */
+    .wf-contact {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      min-height: 320px;
+    }
+    .wf-contact__cta {
+      border-right: 2px solid #333;
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .wf-contact__cta-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #999;
+      margin-bottom: 12px;
+    }
+    .wf-contact__cta-title {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .wf-contact__cta-title u { text-decoration: underline wavy #aaa; }
+    .wf-contact__cta-desc { font-size: 13px; color: #555; max-width: 360px; line-height: 1.6; }
+    .wf-contact__links-col {
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+    .wf-contact__link {
+      border: 2px solid #333;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: #333;
+      position: relative;
+    }
+    .wf-contact__link-label { font-size: 11px; color: #999; }
+    .wf-contact__link-value { font-size: 13px; }
+    .wf-contact__link-arrow { font-size: 16px; }
+
+    .wf-footer {
+      border-top: 2px solid #333;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #999;
+      background: #f5f5f5;
+    }
+
+    /* Section divider */
+    .wf-divider {
+      height: 2px;
+      background: repeating-linear-gradient(90deg, #333 0, #333 8px, transparent 8px, transparent 16px);
+    }
+
+    /* Marquee band (NEW) */
+    .wf-marquee {
+      border-top: 2px solid #333;
+      border-bottom: 2px solid #333;
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      background: #f5f5f5;
+      position: relative;
+    }
+    .wf-marquee__track {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: #ccc;
+    }
+    .wf-marquee__track span { margin: 0 24px; }
+  </style>
+</head>
+<body>
+
+<!-- LEGEND -->
+<div class="legend">
+  <h4>Component Tags</h4>
+  <div class="legend-item"><span class="badge-green">[REUSE]</span> Existing component</div>
+  <div class="legend-item"><span class="badge-orange">[NEW]</span> New component to create</div>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div>
+    <h1>Wireframe Option 2 — Editorial Grid</h1>
+    <p>Awwwards-style · Asymmetric split layouts · Numbered sections · Bold typographic hierarchy</p>
+  </div>
+  <div style="font-size:12px; color:#666; text-align:right;">
+    Portfolio PH · Single Page<br/>
+    Balanced approach (mix of reuse + new components)
+  </div>
+</div>
+
+<!-- ───────────────── NAVBAR ───────────────── -->
+<!-- REUSABLE: Navbar from src/components/Navbar.tsx (minimal variant) -->
+<div style="position:relative;">
+  <span class="reuse-badge" style="top:8px; right:8px;" title="src/components/Navbar.tsx">[REUSE] Navbar</span>
+  <div class="wf-navbar">
+    <div>
+      <div class="wf-navbar__logo">PH.dev</div>
+    </div>
+    <!-- NEW: active section progress indicator underline -->
+    <div style="position:relative;">
+      <span class="new-badge" style="top:-14px; right:-4px;">[NEW] NavProgress</span>
+      <ul class="wf-navbar__links">
+        <li style="color:#333; font-weight:700;">01 — Home</li>
+        <li>02 — Sobre</li>
+        <li>03 — Projetos</li>
+        <li>04 — Stacks</li>
+        <li>05 — Contato</li>
+      </ul>
+    </div>
+    <div class="wf-navbar__indicator"></div>
+  </div>
+  <div class="wf-annotation">REUSE Navbar base · [NEW] NavProgress: thin animated underline tracks active section on scroll (IntersectionObserver)</div>
+</div>
+
+<!-- ───────────────── HERO (asymmetric editorial) ───────────────── -->
+<!-- NEW COMPONENT: HeroEditorial replacing HeroSection layout -->
+<div style="position:relative;">
+  <span class="new-badge" style="top:-10px; right:8px;">[NEW] HeroEditorial — replaces HeroSection layout</span>
+  <div class="wf-hero">
+    <!-- LEFT: Title column -->
+    <div class="wf-hero__left">
+      <div class="wf-hero__section-num">01</div>
+      <div class="wf-hero__title">PAULO<br/>HENRIQUE</div>
+      <div class="wf-hero__role">◈ Full Stack Developer & UI/UX</div>
+      <div class="wf-hero__desc">
+        Especialista em arquitetura de software e design de interfaces de alta performance.
+        Soluções que conectam <u>tecnologia</u> e <u>impacto visual</u>.
+      </div>
+      <div class="wf-hero__actions">
+        <!-- REUSABLE: .btn--primary / .btn--ghost from src/styles/buttons.css -->
+        <div style="position:relative; display:inline-block;">
+          <span class="reuse-badge" style="top:-10px; right:-4px;" title="src/styles/buttons.css">[REUSE] .btn--primary</span>
+          <div class="btn-primary">Ver Projetos</div>
+        </div>
+        <div style="position:relative; display:inline-block; margin-left:8px;">
+          <span class="reuse-badge" style="top:-10px; right:-4px;" title="src/styles/buttons.css">[REUSE] .btn--ghost</span>
+          <div class="btn-ghost">Entrar em contato</div>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT: Portrait + social -->
+    <div class="wf-hero__right">
+      <!-- Shadow-offset portrait frame (editorial style) -->
+      <div class="wf-hero__portrait-frame">
+        <span style="font-size:32px;">👤</span>
+        <span style="font-size:11px; margin-top:8px; color:#666;">Portrait 320×420</span>
+        <span style="font-size:10px; color:#999;">/portrait.png</span>
+      </div>
+      <div class="wf-hero__social">
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Email</a>
+      </div>
+      <!-- Vertical scroll label -->
+      <div class="wf-hero__scroll-v">SCROLL ↓</div>
+    </div>
+  </div>
+  <div class="wf-annotation">[NEW] HeroEditorial — reuses GSAP ScrollTrigger parallax from useGsap.ts · Keeps .btn classes · Adds numbered section display + social links row</div>
+</div>
+
+<!-- MARQUEE BAND (NEW) -->
+<div style="position:relative;">
+  <span class="new-badge" style="top:-10px; right:8px;">[NEW] MarqueeBand</span>
+  <div class="wf-marquee">
+    <div class="wf-marquee__track">
+      <span>REACT</span><span>✦</span><span>NEXT.JS</span><span>✦</span>
+      <span>TYPESCRIPT</span><span>✦</span><span>NODE.JS</span><span>✦</span>
+      <span>GSAP</span><span>✦</span><span>REACT NATIVE</span><span>✦</span>
+      <span>FULL STACK</span><span>✦</span><span>UI/UX</span>
+    </div>
+  </div>
+  <div class="wf-annotation">[NEW] MarqueeBand — infinite scrolling tech marquee strip between Hero and About (CSS animation, no library)</div>
+</div>
+
+<!-- ───────────────── ABOUT (two-column bio + service cards) ───────────────── -->
+<!-- NEW COMPONENT: AboutEditorial (replaces AboutSection layout) -->
+<div style="position:relative;">
+  <span class="new-badge" style="top:-10px; right:8px;">[NEW] AboutEditorial — replaces AboutSection layout</span>
+  <div class="wf-section">
+    <div class="wf-section__header">
+      <div class="wf-section__num">02</div>
+      <div class="wf-section__meta">
+        <div class="wf-section__label">◈ SOBRE MIM</div>
+        <div class="wf-section__title">Quem está<br/>por trás do <u>código</u></div>
+        <div class="wf-section__desc">
+          Desenvolvedor Full Stack apaixonado por design e experiências visuais impactantes.
+        </div>
+      </div>
+    </div>
+    <div class="wf-section__body">
+      <div class="wf-about__split">
+        <!-- Bio column -->
+        <div style="position:relative;">
+          <span class="new-badge" style="top:4px; right:4px;">[NEW] BioCard</span>
+          <div class="wf-about__bio">
+            <p>Sou um desenvolvedor Full Stack com forte inclinação para Design e experiências
+            visuais impactantes. Acredito que um bom produto nasce da interseção entre
+            <u>engenharia sólida</u> e <u>design intencional</u>.</p>
+            <div class="wf-about__bio-quote">
+              "O código é a tela. A lógica é a pintura."
+            </div>
+          </div>
+        </div>
+        <!-- Services stacked -->
+        <div class="wf-about__right">
+          <div style="position:relative;">
+            <span class="reuse-badge" style="top:4px; right:4px;" title="src/styles/global.css">[REUSE] glass-card</span>
+            <div class="wf-about__card">
+              <div class="wf-about__card-num">01</div>
+              <h3>Web Development</h3>
+              <p>React, Next.js e TypeScript. Performance, SEO e design responsivo.</p>
+            </div>
+          </div>
+          <div class="wf-about__card">
+            <div class="wf-about__card-num">02</div>
+            <h3>App Development</h3>
+            <p>React Native e Expo. Experiências nativas em ambas as plataformas.</p>
+          </div>
+          <div class="wf-about__card">
+            <div class="wf-about__card-num">03</div>
+            <h3>Design & UI/UX</h3>
+            <p>Prototipação, design systems e micro-interações.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Stats row -->
+      <div class="wf-about__stats" style="margin-top:32px;">
+        <div class="wf-about__stat">
+          <div class="wf-about__stat-value">10+</div>
+          <div class="wf-about__stat-label">Projetos Completos</div>
+        </div>
+        <div class="wf-about__stat">
+          <div class="wf-about__stat-value">95%</div>
+          <div class="wf-about__stat-label">Satisfação</div>
+        </div>
+        <div class="wf-about__stat">
+          <div class="wf-about__stat-value">2+</div>
+          <div class="wf-about__stat-label">Anos de Experiência</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-annotation">[NEW] AboutEditorial — new layout; reuses glass-card class · Adds BioCard (quote + narrative text) + numbered service list</div>
+</div>
+
+<!-- ───────────────── PROJECTS (full-width rows with number overlay) ───────────────── -->
+<!-- NEW COMPONENT: ProjectRow (replaces ProjectsSection grid) -->
+<div style="position:relative;">
+  <span class="new-badge" style="top:-10px; right:8px;">[NEW] ProjectsList — replaces ProjectsSection layout</span>
+  <div class="wf-section">
+    <div class="wf-section__header">
+      <div class="wf-section__num">03</div>
+      <div class="wf-section__meta">
+        <div class="wf-section__label">◈ PROJETOS</div>
+        <div class="wf-section__title">Trabalhos <u>selecionados</u></div>
+        <div class="wf-section__desc">Código de qualidade e design intencional em cada entrega.</div>
+      </div>
+    </div>
+    <div class="wf-section__body" style="padding-top:0;">
+      <!-- Project Row 1 -->
+      <div style="position:relative;">
+        <span class="new-badge" style="top:4px; right:4px;">[NEW] ProjectRow</span>
+        <div class="wf-project-row">
+          <div class="wf-project__num">01</div>
+          <div class="wf-project__preview">
+            <span style="font-size:22px;">🖥️</span>
+            <span style="font-size:12px; color:#666;">Screenshot / Mockup</span>
+            <span style="font-size:11px; color:#999;">800×300px</span>
+          </div>
+          <div class="wf-project__info">
+            <div class="wf-project__title">Projeto 1</div>
+            <div class="wf-project__desc">Descrição breve do projeto e o problema que ele resolve para o usuário.</div>
+            <div class="wf-project__techs">
+              <span class="wf-tech-badge">React</span>
+              <span class="wf-tech-badge">Node.js</span>
+              <span class="wf-tech-badge">PostgreSQL</span>
+            </div>
+            <div class="wf-project__links">
+              <span class="wf-link">Demo ↗</span>
+              <span class="wf-link">GitHub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project Row 2 -->
+      <div class="wf-project-row" style="border-top:none;">
+        <div class="wf-project__num">02</div>
+        <div class="wf-project__preview">
+          <span style="font-size:22px;">🖥️</span>
+          <span style="font-size:12px; color:#666;">Screenshot / Mockup</span>
+        </div>
+        <div class="wf-project__info">
+          <div class="wf-project__title">Projeto 2</div>
+          <div class="wf-project__desc">Descrição breve do projeto e o problema que ele resolve.</div>
+          <div class="wf-project__techs">
+            <span class="wf-tech-badge">Next.js</span>
+            <span class="wf-tech-badge">Prisma</span>
+            <span class="wf-tech-badge">TypeScript</span>
+          </div>
+          <div class="wf-project__links">
+            <span class="wf-link">Demo ↗</span>
+            <span class="wf-link">GitHub</span>
+          </div>
+        </div>
+      </div>
+      <!-- Project Row 3 -->
+      <div class="wf-project-row" style="border-top:none; border-bottom: 2px solid #333;">
+        <div class="wf-project__num">03</div>
+        <div class="wf-project__preview">
+          <span style="font-size:22px;">📱</span>
+          <span style="font-size:12px; color:#666;">App Screenshot</span>
+        </div>
+        <div class="wf-project__info">
+          <div class="wf-project__title">Projeto 3</div>
+          <div class="wf-project__desc">Descrição breve do projeto mobile e o problema que ele resolve.</div>
+          <div class="wf-project__techs">
+            <span class="wf-tech-badge">React Native</span>
+            <span class="wf-tech-badge">Expo</span>
+          </div>
+          <div class="wf-project__links">
+            <span class="wf-link">Demo ↗</span>
+            <span class="wf-link">GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-annotation">[NEW] ProjectsList + ProjectRow — full-width editorial rows; numbers as oversized decorative element</div>
+</div>
+
+<!-- ───────────────── STACKS (2×2 tag cloud grid) ───────────────── -->
+<!-- NEW COMPONENT: StacksGrid (replaces StacksSection) -->
+<div style="position:relative;">
+  <span class="new-badge" style="top:-10px; right:8px;">[NEW] StacksGrid — replaces StacksSection layout</span>
+  <div class="wf-section">
+    <div class="wf-section__header">
+      <div class="wf-section__num">04</div>
+      <div class="wf-section__meta">
+        <div class="wf-section__label">◈ TECNOLOGIAS</div>
+        <div class="wf-section__title">Stack & <u>Ferramentas</u></div>
+        <div class="wf-section__desc">As ferramentas que uso para transformar ideias em produtos reais.</div>
+      </div>
+    </div>
+    <div class="wf-section__body" style="padding-top:0;">
+      <div class="wf-stacks__categories">
+        <div style="position:relative;">
+          <span class="reuse-badge" style="top:8px; right:8px;" title="src/styles/global.css">[REUSE] glass-card</span>
+          <div class="wf-stacks__cat">
+            <div class="wf-stacks__cat-title">01 — FRONT-END</div>
+            <div class="wf-stacks__tags">
+              <span class="wf-stacks__tag wf-stacks__tag--large">React</span>
+              <span class="wf-stacks__tag wf-stacks__tag--large">Next.js</span>
+              <span class="wf-stacks__tag">TypeScript</span>
+              <span class="wf-stacks__tag">GSAP</span>
+              <span class="wf-stacks__tag">CSS/SASS</span>
+            </div>
+          </div>
+        </div>
+        <div class="wf-stacks__cat" style="border-left: 2px solid #333;">
+          <div class="wf-stacks__cat-title">02 — BACK-END</div>
+          <div class="wf-stacks__tags">
+            <span class="wf-stacks__tag wf-stacks__tag--large">Node.js</span>
+            <span class="wf-stacks__tag">Express</span>
+            <span class="wf-stacks__tag">Prisma</span>
+            <span class="wf-stacks__tag wf-stacks__tag--large">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="wf-stacks__cat" style="border-left: 2px solid #333; border-top: 2px solid #333;">
+          <div class="wf-stacks__cat-title">03 — MOBILE</div>
+          <div class="wf-stacks__tags">
+            <span class="wf-stacks__tag wf-stacks__tag--large">React Native</span>
+            <span class="wf-stacks__tag wf-stacks__tag--large">Expo</span>
+          </div>
+        </div>
+        <div class="wf-stacks__cat" style="border-top: 2px solid #333;">
+          <div class="wf-stacks__cat-title">04 — DEVOPS & TOOLS</div>
+          <div class="wf-stacks__tags">
+            <span class="wf-stacks__tag">Git</span>
+            <span class="wf-stacks__tag">Docker</span>
+            <span class="wf-stacks__tag wf-stacks__tag--large">Vercel</span>
+            <span class="wf-stacks__tag">Figma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wf-annotation">[NEW] StacksGrid — 2×2 quadrant layout with oversized primary tags; reuses glass-card</div>
+</div>
+
+<!-- ───────────────── CONTACT (split layout) ───────────────── -->
+<!-- NEW COMPONENT: ContactSplit (replaces ContactSection) -->
+<div style="position:relative;">
+  <span class="new-badge" style="top:-10px; right:8px;">[NEW] ContactSplit — replaces ContactSection layout</span>
+  <div class="wf-section">
+    <div class="wf-section__header">
+      <div class="wf-section__num">05</div>
+      <div class="wf-section__meta">
+        <div class="wf-section__label">◈ CONTATO</div>
+      </div>
+    </div>
+    <div style="padding:0;">
+      <div class="wf-contact">
+        <!-- Left: Big CTA headline -->
+        <div class="wf-contact__cta">
+          <div class="wf-contact__cta-title">
+            Vamos construir<br/>algo <u>juntos</u>?
+          </div>
+          <div class="wf-contact__cta-desc">
+            Estou disponível para oportunidades, freelances e conversas sobre tecnologia.
+          </div>
+          <!-- REUSABLE btn -->
+          <div style="position:relative; display:inline-block; margin-top:24px;">
+            <span class="reuse-badge" style="top:-10px; right:-4px;" title="src/styles/buttons.css">[REUSE] .btn--primary</span>
+            <div class="btn-primary">Enviar mensagem ↗</div>
+          </div>
+        </div>
+        <!-- Right: Contact links -->
+        <div class="wf-contact__links-col">
+          <div style="position:relative;">
+            <span class="reuse-badge" style="top:4px; right:4px;" title="src/styles/global.css">[REUSE] glass-card</span>
+            <a class="wf-contact__link">
+              <div>
+                <div class="wf-contact__link-label">Email</div>
+                <div class="wf-contact__link-value">seu@email.com</div>
+              </div>
+              <span class="wf-contact__link-arrow">↗</span>
+            </a>
+          </div>
+          <a class="wf-contact__link">
+            <div>
+              <div class="wf-contact__link-label">LinkedIn</div>
+              <div class="wf-contact__link-value">linkedin.com/in/seu-perfil</div>
+            </div>
+            <span class="wf-contact__link-arrow">↗</span>
+          </a>
+          <a class="wf-contact__link">
+            <div>
+              <div class="wf-contact__link-label">GitHub</div>
+              <div class="wf-contact__link-value">github.com/seu-perfil</div>
+            </div>
+            <span class="wf-contact__link-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wf-footer">
+  <span>Desenhado & Desenvolvido por <strong>Paulo Henrique</strong></span>
+  <span>© 2026</span>
+</div>
+
+<!-- SUMMARY PANEL -->
+<div style="background:#f5f5f5; border-top:3px solid #333; padding:24px 40px; font-size:13px;">
+  <strong>Option 2 — Editorial Grid Summary:</strong>
+  <ul style="margin-top:10px; padding-left:20px; line-height:1.8;">
+    <li>Balanced: reuses Navbar, buttons, glass-card — replaces all section layouts</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> HeroEditorial (asymmetric split: title left, portrait right)</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> MarqueeBand (infinite CSS ticker)</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> AboutEditorial (bio + quote + numbered service cards)</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> ProjectsList + ProjectRow (full-width editorial rows with large numbers)</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> StacksGrid (2×2 quadrant tag cloud)</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> ContactSplit (big headline left + contact links right)</li>
+    <li><span style="background:#FF9800; color:#fff; padding:1px 5px; border-radius:2px; font-size:11px;">[NEW]</span> NavProgress (active section underline indicator)</li>
+  </ul>
+</div>
+
+</body>
+</html>

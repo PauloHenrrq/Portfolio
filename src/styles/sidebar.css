@@ -1,0 +1,199 @@
+/* ═══════════════════════════════════════════════════════════
+   Sidebar Progress — Fixed Left Navigation
+   ═══════════════════════════════════════════════════════════ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  z-index: var(--z-sidebar);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem 2rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+/* ─── Logo ─── */
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.sidebar__logo-mark {
+  font-size: 1.1rem;
+  color: var(--color-accent-primary);
+  line-height: 1;
+}
+
+.sidebar__logo-text {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+}
+
+.sidebar__logo-dot {
+  color: var(--color-accent-primary);
+}
+
+/* ─── Navigation ─── */
+.sidebar__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sidebar__nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-smooth);
+  color: #fff; /* Base branca */
+  opacity: 0.15; /* Bem escuro/apagado por padrão */
+  position: relative;
+}
+
+.sidebar__nav-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  opacity: 0.5;
+}
+
+.sidebar__nav-item.active {
+  opacity: 1;
+  font-weight: 700;
+}
+
+.sidebar__nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2); /* Borda discreta quando inativo */
+  flex-shrink: 0;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+}
+
+.sidebar__nav-item.active .sidebar__nav-dot {
+  background: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 8px var(--color-accent-glow);
+}
+
+.sidebar__nav-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+  transition: opacity var(--duration-fast);
+  min-width: 20px;
+}
+
+.sidebar__nav-item.active .sidebar__nav-num {
+  opacity: 1;
+  color: var(--color-accent-primary);
+}
+
+.sidebar__nav-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color var(--duration-fast);
+}
+
+/* ─── Divider Removed ─── */
+.sidebar__divider {
+  display: none;
+}
+
+/* ─── Scroll Progress ─── */
+.sidebar__progress {
+  flex-shrink: 0;
+  margin-bottom: 1.25rem;
+}
+
+.sidebar__progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar__progress-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.sidebar__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-secondary), var(--color-accent-primary));
+  border-radius: var(--radius-full);
+  transition: width 0.1s linear;
+}
+
+/* ─── Availability Badge ─── */
+.sidebar__availability {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(230, 57, 70, 0.06);
+  border: 1px solid rgba(230, 57, 70, 0.15);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.sidebar__availability-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+  animation: availPulse 2.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes availPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.85); }
+}
+
+.sidebar__availability-text {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE — Hide sidebar, show minimal top nav
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+}
