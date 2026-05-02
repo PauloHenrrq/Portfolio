@@ -6,6 +6,7 @@
   position: relative;
   padding: var(--section-padding-y) var(--section-padding-x);
   overflow: hidden;
+  scroll-margin-top: 80px; /* Space for fixed header */
 }
 
 .section--dark { background: var(--color-bg-primary); }

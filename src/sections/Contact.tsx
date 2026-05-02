@@ -18,17 +18,17 @@ export function ContactSection() {
         </p>
 
         <div className="wf-contact__links" data-reveal="fade-up" data-delay="200">
-          <a href="mailto:seu@email.com" className="wf-contact__link" target="_blank" rel="noopener noreferrer">
+          <a href="mailto:paulofera159@gmail.com" className="wf-contact__link" target="_blank" rel="noopener noreferrer">
             <span className="wf-contact__link-label">Email</span>
-            <span className="wf-contact__link-value">seu@email.com</span>
+            <span className="wf-contact__link-value">paulofera159@gmail.com</span>
           </a>
-          <a href="https://linkedin.com/in/seu-perfil" className="wf-contact__link" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/paulo-henrique-araujo-rodrigues/" className="wf-contact__link" target="_blank" rel="noopener noreferrer">
             <span className="wf-contact__link-label">LinkedIn</span>
-            <span className="wf-contact__link-value">linkedin.com/in/seu-perfil</span>
+            <span className="wf-contact__link-value">in/paulo-henrique-araujo-rodrigues</span>
           </a>
-          <a href="https://github.com/seu-perfil" className="wf-contact__link" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/PauloHenrrq" className="wf-contact__link" target="_blank" rel="noopener noreferrer">
             <span className="wf-contact__link-label">GitHub</span>
-            <span className="wf-contact__link-value">github.com/seu-perfil</span>
+            <span className="wf-contact__link-value">github.com/PauloHenrrq</span>
           </a>
         </div>
 

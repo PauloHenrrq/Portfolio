@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 const NAV_SECTIONS = [
-  { id: 'hero',     label: 'Home',     num: '01' },
-  { id: 'about',    label: 'Sobre',    num: '02' },
+  { id: 'hero',     label: 'Início',     num: '01' },
+  { id: 'about',    label: 'Sobre Mim',    num: '02' },
   { id: 'projects', label: 'Projetos', num: '03' },
-  { id: 'stacks',   label: 'Stacks',   num: '04' },
+  { id: 'stacks',   label: 'Tecnologias',   num: '04' },
   { id: 'contact',  label: 'Contato',  num: '05' },
 ];
 

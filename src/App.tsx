@@ -1,7 +1,9 @@
+import React from 'react';
 import { useLenis } from '@/hooks/useLenis';
 import { useRevealEngine } from '@/hooks/useRevealEngine';
 import { useCardSpotlight } from '@/hooks/useCardSpotlight';
 import { Sidebar } from '@/components/Sidebar';
+import { Navbar } from '@/components/Navbar';
 import { EnergyConnector } from '@/components/EnergyConnector';
 import { HeroSection } from '@/sections/Hero';
 import { AboutSection } from '@/sections/About';
@@ -35,6 +37,8 @@ function App() {
         <span style={{ '--x': '50%', '--y': '25%', '--s': '3px', '--d': '11s' } as React.CSSProperties} />
         <span style={{ '--x': '5%', '--y': '70%', '--s': '2px', '--d': '14s' } as React.CSSProperties} />
       </div>
+
+      <Navbar />
 
       <div className="wf-shell">
         <Sidebar />

@@ -82,4 +82,11 @@ src/
 
 - [2026-04-27] Project initialized via /init — base scaffold, Hero preview, design system tokens, GSAP/Lenis hooks
 - [2026-04-29] Implementação do PortraitSeparator — Tipografia colossal "ENGINEERING", aura difusa, parallax GSAP e refatoração do EnergyConnector com variantes de fundo.
+- [2026-05-01] Refinamento Premium da seção "Sobre" — Implementação de parallax no fundo ("ENGINEER"), grid de pilares com micro-interações, tipografia sólida para máxima legibilidade e integração do Header global com glassmorphism ajustado.
+- [2026-05-01] Finalização da seção "Ecossistema Pessoal" — Implementação do card GitHub com conteúdo atemporal, paleta de vermelho morto (#b43232) e efeito de shimmer premium no link (estilo Hero).
+- [2026-05-01] Refinamento do Carrossel — Transformação em formato de cápsula com bordas arredondadas ao máximo, remoção de degradês de fundo e ajuste de padding para 2px (vertical).
+- [2026-05-01] Consolidação de Histórico — Criação do LOGS.md com toda a trajetória do projeto, desde a inicialização até o refinamento das seções Hero, Sobre e Stacks.
+- [2026-05-01] Finalização Técnica das Stacks — Atualização de tempos de experiência reais (React/Node/DB 1+ ano), integração do ícone oficial LangChain e MySQL, realce tipográfico nas labels e padronização visual do label "TEMPO:" em vermelho.
+- [2026-05-01] Informações de Contato — Atualização dos links e e-mail reais para GitHub, LinkedIn e E-mail profissional.
+- [2026-05-01] Upgrade Visual — Implementação de logo SVG de alta fidelidade para MCP na seção Stacks.
 <!-- LOG_END -->

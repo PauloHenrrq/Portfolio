@@ -1,80 +1,107 @@
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@/styles/about.css';
 
-const services = [
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
-      </svg>
-    ),
-    title: 'Web Design',
-    text: 'Sites modernos, rápidos e otimizados para qualquer dispositivo.',
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" />
-      </svg>
-    ),
-    title: 'Mobile Apps',
-    text: 'Aplicativos fluidos para iOS e Android com alta performance.',
-  },
-  {
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-      </svg>
-    ),
-    title: 'UI/UX Design',
-    text: 'Interfaces intuitivas focadas em experiência e conversão.',
-  },
-];
+gsap.registerPlugin(ScrollTrigger);
 
-const storyText = [
-  "Desenvolvedor focado em transformar ideias em produtos digitais de alta performance.",
-  "Unindo engenharia sólida e design refinado para criar soluções que escalam."
+const pillars = [
+  {
+    num: '01',
+    title: 'Performance',
+    text: 'Aplicações rápidas, otimizadas e preparadas para escalar.',
+    accent: 'var(--accent-main)'
+  },
+  {
+    num: '02',
+    title: 'Experiência',
+    text: 'Interfaces intuitivas com foco em usabilidade real.',
+    accent: 'var(--accent-secondary)'
+  },
+  {
+    num: '03',
+    title: 'Estrutura',
+    text: 'Código limpo, organizado e fácil de manter.',
+    accent: 'var(--accent-main)'
+  }
 ];
 
 export function AboutSection() {
-  return (
-    <div className="wf-section" id="about">
-      {/* Aside label */}
-      
-      <div className="wf-section__inner">
-        <div className="wf-section__label" data-reveal="fade-up">◈ QUEM SOU EU</div>
-        <h2 className="wf-section__title" data-reveal="fade-up" data-delay="100">
-          Minha <span>Jornada</span>
-        </h2>
-        <p className="wf-section__desc" data-reveal="fade-up" data-delay="200">
-          Especialista em construir experiências digitais que combinam estética premium com performance técnica.
-        </p>
+  const bgTextRef = useRef<HTMLDivElement>(null);
 
-        {/* Story text */}
-        <div className="wf-about__story" data-reveal="fade-up" data-delay="300">
-          {storyText.map((paragraph, idx) => (
-            <p key={idx}>{paragraph}</p>
-          ))}
+  useEffect(() => {
+    if (bgTextRef.current) {
+      gsap.to(bgTextRef.current, {
+        y: 100,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#about',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
+  }, []);
+
+  return (
+    <section className="wf-section about" id="about">
+      {/* Visual Element: Giant background text with parallax */}
+      <div className="about__bg-text" aria-hidden="true" ref={bgTextRef}>
+        ENGINEER
+      </div>
+
+      {/* Control Layer: Overlay for contrast management */}
+      <div className="about-overlay" aria-hidden="true" />
+
+      <div className="wf-section__inner about__container">
+        {/* 1. Label pequeno */}
+        <div className="about__label" data-reveal="fade-up">
+          <span className="about__label-dot"></span> QUEM SOU EU
         </div>
 
+        <div className="about__content">
+          <div className="about__header">
+            {/* 2. Headline principal */}
+            <h2 className="about__title" data-reveal="fade-up" data-delay="100">
+              Desenvolvedor focado em construir sistemas <span className="highlight">rápidos</span>, <span className="highlight">escaláveis</span> e com <span className="highlight">experiência</span> refinada.
+            </h2>
 
-        {/* Services as flat list rows */}
-        <div className="wf-about__services">
-          {services.map((service, i) => (
-            <div 
-              className="wf-about__service-row" 
-              key={service.title}
-              data-reveal="fade-up" 
-              data-delay={String(100 * i + 400)}
-            >
-              <div className="wf-about__service-icon">{service.icon}</div>
-              <div className="wf-about__service-body">
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </div>
+            {/* 3. Subheadline */}
+            <p className="about__subtitle" data-reveal="fade-up" data-delay="200">
+              Transformo ideias em aplicações funcionais, priorizando performance, clareza e manutenibilidade.
+            </p>
+          </div>
+
+          {/* Separator line between content and description/pillars */}
+          <div className="about__separator" data-reveal="fade-up" data-delay="250" />
+
+          <div className="about__body">
+            {/* 4. Diferencial */}
+            <p className="about__description" data-reveal="fade-up" data-delay="300">
+              Minha abordagem une engenharia sólida com atenção ao detalhe visual, garantindo soluções eficientes, intuitivas e prontas para evoluir.
+            </p>
+
+            {/* 5. Grid de pilares */}
+            <div className="about__pillars">
+              {pillars.map((pillar, i) => (
+                <div 
+                  className="about__pillar-card" 
+                  key={pillar.num}
+                  data-reveal="fade-up" 
+                  data-delay={String(400 + i * 100)}
+                >
+                  <div className="about__pillar-num" style={{ color: pillar.accent }}>
+                    {pillar.num}
+                  </div>
+                  <h3 className="about__pillar-title">{pillar.title}</h3>
+                  <p className="about__pillar-text">{pillar.text}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
