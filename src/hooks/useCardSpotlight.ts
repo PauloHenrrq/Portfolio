@@ -14,15 +14,15 @@ export function useCardSpotlight() {
       if (rafId) return;
 
       rafId = window.requestAnimationFrame(() => {
-        const card = (target as HTMLElement).closest('.glass-card') as HTMLElement | null;
+        const card = (target as HTMLElement).closest('.spotlight-card') as HTMLElement | null;
 
         if (card) {
           const rect = card.getBoundingClientRect();
           const x = clientX - rect.left;
           const y = clientY - rect.top;
 
-          card.style.setProperty('--spotlight-x', `${x}px`);
-          card.style.setProperty('--spotlight-y', `${y}px`);
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
         }
 
         rafId = null;

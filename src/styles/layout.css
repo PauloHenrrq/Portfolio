@@ -117,7 +117,7 @@
   height: 0%; /* To be controlled by JS */
   background: var(--color-accent-primary);
   box-shadow: 0 0 10px rgba(255, 26, 26, 0.8);
-  transition: height 0.1s ease-out;
+  /* transition removed for perfect real-time sync */
 }
 
 .wf-sidebar__progress-text {
@@ -152,6 +152,11 @@
   padding: 80px 48px;
   position: relative;
   scroll-margin-top: 80px;
+}
+
+/* Redução de espaçamento superior específica para Projetos para colar em Methodology */
+#projects.wf-section {
+  padding-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -215,5 +220,5 @@
   color: var(--color-text-muted);
   max-width: 600px;
   line-height: 1.6;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }

@@ -193,40 +193,86 @@
 /* 🧱 CARDS (PERFORMANCE / EXPERIÊNCIA / ESTRUTURA) */
 .about__pillars {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Strictly 3 columns horizontal */
+  grid-template-columns: 1fr 1.15fr 1fr; /* Criando ritmo: o card central é sutilmente mais largo */
   gap: 32px;
   width: 100%;
+  position: relative;
 }
 
 .about__pillar-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.05); /* Slightly brighter background for separation */
+  background: rgba(15, 15, 15, 0.6); /* Mais escuro para destacar o glow */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle but defined border */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Borda padrão mais sutil */
   border-radius: 16px;
   padding: 32px;
-  transition: all 0.5s var(--ease-premium); /* Fluid premium transition */
+  
+  display: flex;
+  flex-direction: column;
+  
+  transition: 
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.8s cubic-bezier(0.22, 1, 0.36, 1); 
+  transition-delay: 0s;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  will-change: transform, box-shadow;
   overflow: hidden;
   height: 100%;
 }
 
+/* Micro-detalhe: Linha vertical vermelha que aparece no hover */
+.about__pillar-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 0;
+  background: var(--accent-main);
+  transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 2;
+}
+
+.about__pillar-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 59, 59, 0.03), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.about__pillar-card:hover::after {
+  opacity: 1;
+}
+
 .about__pillar-card:hover {
-  transform: translateY(-8px) scale(1.02); /* More dynamic hover */
-  border-color: rgba(255, 59, 59, 0.5);
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+}
+
+.about__pillar-card:hover::before {
+  height: 100%;
 }
 
 .about__pillar-num {
   font-family: var(--font-mono);
-  font-size: 0.85rem; /* Increased size */
+  font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   letter-spacing: 0.15em;
   color: var(--accent-main);
-  opacity: 1; /* Maximum visibility */
-  transition: transform 0.5s var(--ease-premium);
+  opacity: 1;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0.05s;
 }
 
 .about__pillar-card:hover .about__pillar-num {
@@ -239,7 +285,11 @@
   font-weight: 700;
   color: var(--about-text-primary);
   margin-bottom: 12px;
+  min-height: 3.2em; /* Garante que as descrições fiquem alinhadas horizontalmente */
+  display: flex;
+  align-items: flex-start;
   transition: color 0.5s var(--ease-premium);
+  transition-delay: 0.05s;
 }
 
 .about__pillar-text {
@@ -247,6 +297,7 @@
   color: var(--about-text-secondary);
   line-height: 1.6;
   transition: color 0.5s var(--ease-premium);
+  transition-delay: 0.05s;
 }
 
 @media (max-width: 1200px) {

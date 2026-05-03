@@ -84,11 +84,17 @@
 /* ─── Layer 1: Minimal Gradient Background ─── */
 .hero__bg-gradient {
   position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Default state for Hero section only */
+.wf-hero .hero__bg-gradient {
   inset: 0;
   background: radial-gradient(circle at 70% 30%, rgba(255, 26, 26, 0.03) 0%, transparent 50%),
               radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 40%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 /* ─── Minimal Grid Background Overlay ─── */

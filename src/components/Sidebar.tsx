@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const NAV_SECTIONS = [
   { id: 'hero',     label: 'Início',     num: '01' },
-  { id: 'about',    label: 'Sobre Mim',    num: '02' },
-  { id: 'projects', label: 'Projetos', num: '03' },
-  { id: 'stacks',   label: 'Tecnologias',   num: '04' },
+  { id: 'about',    label: 'QUEM SOU EU',    num: '02' },
+  { id: 'methodology',   label: 'MÉTODO',   num: '03' },
+  { id: 'projects', label: 'Projetos', num: '04' },
   { id: 'contact',  label: 'Contato',  num: '05' },
 ];
 
@@ -13,7 +17,7 @@ export const Sidebar: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    // Track active section
+    // 1. Track active section
     const sectionEls = NAV_SECTIONS
       .map(s => document.getElementById(s.id))
       .filter(Boolean) as HTMLElement[];
@@ -34,19 +38,18 @@ export const Sidebar: React.FC = () => {
 
     sectionEls.forEach(el => observer.observe(el));
 
-    // Track scroll progress
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollTop;
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scroll = windowHeight > 0 ? totalScroll / windowHeight : 0;
-      setScrollProgress(scroll * 100);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // 2. Real-time scroll progress using ScrollTrigger (Perfect sync with Lenis)
+    const st = ScrollTrigger.create({
+      start: 0,
+      end: "max",
+      onUpdate: (self) => {
+        setScrollProgress(self.progress * 100);
+      }
+    });
     
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
+      st.kill();
     };
   }, []);
 
@@ -85,7 +88,10 @@ export const Sidebar: React.FC = () => {
           <div className="wf-sidebar__progress-bar">
             <div 
               className="wf-sidebar__progress-fill"
-              style={{ height: `${scrollProgress}%` }}
+              style={{ 
+                height: `${scrollProgress}%`,
+                backgroundColor: 'var(--color-accent-primary)'
+              }}
             ></div>
           </div>
           <div className="wf-sidebar__progress-text">

@@ -8,20 +8,20 @@ gsap.registerPlugin(ScrollTrigger);
 const pillars = [
   {
     num: '01',
-    title: 'Performance',
-    text: 'Aplicações rápidas, otimizadas e preparadas para escalar.',
+    title: 'Performance é fundação, não um ajuste final',
+    text: 'Estruturo cada projeto focando em velocidade desde a base. Sem retrabalho, sem gargalos, apenas eficiência real.',
     accent: 'var(--accent-main)'
   },
   {
     num: '02',
-    title: 'Experiência',
-    text: 'Interfaces intuitivas com foco em usabilidade real.',
+    title: 'Interfaces projetadas para o uso real',
+    text: 'Design não é só estética. É criar interfaces rápidas, intuitivas e que resolvem problemas de forma funcional.',
     accent: 'var(--accent-secondary)'
   },
   {
     num: '03',
-    title: 'Estrutura',
-    text: 'Código limpo, organizado e fácil de manter.',
+    title: 'Sistemas feitos para durar e evoluir',
+    text: 'Código limpo e desacoplado. Arquitetura pensada para crescer com o projeto sem comprometer a manutenção.',
     accent: 'var(--accent-main)'
   }
 ];
@@ -79,14 +79,14 @@ export function AboutSection() {
           <div className="about__body">
             {/* 4. Diferencial */}
             <p className="about__description" data-reveal="fade-up" data-delay="300">
-              Minha abordagem une engenharia sólida com atenção ao detalhe visual, garantindo soluções eficientes, intuitivas e prontas para evoluir.
+              Minha abordagem combina engenharia sólida com atenção ao detalhe, garantindo sistemas eficientes, intuitivos e preparados para evoluir.
             </p>
 
             {/* 5. Grid de pilares */}
             <div className="about__pillars">
               {pillars.map((pillar, i) => (
                 <div 
-                  className="about__pillar-card" 
+                  className="about__pillar-card spotlight-card" 
                   key={pillar.num}
                   data-reveal="fade-up" 
                   data-delay={String(400 + i * 100)}

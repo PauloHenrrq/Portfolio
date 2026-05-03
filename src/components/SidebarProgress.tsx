@@ -9,9 +9,9 @@ interface NavSection {
 
 const NAV_SECTIONS: NavSection[] = [
   { id: 'hero',     label: 'Home',     num: '01' },
-  { id: 'about',    label: 'Sobre',    num: '02' },
+  { id: 'about',    label: 'Quem Sou Eu',    num: '02' },
   { id: 'projects', label: 'Projetos', num: '03' },
-  { id: 'stacks',   label: 'Stack',    num: '04' },
+  { id: 'methodology',   label: 'Método',    num: '04' },
   { id: 'contact',  label: 'Contato',  num: '05' },
 ];
 

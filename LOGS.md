@@ -2,6 +2,18 @@
 
 This document tracks the evolution, technical decisions, and customization of the Portfolio PH project.
 
+### [2026-05-03] Refinamento do Background e Fluxo de Luz
+- **Unificação do Gradiente**: Substituímos as divs de gradiente dispersas por um container unificado (`wf-light-path-container`) que engloba as seções *Methodology* e *Projects*.
+- **Fluxo Linear**: Implementamos um gradiente linear contínuo que evolui de **Vermelho Escuro** (0.02 opacity) no início da metodologia até **Vermelho Brilhante** (0.1 opacity) no final da seção de projetos.
+- **Corte Profissional**: Definimos um distanciamento de `100px` na base do container para garantir que a linha de luz não vaze para a seção de *Contato*.
+- **Estrutura Limpa**: Limpeza de chamadas duplicadas e organização semântica no `App.tsx`.
+- **Arquitetura CSS (`hero.css`)**: Desacoplado o estilo `.hero__bg-gradient` de restrições rígidas (`inset: 0`), permitindo posicionamento livre e alturas customizadas via inline styles no `App.tsx`, mantendo a compatibilidade com a seção Hero.
+- **Corte de Seção**: Garantida a integridade visual da seção de Contato através de ajustes precisos na altura do último gradiente, criando um corte seco e profissional entre o brilho dos projetos e o escuro do rodapé.
+
+---
+
+*Maintained by Antigravity AI.*
+
 ## Initial Foundation & Architecture
 - **Tech Stack:** Vite + React 19 + TypeScript 6.
 - **Animation Core:** GSAP 3.15 (ScrollTrigger) for cinematic orchestration, Lenis for smooth scrolling.
@@ -91,3 +103,54 @@ This document tracks the evolution, technical decisions, and customization of th
 ---
 
 *Maintained by Antigravity AI.*
+
+## Session [2026-05-03] - Refinamento de Identidade e Metodologia Estratégica
+
+**Contexto:** Transição da apresentação puramente técnica para uma abordagem de engenharia estratégica, humanizando a narrativa e elevando a percepção de autoridade.
+
+**Ações Realizadas:**
+1. **Refinamento "Quem Sou Eu"**:
+   - Copywriting humanizado e assertivo: Foco em princípios (Performance, UX Real, Sistemas Evolutivos).
+   - UI Premium: Implementação de ritmo visual (card central mais largo) e fundo em grid sutil.
+   - Micro-interações: Adição de `spotlight glow` dinâmico (follow-mouse) e transições `cubic-bezier`.
+2. **Nova Seção "Método"**:
+   - Substituição da antiga seção de "Stacks" pela seção **"Como Eu Trabalho"**.
+   - Foco em Processos: Arquitetura, Performance Preditiva, UX Estrutural e Mentoria.
+   - Integração do ecossistema de ferramentas via carrossel dinâmico como elemento de suporte.
+3. **Evolução Técnica**:
+   - Refatoração do hook `useCardSpotlight` para suporte genérico via classe `.spotlight-card`.
+   - Atualização da navegação global (Sidebar, Navbar e Progress) para o novo mapeamento de seções.
+   - Padronização de variáveis CSS (`--mouse-x`, `--mouse-y`) para efeitos de luz interativos.
+
+**Status Atual:** O portfólio agora comunica uma postura de Tech Lead/Senior Engineer. A experiência de navegação está fluida e visualmente rica, com um equilíbrio entre técnica e processo.
+**Próximo Passo:** Revisão final de copy em dispositivos móveis e verificação de assets de projetos.
+### [2026-05-03] Refinamento de Interatividade (About)
+- **Sombra Fluida**: Aumentada transição de box-shadow para 2s para efeito 'slow-rise'.
+- **Grid de Fundo**: Máscara radial ajustada (0% a 75%) para garantir bordas suaves em 360 graus, corrigindo cortes bruscos no topo e esquerda.
+- **Hierarquia Visual**: Reforço da transição ultra-suave nos cards de pilares.
+
+### [2026-05-03] Ajuste de Sombras e Reequilíbrio Visual (About)
+- **Cards**: Revertida transição de sombra para 1.2s e reduzida opacidade (0.8 -> 0.5) para evitar 'consumo' visual.
+- **Grid**: Transferido efeito de transição lenta (2s) para o container do grid, adicionando um brilho sutil (glow) no hover.
+- **Máscara**: Mantido o refinamento de bordas suaves (loose lines) no topo/esquerda.
+
+### [2026-05-03] Refinamento do Grid Industrial (About)
+- **Grid**: Aplicada máscara radial elíptica para criar formato ( ) que consome as bordas.
+- **Linhas Soltas**: Aumentado padding/margin para 60px e ajustada máscara para garantir que as linhas não toquem bordas rígidas.
+- **Preservação**: Cards (.about__pillar-card) mantidos sem alterações.
+
+### [2026-05-03] Organização de Textos (About)
+- **Layout**: Implementado Flexbox vertical nos cards para controle de posicionamento.
+- **Alinhamento**: Definida min-height nos títulos para garantir que todas as descrições iniciem na mesma linha horizontal.
+- **Preservação**: Design base, cores e efeitos visuais mantidos integralmente sem alterações.
+
+### [2026-05-03] Refatoração do Como Eu Trabalho (Pipeline HUD)
+- **Estrutura de Componentes**: Alterada a ordem no App.tsx e Sidebar.tsx (Método agora precede Projetos).
+- **Design de Metodologia**: Abandonados os cards convencionais em favor do design "Mesa de Trabalho (Blueprint) + Linha de Circuito (Pipeline)".
+- **Animações (GSAP)**: Linha de fluxo vermelha ativada e dimensionada via GSAP ScrollTrigger para preencher conforme a rolagem da página.
+- **Micro-interações**: Elementos com opacity e deslocamento revelados dinamicamente na descida do scroll. Efeito visual clean com fontes monoespaçadas, mantendo o nível técnico e elegante.
+
+### [2026-05-03] Refatoração do Como Eu Trabalho (Dashboard Interativo)
+- **Design de Metodologia**: Abandonado o design de Pipeline em favor de um Layout de Dashboard/Painel de Controle, resolvendo o problema de espaço vertical.
+- **Interatividade**: Criado um sistema de abas utilizando estado React (ctiveStage) para navegar pelos 5 passos da metodologia na mesma viewport.
+- **Transições**: Adicionadas animações GSAP de fade e blur para a troca fluida de conteúdo no painel principal, sem causar saltos na tela.

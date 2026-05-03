@@ -92,9 +92,9 @@ export function Navbar() {
         <nav className={`topbar__nav ${menuOpen ? 'open' : ''}`} aria-label="Navegação Principal">
           <div className="topbar__group">
             <a href="#hero" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('hero'); }}>INÍCIO</a>
-            <a href="#about" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}>SOBRE</a>
+            <a href="#about" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}>QUEM SOU EU</a>
             <a href="#projects" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }}>PROJETOS</a>
-            <a href="#stacks" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('stacks'); }}>TECNOLOGIAS</a>
+            <a href="#methodology" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('methodology'); }}>MÉTODO</a>
             <a href="#contact" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>CONTATO</a>
           </div>
 
