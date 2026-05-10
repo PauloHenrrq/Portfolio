@@ -14,10 +14,11 @@ graph TD
     
     Content --> Hero[Hero Section]
     Content --> About[About Section]
+    Content --> Methodology[Methodology Section]
     Content --> Projects[Projects Section]
-    Content --> Stacks[Stacks Section]
     Content --> Contact[Contact Section]
     
+    Methodology --> StacksCarousel[Infinite Stacks Carousel]
     Projects --> ProjectScroller[Horizontal Scroller]
     ProjectScroller --> ProjectCard[Project Card]
     ProjectCard --> Modal[Project Modal]

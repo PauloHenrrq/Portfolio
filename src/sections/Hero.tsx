@@ -3,8 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@/styles/hero.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const line1Ref = useRef<HTMLSpanElement>(null);

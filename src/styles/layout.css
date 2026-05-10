@@ -222,3 +222,28 @@
   line-height: 1.6;
   margin-bottom: 24px;
 }
+
+/* ==========================================================================
+   Light Path Gradient — Methodology → Projects transition glow
+   ========================================================================== */
+.wf-light-path-gradient {
+  position: absolute;
+  top: 0;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 26, 26, 0.02) 5%,
+    rgba(255, 45, 45, 0.05) 50%,
+    rgba(255, 65, 65, 0.1) 100%
+  );
+  mask-image: radial-gradient(ellipse 35% 100% at 50% 100%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 35% 100% at 50% 100%, black 0%, transparent 100%);
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}

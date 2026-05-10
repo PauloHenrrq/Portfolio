@@ -3,8 +3,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@/styles/about.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const pillars = [
   {
     num: '01',

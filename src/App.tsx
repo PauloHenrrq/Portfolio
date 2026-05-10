@@ -4,7 +4,6 @@ import { useRevealEngine } from '@/hooks/useRevealEngine';
 import { useCardSpotlight } from '@/hooks/useCardSpotlight';
 import { Sidebar } from '@/components/Sidebar';
 import { Navbar } from '@/components/Navbar';
-import { EnergyConnector } from '@/components/EnergyConnector';
 import { HeroSection } from '@/sections/Hero';
 import { AboutSection } from '@/sections/About';
 import { ProjectsSection } from '@/sections/Projects';
@@ -46,50 +45,17 @@ function App() {
         <div className="wf-main">
           <main>
             <HeroSection />
-            <EnergyConnector variant="p-p" />
             <AboutSection />
             
             {/* Unified Light Path: Methodology -> Projects */}
             <div className="wf-light-path-container" style={{ position: 'relative' }}>
-              <EnergyConnector variant="p-s" />
               <MethodologySection />
-              
-              <EnergyConnector variant="s-p" />
               <ProjectsSection />
 
-              {/* Tapering Continuous Light Line: Starts thin/dark and grows to 35% width/bright */}
-              <div 
-                className="hero__bg-gradient" 
-                style={{ 
-                  top: 0, 
-                  bottom: '120px',
-                  left: '50%', 
-                  transform: 'translateX(-50%)', 
-                  /* 
-                    Linear gradient for the vertical progression of color.
-                    Radial gradient for the horizontal "thick line" effect.
-                    The tapering effect is achieved by blending multiple layers or using a mask-image approach.
-                    Here we use a combination that feels continuous.
-                  */
-                  background: `
-                    linear-gradient(to bottom, 
-                      transparent 0%, 
-                      rgba(255, 26, 26, 0.02) 5%, 
-                      rgba(255, 45, 45, 0.05) 50%, 
-                      rgba(255, 65, 65, 0.1) 100%
-                    )
-                  `,
-                  maskImage: 'radial-gradient(ellipse 35% 100% at 50% 100%, black 0%, transparent 100%)',
-                  WebkitMaskImage: 'radial-gradient(ellipse 35% 100% at 50% 100%, black 0%, transparent 100%)',
-                  width: '100%', 
-                  height: '100%',
-                  opacity: 0.9,
-                  zIndex: 0
-                } as React.CSSProperties} 
-              />
+              {/* Tapering Continuous Light Line */}
+              <div className="wf-light-path-gradient" />
             </div>
 
-            <EnergyConnector variant="p-p" />
             <ContactSection />
           </main>
         </div>

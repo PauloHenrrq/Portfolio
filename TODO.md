@@ -6,7 +6,7 @@
 - [ ] **CV:** Update the `Curriculo` link with the final PDF path.
 
 ## Visual Refinements
-- [ ] **Performance:** Test GSAP animations on low-end mobile devices.
+- [/] **Performance:** GSAP animations optimized for mobile (methodology/hero). Continuous testing required for full site.
 - [ ] **SEO:** Add meta tags and Open Graph images for social sharing.
 - [ ] **Form:** Implement a real backend (e.g., Formspree or EmailJS) for the contact form.
 

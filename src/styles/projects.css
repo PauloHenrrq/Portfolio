@@ -115,9 +115,9 @@
 }
 
 .wf-project-card:hover {
-  border-color: var(--color-accent-primary);
+  border-color: var(--project-color, var(--color-accent-primary));
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 59, 59, 0.15); /* Pulsing red glow */
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 30px var(--project-glow, rgba(255, 59, 59, 0.15)); /* Dynamic glow based on project */
 }
 
 /* ─── SVG Border Progress ─── */
@@ -156,6 +156,25 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   opacity: 0.04;
   pointer-events: none;
+  z-index: 2;
+}
+
+.wf-project-card__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 1;
+  transition: opacity 0.4s var(--ease-premium), transform 0.4s var(--ease-premium);
+  z-index: 0;
+}
+
+.wf-project-card:hover .wf-project-card__img {
+  opacity: 0.4;
+  transform: scale(1.05);
 }
 
 .wf-project-card:hover .wf-project-card__preview {
@@ -515,14 +534,20 @@
 }
 
 .wf-project-modal--alert {
-  border: 1px solid var(--color-accent-primary);
-  box-shadow: 0 0 40px rgba(255, 26, 26, 0.2);
+  border: 1px solid var(--project-color, var(--color-accent-primary));
+  box-shadow: 0 0 40px color-mix(in srgb, var(--project-color, red) 20%, transparent);
   animation: modal-pulse 2s infinite ease-in-out;
 }
 
 @keyframes modal-pulse {
-  0%, 100% { border-color: rgba(255, 26, 26, 0.3); box-shadow: 0 0 20px rgba(255, 26, 26, 0.1); }
-  50% { border-color: rgba(255, 26, 26, 0.8); box-shadow: 0 0 40px rgba(255, 26, 26, 0.3); }
+  0%, 100% { 
+    border-color: color-mix(in srgb, var(--project-color, red) 30%, transparent); 
+    box-shadow: 0 0 20px color-mix(in srgb, var(--project-color, red) 10%, transparent); 
+  }
+  50% { 
+    border-color: color-mix(in srgb, var(--project-color, red) 80%, transparent); 
+    box-shadow: 0 0 40px color-mix(in srgb, var(--project-color, red) 30%, transparent); 
+  }
 }
 
 @media (max-width: 992px) {
@@ -622,10 +647,10 @@
 }
 
 .wf-modal-close:hover {
-  background: var(--color-accent-primary);
+  background: var(--project-color, var(--color-accent-primary));
   color: #fff;
-  border-color: var(--color-accent-primary);
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  border-color: var(--project-color, var(--color-accent-primary));
+  box-shadow: 0 0 20px color-mix(in srgb, var(--project-color, red) 30%, transparent);
 }
 
 /* Video Section */
@@ -645,6 +670,17 @@
   justify-content: center;
 }
 
+.wf-modal-video__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: calc(50% + 100px) top;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .wf-modal-video__overlay {
   position: absolute;
   top: 24px;
@@ -655,11 +691,11 @@
 .wf-modal-video__label {
   font-family: var(--font-mono);
   font-size: 0.6rem;
-  color: var(--color-accent-primary);
+  color: var(--project-color, var(--color-accent-primary));
   letter-spacing: 0.2em;
-  background: rgba(255, 0, 0, 0.1);
+  background: color-mix(in srgb, var(--project-color, red) 10%, transparent);
   padding: 4px 8px;
-  border-left: 2px solid var(--color-accent-primary);
+  border-left: 2px solid var(--project-color, var(--color-accent-primary));
 }
 
 .wf-modal-video__mock {
@@ -718,7 +754,7 @@
 
 .wf-modal-info__num {
   font-family: var(--font-mono);
-  color: var(--color-accent-primary);
+  color: var(--project-color, var(--color-accent-primary));
   font-size: 0.9rem;
   margin-bottom: 8px;
   opacity: 0.6;
@@ -784,15 +820,15 @@
 }
 
 .wf-btn--primary {
-  background: var(--color-accent-primary);
+  background: var(--project-color, var(--color-accent-primary));
   color: #fff;
-  border: 1px solid var(--color-accent-primary);
+  border: 1px solid var(--project-color, var(--color-accent-primary));
 }
 
 .wf-btn--primary:hover {
-  background: #ff2a2a;
+  background: color-mix(in srgb, var(--project-color, red) 80%, black);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--project-color, red) 20%, transparent);
 }
 
 .wf-btn--outline {

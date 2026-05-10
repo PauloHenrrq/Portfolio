@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import '@/styles/sidebar.css';
 
 const NAV_SECTIONS = [
   { id: 'hero',     label: 'Início',     num: '01' },

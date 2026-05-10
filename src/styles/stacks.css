@@ -247,17 +247,29 @@
 /* Carousel Section - Seamless Loop Refined */
 .stacks__carousel-wrap {
   margin-top: 3rem;
-  padding: 2px 0;
+  position: relative;
+  background: transparent;
+}
+
+.stacks__carousel-wrap::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  right: 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 100px;
-  background: transparent;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .stacks__carousel {
   overflow: hidden;
   white-space: nowrap;
   position: relative;
-  padding: 0.5rem 2rem;
+  z-index: 1;
+  padding: 24px 2rem;
   /* Smooth fading at edges */
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -296,6 +308,17 @@
   height: 100%;
   object-fit: contain;
 }
+
+/* Specific Icon Overrides */
+.stacks__img--express {
+  filter: invert(1) brightness(2);
+}
+
+.stacks__img--prisma-orm {
+  filter: grayscale(1) brightness(1.5);
+}
+
+
 
 @keyframes marquee {
   0% { transform: translateX(0); }

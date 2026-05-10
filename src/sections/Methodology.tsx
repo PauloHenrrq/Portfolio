@@ -1,132 +1,112 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import '../styles/methodology.css';
-import '../styles/stacks.css';
-import mcpIcon from '@/assets/model-context-protocol-icon.svg';
-import promptIcon from '@/assets/prompt_17653455.png';
+import { TECH_CONFIG } from '@/lib/techConfig';
+import type { MethodStage } from '@/lib/types';
+import '@/styles/methodology.css';
+import '@/styles/stacks.css';
 
-const getIconUrl = (name: string) => `https://raw.githubusercontent.com/devicons/devicon/master/icons/${name}/${name}-original.svg`;
-
-const TECH_CONFIG: Record<string, { icon: string; color: string }> = {
-  'React Native': { icon: getIconUrl('react'), color: '#61DAFB' },
-  'TypeScript': { icon: getIconUrl('typescript'), color: '#3178C6' },
-  'React / Next.js': { icon: getIconUrl('react'), color: '#61DAFB' },
-  'Tailwind CSS': { icon: getIconUrl('tailwindcss'), color: '#38BDF8' },
-  'Node.js / Express': { icon: getIconUrl('nodejs'), color: '#339933' },
-  'Prisma ORM': { icon: getIconUrl('prisma'), color: '#5A67D8' },
-  'PostgreSQL': { icon: getIconUrl('postgresql'), color: '#4169E1' },
-  'MySQL': { icon: getIconUrl('mysql'), color: '#4479A1' },
-  'Python': { icon: getIconUrl('python'), color: '#3776AB' },
-  'Docker': { icon: getIconUrl('docker'), color: '#2496ED' },
-  'MCPs': { icon: mcpIcon, color: '#FFFFFF' }, 
-  'Prompts': { icon: promptIcon, color: '#00F5FF' }, 
-  'Automação': { icon: getIconUrl('bash'), color: '#4EAA25' },
-  'Agentes IA': { icon: 'https://cdn-icons-png.flaticon.com/512/2103/2103633.png', color: '#3776AB' }
-};
+// Sub-componentes extraídos
+import { StageCounter } from './methodology/StageCounter';
+import { Stage01Card } from './methodology/Stage01Card';
+import { Stage03Dashboard } from './methodology/Stage03Dashboard';
+import { Stage04Report } from './methodology/Stage04Report';
+import { Stage05Dashboard } from './methodology/Stage05Dashboard';
+import { ArchitectureExplorer } from './methodology/ArchitectureExplorer';
 
 const CAROUSEL_DATA = [
-  { name: 'React / Next.js', icon: TECH_CONFIG['React / Next.js'].icon },
-  { name: 'Node.js / Express', icon: TECH_CONFIG['Node.js / Express'].icon },
+  { name: 'Next.js', icon: TECH_CONFIG['Next.js'].icon },
+  { name: 'React Native', icon: TECH_CONFIG['React Native'].icon },
+  { name: 'Vite', icon: TECH_CONFIG['Vite'].icon },
+  { name: 'Express', icon: TECH_CONFIG['Express'].icon },
+  { name: 'Tailwind CSS', icon: TECH_CONFIG['Tailwind CSS'].icon },
+  { name: 'Prisma ORM', icon: TECH_CONFIG['Prisma ORM'].icon },
   { name: 'PostgreSQL', icon: TECH_CONFIG['PostgreSQL'].icon },
   { name: 'Python', icon: TECH_CONFIG['Python'].icon },
-  { name: 'Prompts', icon: TECH_CONFIG['Prompts'].icon },
   { name: 'Docker', icon: TECH_CONFIG['Docker'].icon },
-  { name: 'MySQL', icon: TECH_CONFIG['MySQL'].icon },
-  { name: 'Agentes IA', icon: TECH_CONFIG['Agentes IA'].icon }
+  { name: 'MySQL', icon: TECH_CONFIG['MySQL'].icon }
 ];
 
-gsap.registerPlugin(ScrollTrigger);
-
-const METHOD_STAGES = [
+const METHOD_STAGES: MethodStage[] = [
   {
     id: '01',
-    tab: 'Discovery',
-    title: 'Diagnóstico antes de código',
-    description: 'Antes de escrever código, eu entendo o problema a fundo. Defino a estratégia técnica e estruturo a solução para evitar retrabalho e garantir eficiência desde o início.',
-    bullet: 'Mapeamento Técnico'
+    tab: 'Descoberta',
+    title: 'Planejamento / Entendimento',
+    description: 'Entendimento profundo do problema antes da primeira linha de código. É aqui que o sucesso do projeto é definido através de uma estratégia técnica clara.',
+    bullet: 'Brainstorming & Escopo'
   },
   {
     id: '02',
-    tab: 'Architecture',
+    tab: 'Arquitetura',
     title: 'Arquitetura para o futuro',
     description: 'A fundação é o que sustenta o crescimento. Aplico princípios de engenharia para criar sistemas desacoplados que sejam rápidos hoje e fáceis de evoluir amanhã.',
     bullet: 'Engenharia de Software'
   },
   {
     id: '03',
-    tab: 'Development',
-    title: 'Execução de Alta Performance',
-    description: 'Desenvolvimento ágil potencializado por ferramentas de IA, mas guiado por rigor técnico. O resultado é um ciclo de entrega acelerado com código limpo e seguro.',
-    bullet: 'Desenvolvimento Agêntico'
+    tab: 'Desenvolvimento',
+    title: 'Engenharia Assistida',
+    description: 'Utilizo o Antigravity como meu ecossistema de desenvolvimento, aproveitando seus fluxos agênticos para acelerar a construção de software com precisão e alta performance.',
+    impact: 'Potencializado por IA. Validado e guiado por mim.',
+    signature: 'PH_03_V1.0',
+    bullet: 'Fluxos Agênticos'
   },
   {
     id: '04',
-    tab: 'Quality',
-    title: 'Refino e Validação Real',
-    description: 'Nenhuma funcionalidade é entregue sem passar por um processo rigoroso de QA. Valido performance e segurança para garantir que tudo suporte o mundo real.',
-    bullet: 'Garantia de Qualidade'
+    tab: 'Qualidade',
+    title: 'Qualidade & Auditoria Técnica',
+    description: 'Refino técnico para garantir resiliência, fluidez e segurança absoluta em cada detalhe.',
+    bullet: 'Certificação de Qualidade'
   },
   {
     id: '05',
-    tab: 'Launch',
+    tab: 'Lançamento',
     title: 'Monitoramento e Sucesso',
     description: 'A entrega é apenas o começo do ciclo. Acompanho a performance em produção e aplico ajustes finos de infraestrutura para garantir eficiência total e contínua.',
     bullet: 'Monitoramento Contínuo'
   }
 ];
 
-function StageCounter({ id, isActive }: { id: string; isActive: boolean }) {
-  // Começamos sempre com "00"
-  const [displayId, setDisplayId] = useState(id === "01" ? "01" : "00");
-  const directionRef = useRef(1);
-
-  useEffect(() => {
-    if (isActive) {
-      if (displayId !== id) {
-        const timer = setTimeout(() => {
-          directionRef.current = 1;
-          setDisplayId(id);
-        }, 150);
-        return () => clearTimeout(timer);
-      }
-    } else {
-      // Exceção: O Stage 01 nunca volta para 00
-      if (displayId !== "00" && id !== "01") {
-        setDisplayId("00");
-      }
-    }
-  }, [isActive, id, displayId]);
-
-  return (
-    <div className="methodology__window-step">
-      <span>STAGE</span>
-      <div className="stage-number-wrap">
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.span
-            key={displayId}
-            initial={{ y: directionRef.current > 0 ? "100%" : "-100%", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: directionRef.current > 0 ? "-100%" : "100%", opacity: 0 }}
-            transition={{ 
-              duration: 0.5, 
-              ease: [0.16, 1, 0.3, 1] 
-            }}
-            style={{ 
-              position: 'absolute', 
-              left: 0,
-              top: 0,
-              display: 'block',
-              width: '100%'
-            }}
-          >
-            {displayId}
-          </motion.span>
-        </AnimatePresence>
-      </div>
-    </div>
-  );
+/**
+ * Renderiza o conteúdo interno de cada stage card baseado no ID.
+ */
+function StageContent({ stage, isActive, handleMouseMove, handleMouseLeave }: {
+  stage: MethodStage;
+  isActive: boolean;
+  handleMouseMove: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleMouseLeave: (e: React.MouseEvent<HTMLDivElement>) => void;
+}) {
+  switch (stage.id) {
+    case '01':
+      return <Stage01Card stage={stage} isActive={isActive} />;
+    case '02':
+      return (
+        <>
+          <div className="methodology__window-text">
+            <div className="methodology__window-side-line"></div>
+            <div className="methodology__window-decor-grid"></div>
+            <StageCounter id={stage.id} isActive={isActive} />
+            <h3 className="methodology__window-heading">{stage.title}</h3>
+            <p className="methodology__window-desc">{stage.description}</p>
+            <div className="methodology__window-tag">
+              <span className="tag-dot"></span> {stage.bullet}
+            </div>
+          </div>
+          <div className="methodology__window-graphic">
+            <div className="methodology__blueprint-grid"></div>
+            <ArchitectureExplorer onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
+          </div>
+        </>
+      );
+    case '03':
+      return <Stage03Dashboard stage={stage} isActive={isActive} />;
+    case '04':
+      return <Stage04Report stage={stage} isActive={isActive} />;
+    case '05':
+      return <Stage05Dashboard stage={stage} isActive={isActive} />;
+    default:
+      return null;
+  }
 }
 
 export function MethodologySection() {
@@ -136,115 +116,158 @@ export function MethodologySection() {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const img = e.currentTarget.querySelector('.architecture-img, .discovery-terminal, .methodology__stage-img') as HTMLElement;
+    if (!img || window.matchMedia('(max-width: 480px)').matches) return;
+
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - left) / width;
+    const y = (e.clientY - top) / height;
+
+    const moveX = (x - 0.5) * 30; 
+    const moveY = (y - 0.5) * 30;
+
+    gsap.to(img, {
+      rotateY: moveX,
+      rotateX: -moveY,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const img = e.currentTarget.querySelector('.architecture-img, .discovery-terminal, .methodology__stage-img') as HTMLElement;
+    if (img) {
+      const isArch = img.classList.contains('architecture-img');
+      gsap.to(img, {
+        rotateX: isArch ? 15 : 10,
+        rotateY: isArch ? -25 : -15,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    }
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
       if (!cards.length) return;
 
-      const isMobile = window.innerWidth <= 768;
-      const gapY = isMobile ? 25 : 40; 
-      const gapX = isMobile ? 15 : 40; 
-      
-      // 1. Limpeza e Estado Inicial (Tudo centralizado ou fora da tela)
-      cards.forEach((card, i) => {
-        gsap.set(card, { 
-          x: i === 0 ? 0 : -window.innerWidth, 
-          y: 0, 
-          opacity: i === 0 ? 1 : 0,
-          filter: "blur(0px)",
-          brightness: 1
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 901px)", () => {
+        const isMobile = window.innerWidth <= 768;
+        const isSmallMobile = window.innerWidth <= 480;
+        const gapY = isSmallMobile ? 15 : (isMobile ? 25 : 40); 
+        const gapX = isSmallMobile ? 8 : (isMobile ? 15 : 40); 
+        
+        cards.forEach((card, i) => {
+          gsap.set(card, { 
+            x: i === 0 ? 0 : -window.innerWidth, 
+            y: 0, 
+            opacity: i === 0 ? 1 : 0,
+            filter: "blur(0px)",
+            brightness: 1
+          });
+        });
+
+        const recededState = new Array(cards.length).fill(false);
+
+        ScrollTrigger.create({
+          id: "methodology-st",
+          trigger: stackRef.current,
+          pin: sectionRef.current,
+          start: "top 15%",
+          end: isMobile ? `+=${cards.length * 400}px` : `+=${cards.length * 700}px`,
+          scrub: isMobile ? 0.5 : 0.6,
+          onUpdate: (self) => {
+            const total = cards.length;
+            const sectionProgress = self.progress * (total - 1);
+            const currentIndex = Math.floor(sectionProgress);
+            const nextIndex = currentIndex + 1;
+            const localProgress = sectionProgress - currentIndex;
+
+            const startThreshold = isMobile ? 0.28 : 0.15;
+            const endThreshold = isMobile ? 0.90 : 0.90;
+            let transitionProgress = 0;
+            
+            if (localProgress > endThreshold) transitionProgress = 1;
+            else if (localProgress < startThreshold) transitionProgress = 0;
+            else transitionProgress = (localProgress - startThreshold) / (endThreshold - startThreshold);
+
+            const isScrollingDown = self.direction > 0;
+            const threshold = isScrollingDown ? 0.25 : 0.75; 
+            const anticipatedIndex = Math.floor(sectionProgress + threshold);
+            
+            if (anticipatedIndex !== activeIndex && anticipatedIndex >= 0 && anticipatedIndex < total) {
+              setActiveIndex(anticipatedIndex);
+            }
+
+            if (nextIndex < total) {
+              const nextCard = cards[nextIndex];
+              const xPos = gsap.utils.interpolate(-window.innerWidth, 0, transitionProgress);
+              gsap.set(nextCard, { 
+                x: xPos, 
+                opacity: transitionProgress > 0.01 ? 1 : 0,
+                filter: "blur(0px)"
+              });
+
+              if (transitionProgress > 0.25 && !recededState[currentIndex]) {
+                recededState[currentIndex] = true;
+                gsap.to(cards[currentIndex], {
+                  x: gapX,
+                  y: -gapY,
+                  filter: "blur(4px)",
+                  duration: isMobile ? 0.25 : 0.6,
+                  ease: "power2.out",
+                  overwrite: "auto"
+                });
+              } 
+              else if (transitionProgress < 0.1 && recededState[currentIndex]) {
+                recededState[currentIndex] = false;
+                gsap.to(cards[currentIndex], {
+                  x: 0,
+                  y: 0,
+                  filter: "blur(0px)",
+                  duration: isMobile ? 0.25 : 0.6,
+                  ease: "power2.out",
+                  overwrite: "auto"
+                });
+              }
+            }
+
+            cards.forEach((card, idx) => {
+              if (idx < currentIndex) {
+                gsap.set(card, { x: gapX, y: -gapY, filter: "blur(4px)", opacity: 1 });
+              } else if (idx > nextIndex) {
+                gsap.set(card, { x: -window.innerWidth, opacity: 0 });
+              }
+            });
+          }
         });
       });
 
-      // Ref para rastrear quais abas já recuaram para evitar disparos repetitivos de animação
-      const recededState = new Array(cards.length).fill(false);
-
-      ScrollTrigger.create({
-        id: "methodology-st",
-        trigger: stackRef.current,
-        pin: sectionRef.current,
-        start: "top 15%",
-        end: `+=${cards.length * 1200}px`, // Scroll mais longo para precisão
-        scrub: true,
-        onUpdate: (self) => {
-          const total = cards.length;
-          const sectionProgress = self.progress * (total - 1);
-          const currentIndex = Math.floor(sectionProgress);
-          const nextIndex = currentIndex + 1;
-          const localProgress = sectionProgress - currentIndex;
-
-          // 1. ZONA DE DESCANSO: A animação de movimento só ocorre entre 0.15 e 0.85 do estágio
-          // Isso evita que a aba comece a recuar imediatamente após chegar
-          const startThreshold = 0.15;
-          const endThreshold = 0.85;
-          let transitionProgress = 0;
-          
-          if (localProgress > endThreshold) transitionProgress = 1;
-          else if (localProgress < startThreshold) transitionProgress = 0;
-          else transitionProgress = (localProgress - startThreshold) / (endThreshold - startThreshold);
-
-          // GATILHO DE ATIVAÇÃO BIDIRECIONAL:
-          // Descendo: Ativa cedo (0.25) para o flip acontecer durante o movimento
-          // Subindo: Ativa no ponto simétrico (0.75) para o flip acontecer na volta
-          const isScrollingDown = self.direction > 0;
-          const threshold = isScrollingDown ? 0.25 : 0.75; 
-          const anticipatedIndex = Math.floor(sectionProgress + threshold);
-          
-          if (anticipatedIndex !== activeIndex && anticipatedIndex >= 0 && anticipatedIndex < total) {
-            setActiveIndex(anticipatedIndex);
-          }
-
-          // A. ENTRADA DA PRÓXIMA ABA (Atrelada ao scroll com platô)
-          if (nextIndex < total) {
-            const nextCard = cards[nextIndex];
-            const xPos = gsap.utils.interpolate(-window.innerWidth, 0, transitionProgress);
-            gsap.set(nextCard, { 
-              x: xPos, 
-              opacity: transitionProgress > 0.01 ? 1 : 0,
-              filter: "blur(0px)" // Garante que a aba vindo da esquerda seja nítida
-            });
-
-            // B. RECUO DA ABA ATUAL (Independente, disparado pelo avanço do transitionProgress)
-            // Recua quando a próxima aba entra significativamente (> 25% do seu caminho)
-            if (transitionProgress > 0.25 && !recededState[currentIndex]) {
-              recededState[currentIndex] = true;
-              gsap.to(cards[currentIndex], {
-                x: gapX,
-                y: -gapY,
-                filter: "blur(4px)",
-                duration: 0.6,
-                ease: "power2.out",
-                overwrite: "auto"
-              });
-            } 
-            // Retorna quando a aba da frente recua no scroll (< 10% do caminho de entrada)
-            else if (transitionProgress < 0.1 && recededState[currentIndex]) {
-              recededState[currentIndex] = false;
-              gsap.to(cards[currentIndex], {
-                x: 0,
-                y: 0,
-                filter: "blur(0px)",
-                duration: 0.6,
-                ease: "power2.out",
-                overwrite: "auto"
-              });
-            }
-          }
-
-          // C. LIMPEZA SEGURA (Ignora abas em transição para evitar 'piscagem')
-          cards.forEach((card, idx) => {
-            if (idx < currentIndex) {
-              // Já passou e não é a atual: força estado de fundo
-              gsap.set(card, { x: gapX, y: -gapY, filter: "blur(4px)", opacity: 1 });
-            } else if (idx > nextIndex) {
-              // Ainda não chegou: força estado fora
-              gsap.set(card, { x: -window.innerWidth, opacity: 0 });
-            }
+      // Mobile Flow Default
+      mm.add("(max-width: 900px)", () => {
+        cards.forEach((card, i) => {
+          gsap.set(card, { 
+            x: 0, 
+            y: 0, 
+            opacity: 1,
+            filter: "blur(0px)",
+            clearProps: "all" 
           });
-        }
+
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 80%",
+            end: "bottom 20%",
+            onEnter: () => setActiveIndex(i),
+            onEnterBack: () => setActiveIndex(i),
+          });
+        });
       });
 
-      // 2. Fade-in for the Carousel
       gsap.fromTo(carouselRef.current, 
         { opacity: 0, y: 30 },
         { 
@@ -278,7 +301,7 @@ export function MethodologySection() {
   };
 
   const handleWindowClick = (index: number) => {
-    if (index === activeIndex) return; // Se for a ativa, não faz nada
+    if (index === activeIndex) return;
     scrollToIndex(index);
   };
 
@@ -306,15 +329,14 @@ export function MethodologySection() {
             return (
               <div 
                 key={stage.id}
-                className={`methodology__window ${isEven ? 'layout-left' : 'layout-right'} ${isActive ? 'is-active' : ''}`}
+                className={`methodology__window window-stage-${stage.id} ${isEven ? 'layout-left' : 'layout-right'} ${isActive ? 'is-active' : ''}`}
                 ref={el => { cardsRef.current[idx] = el; }}
                 style={{ 
                   zIndex: idx + 1,
-                  pointerEvents: idx <= activeIndex ? 'auto' : 'none' // Impede clique em janelas invisíveis (fantasmas) que ainda não entraram
+                  pointerEvents: idx <= activeIndex ? 'auto' : 'none'
                 }}
                 onClick={() => handleWindowClick(idx)}
               >
-                {/* OS Window Topbar */}
                 <div className="methodology__window-topbar">
                   <div className="methodology__window-controls">
                     <span className="control-btn close"></span>
@@ -326,23 +348,15 @@ export function MethodologySection() {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="methodology__window-content">
-                  <div className="methodology__window-text">
-                    <StageCounter id={stage.id} isActive={isActive} />
-                    <h3 className="methodology__window-heading">{stage.title}</h3>
-                    <p className="methodology__window-desc">{stage.description}</p>
-                    <div className="methodology__window-tag">
-                      <span className="tag-dot"></span> {stage.bullet}
-                    </div>
-                  </div>
-                  
-                  {/* Decorative Tech Graphic */}
-                  <div className="methodology__window-graphic">
-                    <div className="methodology__blueprint-grid"></div>
-                    <div className="methodology__graphic-label">{stage.tab.toUpperCase()}</div>
-                  </div>
+                  <StageContent 
+                    stage={stage} 
+                    isActive={isActive} 
+                    handleMouseMove={handleMouseMove} 
+                    handleMouseLeave={handleMouseLeave} 
+                  />
                 </div>
+                <div className="methodology__window-version">PH_{stage.id}_v1.0</div>
               </div>
             );
           })}
@@ -372,4 +386,3 @@ export function MethodologySection() {
     </section>
   );
 }
-

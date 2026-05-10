@@ -2,7 +2,7 @@ import '@/styles/contact.css';
 
 export function ContactSection() {
   return (
-    <div className="wf-section wf-section--alt" id="contact">
+    <section className="wf-section wf-section--alt" id="contact">
       {/* Aside label */}
       <div className="wf-section__aside">
         <div className="wf-section__aside-label">CONTATO</div>
@@ -42,6 +42,6 @@ export function ContactSection() {
           </div>
         </footer>
       </div>
-    </div>
+    </section>
   );
 }

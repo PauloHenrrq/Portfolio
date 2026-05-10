@@ -80,6 +80,7 @@ src/
 - [2026-04-27] Project initialized via /init
 - [2026-05-01] Refinamento Premium das seções Sobre e Stacks.
 - [2026-05-02] Finalização da navegação responsiva e modais de projeto.
+- [2026-05-03] Finalização da seção de Metodologia e responsividade mobile profunda.
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
 

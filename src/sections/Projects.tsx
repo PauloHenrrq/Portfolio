@@ -1,14 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion, animate, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import '@/styles/projects.css';
-
-gsap.registerPlugin(ScrollTrigger);
+import phhubCard from '@/assets/projects/PHHub/view-image.jpg';
+import phhubModal from '@/assets/projects/PHHub/spoiler-image.jpeg';
 
 const PROJECTS = [
   {
     id: '01',
+    title: 'PHHub',
+    description: 'Um ecossistema unificado focado em alta performance e design premium. Substitui a fragmentação por eficiência centralizada e integração fluida.',
+    techs: ['Next.js', 'TypeScript', 'Vanilla CSS'],
+    link: '#',
+    github: '#',
+    cardImage: phhubCard,
+    modalImage: phhubModal,
+    themeColor: '#a855f7',
+    themeGlow: 'rgba(168, 85, 247, 0.15)'
+  },
+  {
+    id: '02',
     title: 'OdontoSync',
     description: 'Sistema de gestão odontológica que eliminou a fragmentação de dados através de um dashboard unificado, resultando em 30% mais eficiência operacional.',
     techs: ['Next.js', 'Prisma', 'PostgreSQL', 'Tailwind'],
@@ -16,7 +26,7 @@ const PROJECTS = [
     github: '#',
   },
   {
-    id: '02',
+    id: '03',
     title: 'Ortus AI',
     description: 'Plataforma de IA que automatiza a triagem de leads qualificados, reduzindo o tempo de resposta comercial de horas para segundos.',
     techs: ['React', 'Node.js', 'OpenAI', 'TypeScript'],
@@ -24,7 +34,7 @@ const PROJECTS = [
     github: '#',
   },
   {
-    id: '03',
+    id: '04',
     title: 'Antigravity',
     description: 'Engine de animação física de alto desempenho que permite interfaces ultra-fluídas em ambientes mobile com baixo consumo de memória.',
     techs: ['React Native', 'Reanimated', 'Skia'],
@@ -41,6 +51,10 @@ interface ProjectCardProps {
     techs: string[];
     link: string;
     github: string;
+    cardImage?: string;
+    modalImage?: string;
+    themeColor?: string;
+    themeGlow?: string;
   };
   onBreach: (id: string) => void;
 }
@@ -81,15 +95,13 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
   const handleMouseEnter = () => {
     setIsHovered(true);
     // Smoothly animate from current progress to 100
-    import('framer-motion').then(({ animate }) => {
-      animate(progressValue, 100, {
-        duration: 1.2,
-        ease: "linear",
-        onComplete: () => {
-          setIsBreached(true);
-          onBreach(project.id);
-        }
-      });
+    animate(progressValue, 100, {
+      duration: 1.2,
+      ease: "linear",
+      onComplete: () => {
+        setIsBreached(true);
+        onBreach(project.id);
+      }
     });
   };
 
@@ -97,11 +109,9 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
     setIsHovered(false);
     setIsBreached(false);
     // Smoothly drain progress back to 0 instead of snapping
-    import('framer-motion').then(({ animate }) => {
-      animate(progressValue, 0, {
-        duration: 0.4,
-        ease: "easeOut"
-      });
+    animate(progressValue, 0, {
+      duration: 0.4,
+      ease: "easeOut"
     });
     x.set(0);
     y.set(0);
@@ -121,7 +131,11 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
-      style={{ perspective: 1000 }}
+      style={{ 
+        perspective: 1000,
+        '--project-color': project.themeColor || 'var(--color-accent-primary)',
+        '--project-glow': project.themeGlow || 'rgba(255, 59, 59, 0.15)'
+      } as React.CSSProperties}
     >
       <motion.div 
         className="wf-project-card"
@@ -133,7 +147,7 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
           <rect 
             x="0" y="0" width="100" height="100" 
             fill="none" 
-            stroke="var(--color-accent-primary)" 
+            stroke="var(--project-color)" 
             strokeWidth="1.5"
             pathLength="100"
             style={{ 
@@ -157,6 +171,7 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
         </AnimatePresence>
 
         <div className="wf-project-card__preview">
+          {project.cardImage && <img src={project.cardImage} alt={project.title} className="wf-project-card__img" />}
           <div className="wf-project-card__grain" />
           
           <AnimatePresence>
@@ -329,7 +344,11 @@ export function ProjectsSection() {
                 layout: { type: 'spring', damping: 25, stiffness: 200 },
                 opacity: { duration: 0.2 }
               }}
-              style={{ zIndex: 1001 }}
+              style={{ 
+                zIndex: 1001,
+                '--project-color': activeProject.themeColor || 'var(--color-accent-primary)',
+                '--project-glow': activeProject.themeGlow || 'rgba(255, 59, 59, 0.15)'
+              } as React.CSSProperties}
               onClick={(e) => e.stopPropagation()}
             >
               <button className="wf-modal-close" onClick={() => setSelectedId(null)}>
@@ -343,15 +362,19 @@ export function ProjectsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <div className="wf-modal-video__placeholder">
-                  <div className="wf-modal-video__overlay">
-                    <span className="wf-modal-video__label">SISTEMA ATIVO // MODO_SPOILER</span>
+                {activeProject.modalImage ? (
+                  <img src={activeProject.modalImage} alt={activeProject.title} className="wf-modal-video__img" />
+                ) : (
+                  <div className="wf-modal-video__placeholder">
+                    <div className="wf-modal-video__overlay">
+                      <span className="wf-modal-video__label">SISTEMA ATIVO // MODO_SPOILER</span>
+                    </div>
+                    <div className="wf-modal-video__mock">
+                      <div className="wf-modal-video__scanline" />
+                      <span className="wf-modal-video__play-icon">▶</span>
+                    </div>
                   </div>
-                  <div className="wf-modal-video__mock">
-                    <div className="wf-modal-video__scanline" />
-                    <span className="wf-modal-video__play-icon">▶</span>
-                  </div>
-                </div>
+                )}
               </motion.div>
 
               <motion.div 
