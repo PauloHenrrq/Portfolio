@@ -31,10 +31,10 @@
 /* 📚 STACK CONTAINER */
 .methodology__stack-container {
   position: relative;
-  width: 90%; /* 10% reduction as requested */
-  height: 600px;
+  width: 95%; /* Increased width for better presence */
+  height: clamp(600px, 75vh, 850px); /* Epic scale for production */
   perspective: 1000px;
-  margin: 40px auto 0;
+  margin: 64px auto 0;
 }
 
 /* 🪟 JANELA (CARD) */
@@ -1160,13 +1160,14 @@
 
   .methodology__stack-container {
     width: 100%;
-    height: auto !important;
+    height: auto !important; /* Mantido auto pois os cards estão em fluxo vertical */
     display: flex;
     flex-direction: column;
-    gap: 50px; /* More space for flow */
+    gap: 30px; /* Reduzido de 50px para compactar */
     perspective: none;
     margin-top: 30px;
   }
+
   .methodology__window {
     position: relative !important; /* CRITICAL: Must be relative for flow */
     width: 100% !important;
@@ -1220,7 +1221,8 @@
   }
 
   .methodology__window-text {
-    padding: 35px 20px !important;
+    padding: 35px 5% !important; /* Ajustado de 20px para 5% para maximizar espaço útil */
+
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
@@ -1689,6 +1691,11 @@
     position: relative;
     padding-top: 10px;
   }
+
+  .step-sep {
+    display: none !important; /* Esconder setas no mobile para evitar quebra feia */
+  }
+
 
   .pipeline-steps-v2::before {
     content: '';
@@ -2469,7 +2476,9 @@
   align-items: center;
   margin-bottom: 25px;
   gap: 30px;
+  flex-wrap: wrap; /* Permitir quebra no mobile */
 }
+
 
 .metric-item {
   display: flex;

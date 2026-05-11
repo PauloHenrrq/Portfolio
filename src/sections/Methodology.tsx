@@ -326,6 +326,8 @@ export function MethodologySection() {
           {METHOD_STAGES.map((stage, idx) => {
             const isEven = idx % 2 === 0;
             const isActive = activeIndex === idx;
+            const isMobile = typeof window !== 'undefined' && window.innerWidth <= 900;
+
             return (
               <div 
                 key={stage.id}
@@ -333,10 +335,11 @@ export function MethodologySection() {
                 ref={el => { cardsRef.current[idx] = el; }}
                 style={{ 
                   zIndex: idx + 1,
-                  pointerEvents: idx <= activeIndex ? 'auto' : 'none'
+                  pointerEvents: isMobile ? 'auto' : (idx <= activeIndex ? 'auto' : 'none')
                 }}
                 onClick={() => handleWindowClick(idx)}
               >
+
                 <div className="methodology__window-topbar">
                   <div className="methodology__window-controls">
                     <span className="control-btn close"></span>

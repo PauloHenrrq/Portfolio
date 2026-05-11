@@ -33,7 +33,7 @@
 
 /* Mobile: hide sidebar for now, we'll implement a mobile menu later if needed, 
    or move it to bottom */
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .wf-sidebar {
     display: none;
   }
@@ -149,7 +149,7 @@
 
 /* General Section Container for Option 3 */
 .wf-section {
-  padding: 80px 48px;
+  padding: var(--section-padding-y) var(--section-padding-x);
   position: relative;
   scroll-margin-top: 80px;
 }

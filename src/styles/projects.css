@@ -60,7 +60,7 @@
 .wf-horiz-scroller-content {
   display: flex;
   gap: 32px;
-  padding: 40px 48px 60px 48px; /* Reduzido o padding vertical */
+  padding: 40px var(--section-padding-x) 60px var(--section-padding-x);
   width: max-content;
   cursor: grab;
 }
@@ -91,8 +91,15 @@
     padding: 40px calc(50vw - 160px) 100px calc(50vw - 160px);
   }
   .wf-project-card__desc {
-    display: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Aumentado para dar contexto */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+    height: auto;
   }
+
   .wf-project-card__body {
     padding: 24px;
   }

@@ -65,10 +65,10 @@
    ========================================================================== */
 .wf-hero {
   min-height: calc(100vh - 65px); /* Subtract topbar height approx */
-  padding: 120px 48px 64px 48px;
+  padding: var(--section-padding-y) var(--section-padding-x);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center; /* Better vertical alignment for desktop */
   position: relative;
   overflow: hidden;
   background: var(--color-bg-primary);
@@ -222,7 +222,7 @@
   z-index: 4;
   width: 100%;
   max-width: 800px;
-  margin-left: 40px; /* Snapping to grid */
+  margin-left: clamp(1.5rem, 4vw, 3rem); /* Dynamic snapping to grid */
 }
 
 .hero__tag {
@@ -272,7 +272,7 @@
 .hero__description-wrapper {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   padding-left: 32px;
-  margin-left: 64px;
+  margin-left: clamp(2.5rem, 7vw, 5rem); /* Dynamic stagger */
   margin-bottom: 56px;
 }
 
@@ -290,7 +290,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  margin-left: 100px;
+  margin-left: clamp(4rem, 11vw, 8rem); /* Dynamic stagger */
 }
 
 .hero__action-card-link {
@@ -413,13 +413,15 @@
 
   .hero__bg-text {
     position: absolute;
-    top: 180px;
+    top: 280px; /* Aumentado de 180px para evitar colisão */
     right: 50%;
     transform: translate(50%, -50%);
-    opacity: 0.12;
-    z-index: 2;
+    opacity: 0.08; /* Reduzido levemente para menos ruído visual */
+    z-index: 1; /* Garantir que fique atrás de tudo */
     width: 100%;
+    pointer-events: none;
   }
+
 
   .hero__bg-line--1 {
     margin-right: 2.5em;

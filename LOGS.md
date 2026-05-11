@@ -179,3 +179,23 @@ This document tracks the evolution, technical decisions, and customization of th
 ---
 
 _Maintained by Antigravity AI._
+### 11/05/2026 - Auditoria de Responsividade Desktop (>768px)
+- **Workflow:** `/review` + `/refactor` (Desktop Polish)
+- **Ações:**
+  - Padronização de padding global `.wf-section` usando `--section-padding-x/y`.
+  - Refatoração do `hero.css`: Margens escalonadas (staggered) agora usam `clamp()` para fluidez em ultra-wide.
+  - Sincronização do `about.css` e `projects.css` (scroller) com o grid lateral dinâmico.
+  - Ajuste de escala do `methodology.css`: Altura do stack container expandida para `clamp(600px, 75vh, 850px)` para impacto visual.
+- **Resultado:** Alinhamento lateral perfeito entre seções e eliminação de paddings hardcoded. Layout pronto para telas 4K+.
+- **Próximo Passo:** Refinamento mobile (<768px).
+
+### 11/05/2026 - Otimização de Responsividade Mobile (<768px)
+- **Workflow:** Refinamento de UX/UI Mobile + Debugging.
+- **Ações:**
+  - **Hero:** Reposicionamento do `.hero__bg-text` (top: 280px) e redução de opacidade para 0.08 para eliminar colisão com a marca PH.
+  - **Projects:** Habilitada visibilidade da descrição dos cards com `-webkit-line-clamp: 4`.
+  - **Methodology:** Implementado empilhamento vertical total, redução de gaps (30px) e otimização de padding (5%).
+  - **Stage 04 (Report):** Corrigido bug de cintilação (flicker) e crash de renderização usando estado persistente (`hasBeenActive`) e correção de imports.
+  - **Interatividade:** Forçado `pointer-events: auto` no mobile para garantir navegação fluida em telas touch.
+- **Resultado:** Experiência mobile sólida, legível e de alto desempenho. Projeto validado em 375px e 414px.
+
