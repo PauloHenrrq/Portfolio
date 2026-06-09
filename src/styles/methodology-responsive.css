@@ -1,0 +1,248 @@
+/* 📱 GLOBAL RESPONSIVENESS - Methodology Section */
+
+@media (max-width: 999px) {
+  .methodology {
+    padding: 60px 0;
+    height: auto !important; 
+  }
+
+  .methodology__stack-container {
+    width: 100%;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    perspective: none;
+    margin-top: 30px;
+  }
+
+  .methodology__window {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    min-height: auto;
+    opacity: 1 !important;
+    transform: none !important;
+    overflow: hidden;
+    border-radius: 16px;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    will-change: auto !important;
+    background: rgba(12, 12, 12, 0.98) !important;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .methodology__window *,
+  .methodology__window *::before,
+  .methodology__window *::after {
+    will-change: auto !important;
+  }
+
+  .stage-03-review-terminal,
+  .premium-dashboard,
+  .discovery-terminal,
+  .stage-04-report {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .methodology__window-content {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    overflow: visible !important;
+    height: auto !important;
+    box-sizing: border-box;
+  }
+
+  .methodology__window-content::after {
+    display: none !important;
+  }
+  
+  .methodology__window-topbar {
+    justify-content: space-between;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .methodology__window-controls {
+    position: static;
+  }
+
+  .methodology__window-title {
+    text-align: right;
+  }
+
+  .methodology__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .methodology__context-phrase {
+    margin: 16px auto 0;
+  }
+
+  .methodology__window-text {
+    padding: 35px 20px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    flex: 0 0 auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    min-height: auto;
+  }
+
+  .methodology__window-heading {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+  
+  .methodology__window-desc {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+
+  .methodology__window-version {
+    bottom: 15px;
+    left: 20px;
+    font-size: 0.6rem;
+    opacity: 0.5;
+    z-index: 100;
+  }
+
+  .methodology__window-side-line {
+    left: 10px;
+    opacity: 0.3;
+  }
+  
+  .methodology__window-graphic {
+    display: flex;
+    flex: 0 0 auto;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+    min-height: 250px;
+    position: relative;
+    margin-top: 0;
+    padding-bottom: 30px;
+    transform: none !important;
+    opacity: 1;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Hide graphic ONLY for Stage 01 since it has internal block */
+  .methodology__window:nth-child(1) .methodology__window-graphic {
+    display: none;
+  }
+
+  .methodology__graphic-label {
+    transform: rotate(0deg);
+    font-size: 1.2rem;
+    bottom: 10px;
+    position: absolute;
+    opacity: 0.05;
+  }
+
+  .callout-label {
+    font-size: 0.5rem;
+    padding: 2px 6px;
+  }
+
+  .callout-line-v, .callout-line-v-up, .callout-line-h {
+    display: none;
+  }
+
+  .discovery-terminal,
+  .methodology__stage-img {
+    transform: none !important;
+  }
+}
+
+/* 📱 SMALL MOBILE (320px - 480px) */
+@media (max-width: 480px) {
+  .methodology__stack-container {
+    height: auto !important;
+    margin-top: 10px;
+  }
+
+  .methodology__window-topbar {
+    height: 40px;
+  }
+
+  .methodology__window-title {
+    font-size: 0.65rem;
+  }
+
+  .methodology__window-text {
+    padding: 30px 20px;
+    align-items: center;
+    text-align: center;
+    height: auto !important;
+    min-height: auto;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  .methodology__window-heading {
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .methodology__window-desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    max-width: 100%;
+  }
+
+  .methodology__window-tag {
+    padding: 4px 10px;
+    font-size: 0.6rem;
+    margin-bottom: 20px;
+  }
+
+  .methodology__window-version, 
+  .methodology__window-side-line,
+  .methodology__window-decor-grid {
+    display: none;
+  }
+
+  .discovery-terminal-wrapper,
+  .methodology__stage-img-wrapper {
+    width: 95%;
+    height: 85%;
+  }
+
+  .terminal-body {
+    padding: 10px;
+    font-size: 0.75rem;
+  }
+
+  .architecture-img-wrapper {
+    width: 100%;
+    height: 90%;
+    transform: none !important;
+  }
+}

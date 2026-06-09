@@ -2,12 +2,17 @@
 
 This document tracks the evolution, technical decisions, and customization of the Portfolio PH project.
 
+### [2026-06-09] Ajuste de Responsividade e Efeito 3D no Stage 02
+
+- **Efeito 3D no Mobile (Stage 02)**: Removido o reset de transformações 3D no dispositivo móvel para o `.architecture-img` (estrutura de pastas), permitindo que ele mantenha a mesma rotação e perspectiva isométrica (`rotateX(10deg) rotateY(-20deg)`) da versão desktop ("ficando meio de lado").
+- **Remoção de Linha Divisória**: Adicionada regra de ocultação do pseudo-elemento `::after` do `.methodology__window-content` sob o breakpoint mobile (`max-width: 999px`). Isso remove a linha branca vertical que aparecia de forma incorreta no centro da tela ao empilhar o layout em colunas únicas nos dispositivos móveis.
+
 ### [2026-05-10] Atualização de Métricas (Stage 05)
 
 - **Métricas de Performance**: Atualizados os KPIs do Stage 05 para refletir dados mais precisos e realistas:
-    - Performance: **94/100** (anteriormente 95).
-    - Latência: **38ms** (anteriormente 42ms).
-    - Estabilidade: **99.5%** (anteriormente 99.8%).
+  - Performance: **94/100** (anteriormente 95).
+  - Latência: **38ms** (anteriormente 42ms).
+  - Estabilidade: **99.5%** (anteriormente 99.8%).
 - **Sincronização de Animação**: Ajustados os keyframes de `counter-perf`, `counter-lat` e `counter-stab-dec` no `methodology.css` para garantir que a animação de contagem termine exatamente nos novos valores.
 
 ### [2026-05-08] Refinamento Cinematográfico e Efeito de Profundidade (Stage 04)
@@ -21,10 +26,10 @@ This document tracks the evolution, technical decisions, and customization of th
 - **Isolamento de Layouts**: Refatorada a estrutura de renderização para garantir que cada estágio (Discovery, Architecture, Development, etc.) possua sua própria lógica de UI isolada, evitando que alterações em uma janela afetam as demais.
 - [x] Finalização do STAGE 05 (Monitoramento e Sucesso) com a simetria A-B-C-B-A.
 - [x] Implementação de 4 propostas de design para a coluna direita do STAGE 05:
-    1. **Pulse Dashboard**: Telemetria ao vivo.
-    2. **Deployment Terminal**: Simulação de pipeline CLI.
-    3. **KPI Cards**: Visão executiva com glassmorphism.
-    4. **Success Seal**: Selo holográfico de certificação e validação.
+  1. **Pulse Dashboard**: Telemetria ao vivo.
+  2. **Deployment Terminal**: Simulação de pipeline CLI.
+  3. **KPI Cards**: Visão executiva com glassmorphism.
+  4. **Success Seal**: Selo holográfico de certificação e validação.
 - [x] Ajuste de background do STAGE 05 para espelhar a degradação de pixels do STAGE 01.
 - **Stage 03 (Development) - Redesign Industrial/Cyber**:
   - Implementada uma estética exclusiva de "Laboratório de Desenvolvimento" para diferenciar o Stage 03 dos demais.
@@ -179,7 +184,9 @@ This document tracks the evolution, technical decisions, and customization of th
 ---
 
 _Maintained by Antigravity AI._
+
 ### 11/05/2026 - Auditoria de Responsividade Desktop (>768px)
+
 - **Workflow:** `/review` + `/refactor` (Desktop Polish)
 - **Ações:**
   - Padronização de padding global `.wf-section` usando `--section-padding-x/y`.
@@ -189,13 +196,22 @@ _Maintained by Antigravity AI._
 - **Resultado:** Alinhamento lateral perfeito entre seções e eliminação de paddings hardcoded. Layout pronto para telas 4K+.
 - **Próximo Passo:** Refinamento mobile (<768px).
 
-### 11/05/2026 - Otimização de Responsividade Mobile (<768px)
-- **Workflow:** Refinamento de UX/UI Mobile + Debugging.
-- **Ações:**
-  - **Hero:** Reposicionamento do `.hero__bg-text` (top: 280px) e redução de opacidade para 0.08 para eliminar colisão com a marca PH.
-  - **Projects:** Habilitada visibilidade da descrição dos cards com `-webkit-line-clamp: 4`.
-  - **Methodology:** Implementado empilhamento vertical total, redução de gaps (30px) e otimização de padding (5%).
-  - **Stage 04 (Report):** Corrigido bug de cintilação (flicker) e crash de renderização usando estado persistente (`hasBeenActive`) e correção de imports.
-  - **Interatividade:** Forçado `pointer-events: auto` no mobile para garantir navegação fluida em telas touch.
-- **Resultado:** Experiência mobile sólida, legível e de alto desempenho. Projeto validado em 375px e 414px.
+---
 
+### [2026-05-22] Ajuste do Breakpoint de Navegação e Responsividade
+
+- **Ajuste de Breakpoint:** Elevado o breakpoint responsivo de **1200px** para **1300px** de forma global nos arquivos CSS principais (`sidebar.css`, `hero.css`, `about.css`).
+- **Sidebar drawer e Hover Trigger:** A funcionalidade de ocultação automática do menu lateral (Navbar fixa) com o aparecimento do acionador lateral (`wf-sidebar-trigger`) em hover agora entra em vigor a partir de **1300px** de largura da tela.
+- **Sincronização Visual:**
+  - Ajustadas as posições absolutas da tipografia e imagens do Hero (`hero.css`) para sincronizarem perfeitamente no novo limite de 1300px, deslocando a foto da direita e o texto "DEVE/LOPER" em **25px para a esquerda** (`right: calc(5% + 25px)`) para garantir melhor legibilidade e evitar sobreposições.
+  - Sincronizado o grid de cards da seção de sobre (`about.css`) para se adaptar a 3 colunas fluídas a partir do novo breakpoint.
+- **Refinamento do Menu Lateral (Sidebar Nav Items):**
+  - Removido o fundo cinza (`background: rgba(255, 255, 255, 0.03)`) ao passar o mouse.
+  - Implementada uma regra de exclusão `:not(.wf-sidebar__nav-item--active)` que garante que os itens ativos/selecionados não tenham qualquer interação de hover.
+  - Ajustado o hover dos itens inativos (apagados) para brilharem mais intensamente (elevação da opacidade de `0.15` para `0.85`), aplicando um efeito suave de brilho (`text-shadow`) e glow no marcador visual correspondente (`.wf-sidebar__nav-dot`).
+  - Corrigido conflito duplicado de classe no arquivo `layout.css`, garantindo que o comportamento exclusivo de hover sem interações nos itens ativos também seja respeitado de forma global.
+- **Scroll Inteligente de Elementos Pinficados (GSAP Pin-Spacers):**
+  - Refatorados os métodos de clique (`handleNavClick`) em `Sidebar.tsx` e `Navbar.tsx` para detectar automaticamente se a seção de destino possui uma embalagem de espaçamento (`.pin-spacer`) gerada dinamicamente pelo GSAP ScrollTrigger.
+  - Ao clicar no botão **Método**, o sistema agora calcula a posição unpinned exata do topo do elemento pai (o `.pin-spacer`), rolando a página de forma fluida de volta ao início unpinned da seção. Isso força o GSAP a executar o _scrubbing_ reverso passando de forma sequencial pelas janelas e parando exatamente no topo com a visualização do título principal **"Como eu trabalho"**.
+- **Refinamento Visual da Seção de Metodologia:**
+  - Removida a linha vermelha decorativa da extrema esquerda (`.methodology__window-side-line`) especificamente dos componentes **STAGE 01** e **STAGE 03**, otimizando a harmonia e o aproveitamento do layout de largura total (full-width) dessas janelas conceituais.
