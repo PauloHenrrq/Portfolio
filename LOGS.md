@@ -6,6 +6,7 @@ This document tracks the evolution, technical decisions, and customization of th
 
 - **Efeito 3D no Mobile (Stage 02)**: Removido o reset de transformações 3D no dispositivo móvel para o `.architecture-img` (estrutura de pastas), permitindo que ele mantenha a mesma rotação e perspectiva isométrica (`rotateX(10deg) rotateY(-20deg)`) da versão desktop ("ficando meio de lado").
 - **Remoção de Linha Divisória**: Adicionada regra de ocultação do pseudo-elemento `::after` do `.methodology__window-content` sob o breakpoint mobile (`max-width: 999px`). Isso remove a linha branca vertical que aparecia de forma incorreta no centro da tela ao empilhar o layout em colunas únicas nos dispositivos móveis.
+- **Fluxo Contínuo no Stage 03**: Alterado o fluxo de execução interna no Stage 03 para rodar incondicionalmente de forma cíclica e infinita, removendo a dependência do estado `isActive` para que a animação continue ativa independente da posição do scroll do usuário.
 
 ### [2026-05-10] Atualização de Métricas (Stage 05)
 
