@@ -223,3 +223,26 @@ _Maintained by Antigravity AI._
   - Ao clicar no botão **Método**, o sistema agora calcula a posição unpinned exata do topo do elemento pai (o `.pin-spacer`), rolando a página de forma fluida de volta ao início unpinned da seção. Isso força o GSAP a executar o _scrubbing_ reverso passando de forma sequencial pelas janelas e parando exatamente no topo com a visualização do título principal **"Como eu trabalho"**.
 - **Refinamento Visual da Seção de Metodologia:**
   - Removida a linha vermelha decorativa da extrema esquerda (`.methodology__window-side-line`) especificamente dos componentes **STAGE 01** e **STAGE 03**, otimizando a harmonia e o aproveitamento do layout de largura total (full-width) dessas janelas conceituais.
+
+---
+
+### [2026-06-10] Refinamentos Premium de UX, Responsividade e SEO
+
+- **Unificação de Breakpoints Responsivos**:
+  - Alinhados e unificados todos os breakpoints de celular/tablet em `@media (max-width: 999px)` no `global.css`, `layout.css` e `projects.css`.
+- **Navegação de Sidebar por Clique com Overlay**:
+  - Removido gatilho indesejado de hover para telas médias até `1600px`.
+  - Implementado sistema de clique via estado React (`isOpen`) no acionador com movimento síncrono e rotação da seta.
+  - Adicionado overlay de blur (`.wf-sidebar-overlay`) sob a sidebar para fechar o menu ao clicar fora.
+- **Scroll Horizontal de Projetos via GSAP ScrollTrigger**:
+  - Desenvolvido pinning horizontal com efeito scrub suave para computadores (telas >= `1000px`).
+  - Habilitada rolagem nativa por swipe com suporte a `scroll-snap-align: center` para celulares/tablets (telas < `1000px`).
+  - Integrada a barra de progresso aos eventos ScrollTrigger e scroll nativo.
+- **Conteúdo Real de Projetos com Mockups IA**:
+  - Preenchidos os campos de detalhes, tecnologias e métricas de impacto reais na constante `PROJECTS`.
+  - Gerados 3 mockups de projetos e 1 banner de compartilhamento social usando IA, salvos diretamente na árvore de arquivos do projeto.
+- **Melhorias de SEO**:
+  - Adicionadas tags de Open Graph e Twitter Cards no cabeçalho do `index.html`.
+  - Vinculado o banner do site (`public/og-image.png`) como imagem padrão de compartilhamento.
+- **Verificação de Build**:
+  - Validada a compilação do TypeScript e empacotamento do Vite via `npm run build` com sucesso absoluto (Exit Code 0).
