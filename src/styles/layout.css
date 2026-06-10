@@ -31,13 +31,6 @@
   z-index: 100;
 }
 
-/* Mobile: hide sidebar for now, we'll implement a mobile menu later if needed, 
-   or move it to bottom */
-@media (max-width: 1200px) {
-  .wf-sidebar {
-    display: none;
-  }
-}
 
 .wf-sidebar__logo {
   font-size: 1.2rem;
@@ -71,8 +64,9 @@
   letter-spacing: 0.05em;
 }
 
-.wf-sidebar__nav-item:hover {
-  opacity: 0.5;
+.wf-sidebar__nav-item:not(.wf-sidebar__nav-item--active):hover {
+  opacity: 0.85;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .wf-sidebar__nav-item--active {
@@ -159,7 +153,7 @@
   padding-top: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .wf-section {
     padding: 60px 24px;
   }
@@ -169,7 +163,7 @@
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .wf-section__aside {
     display: none;
   }

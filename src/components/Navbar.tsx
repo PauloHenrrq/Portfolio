@@ -24,9 +24,10 @@ export function Navbar() {
       const el = document.getElementById(id);
       if (el) {
         // Adjust for fixed header height
+        const targetEl = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el;
         const headerOffset = window.innerWidth <= 900 ? 70 : 0;
-        const elementPosition = el.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
         window.scrollTo({
           top: offsetPosition,

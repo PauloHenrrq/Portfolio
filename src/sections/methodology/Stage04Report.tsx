@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
 import { StageCounter } from './StageCounter';
 import type { MethodStage } from '@/lib/types';
 
@@ -18,20 +17,15 @@ const checklistItems = [
 ];
 
 export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 900;
-  // No mobile, se o card já foi visto ou está visível, mantemos animado
   const [hasBeenActive, setHasBeenActive] = useState(false);
 
-
   useEffect(() => {
-
     if (isActive) setHasBeenActive(true);
   }, [isActive]);
 
-  const shouldAnimate = isMobile ? (isActive || hasBeenActive) : isActive;
+  const showContent = isActive || hasBeenActive;
 
   return (
-
     <div className="methodology__window-text full-width stage-04-variant">
       <div className="methodology__window-side-line"></div>
       <div className="methodology__window-decor-grid"></div>
@@ -61,30 +55,26 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
               <motion.div 
                 className="tech-report-sheet-bg-3"
                 initial={{ opacity: 0, rotate: 0, x: 0, y: 15 }}
-                animate={shouldAnimate ? { opacity: 1, rotate: 8, x: 15, y: 8 } : {}}
-
+                animate={showContent ? { opacity: 1, rotate: 8, x: 15, y: 8 } : {}}
                 transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               />
               <motion.div 
                 className="tech-report-sheet-bg-2"
                 initial={{ opacity: 0, rotate: 0, x: 0, y: 10 }}
-                animate={shouldAnimate ? { opacity: 1, rotate: 5, x: 10, y: 5 } : {}}
-
+                animate={showContent ? { opacity: 1, rotate: 5, x: 10, y: 5 } : {}}
                 transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               />
               <motion.div 
                 className="tech-report-sheet-bg-1"
                 initial={{ opacity: 0, rotate: 0, x: 0, y: 5 }}
-                animate={shouldAnimate ? { opacity: 1, rotate: 2, x: 5, y: 2 } : {}}
-
+                animate={showContent ? { opacity: 1, rotate: 2, x: 5, y: 2 } : {}}
                 transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               />
 
           <motion.div 
             className="tech-report-sheet"
             initial={{ y: 20, opacity: 0 }}
-            animate={shouldAnimate ? { y: 0, opacity: 1 } : {}}
-
+            animate={showContent ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="report-sheet-clip"></div>
@@ -102,8 +92,7 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
                     key={idx} 
                     className="checklist-row has-tooltip"
                     initial={{ opacity: 0, x: 10 }}
-                    animate={shouldAnimate ? { opacity: 1, x: 0 } : {}}
-
+                    animate={showContent ? { opacity: 1, x: 0 } : {}}
                     transition={{ delay: 0.2, duration: 0.8 }}
                   >
                     <span className="check-box">✔</span>
@@ -121,7 +110,7 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
                   <motion.div 
                     className="stamp-circle ink-variant"
                     initial={{ scale: 2, opacity: 0, rotate: -25 }}
-                    animate={isActive ? { 
+                    animate={showContent ? { 
                       scale: 1,
                       opacity: 1, 
                       rotate: -12

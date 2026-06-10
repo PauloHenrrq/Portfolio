@@ -1,0 +1,348 @@
+/* 🚀 STAGE 05: LAUNCH - Premium Telemetry Dashboard */
+
+/* Override do layout shared para o Stage 05 ter split-layout próprio */
+.stage-05-variant.methodology__window-text {
+  flex: 1;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 5%;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+}
+
+.stage-05-variant .stage-05-split-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  height: 100%;
+  width: 100%;
+}
+
+.stage-05-left {
+  flex: 1;
+  max-width: 480px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  z-index: 5;
+}
+
+.stage-05-right {
+  flex: 1.2;
+  display: flex;
+  justify-content: flex-end;
+  perspective: 1000px;
+}
+
+/* Dashboard Panel - Tamanho generoso para o conteúdo */
+.premium-dashboard {
+  width: 100%;
+  max-width: 460px;
+  min-height: 420px;
+  background: rgba(13, 13, 14, 0.4);
+  border-radius: 24px;
+  padding: 40px 35px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+.dashboard-inner-glass {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), transparent);
+  pointer-events: none;
+}
+
+/* Header do Dashboard: título centralizado, subtexto à direita embaixo */
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 45px;
+  position: relative;
+}
+
+.online-indicator {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ff3333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.8;
+}
+
+.online-indicator .dot {
+  width: 6px;
+  height: 6px;
+  background: #ff3333;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff3333;
+  animation: dot-pulse 2s infinite;
+}
+
+@keyframes dot-pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.system-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #fff;
+  margin: 0;
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+}
+
+.system-subtext {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 10px auto 0;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  max-width: 280px;
+  text-align: center;
+}
+
+.metrics-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 35px;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.metric-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: baseline;
+  text-shadow: 
+    1px 1px 0px rgba(0, 0, 0, 0.8),
+    2px 2px 0px rgba(0, 0, 0, 0.6);
+}
+
+.metric-unit {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: 2px;
+}
+
+/* Counter Animations */
+@property --num-perf { syntax: '<integer>'; initial-value: 0; inherits: false; }
+@property --num-lat { syntax: '<integer>'; initial-value: 0; inherits: false; }
+@property --num-stab { syntax: '<integer>'; initial-value: 0; inherits: false; }
+@property --num-stab-dec { syntax: '<integer>'; initial-value: 0; inherits: false; }
+
+.metric-value.animate-perf::before {
+  content: counter(count);
+  counter-reset: count var(--num-perf);
+  animation: counter-perf 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.metric-value.animate-lat::before {
+  content: counter(count);
+  counter-reset: count var(--num-lat);
+  animation: counter-lat 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.metric-value.animate-stab::before {
+  content: counter(count);
+  counter-reset: count var(--num-stab);
+  animation: counter-stab 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.metric-value .stab-decimal::before {
+  content: "." counter(dec);
+  counter-reset: dec var(--num-stab-dec);
+  animation: counter-stab-dec 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes counter-perf { from { --num-perf: 0; } to { --num-perf: 94; } }
+@keyframes counter-lat { from { --num-lat: 0; } to { --num-lat: 42; } }
+@keyframes counter-stab { from { --num-stab: 0; } to { --num-stab: 99; } }
+@keyframes counter-stab-dec { 
+  0% { --num-stab-dec: 0; } 
+  100% { --num-stab-dec: 5; } 
+}
+
+.metric-divider {
+  display: none;
+}
+
+.telemetry-display-v2 {
+  width: 100%;
+  height: 70px;
+  position: relative;
+  margin-bottom: 25px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 51, 51, 0.05);
+}
+
+.telemetry-svg-v2 {
+  width: 100%;
+  height: 100%;
+}
+
+.flow-line {
+  fill: none;
+  stroke: #ff3333;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 400 600;
+  stroke-dashoffset: 1000;
+  filter: drop-shadow(0 0 5px rgba(255, 51, 51, 0.4));
+  opacity: 0.8;
+}
+
+.flow-1 { animation: telemetry-flow-v2 5s linear infinite; }
+.flow-2 { animation: telemetry-flow-v2 5s linear infinite; animation-delay: 2.5s; }
+
+@keyframes telemetry-flow-v2 {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.display-overlay-v2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(3, 3, 3, 1) 0%, 
+    transparent 15%, 
+    transparent 85%, 
+    rgba(3, 3, 3, 1) 100%
+  );
+  pointer-events: none;
+}
+
+.dashboard-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.status-badge {
+  background: rgba(255, 51, 51, 0.05);
+  border: 1px solid rgba(255, 51, 51, 0.2);
+  color: #ff3333;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.05em;
+}
+
+/* Particles */
+.dashboard-particles .particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ff3333;
+  border-radius: 50%;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.particle.p1 { top: 20%; left: 10%; animation: float-p 8s infinite; }
+.particle.p2 { top: 70%; left: 85%; animation: float-p 12s infinite; animation-delay: 1s; }
+.particle.p3 { top: 40%; left: 40%; animation: float-p 10s infinite; animation-delay: 2s; }
+
+@keyframes float-p {
+  0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+  50% { transform: translate(20px, -20px); opacity: 0.5; }
+}
+
+/* 📱 RESPONSIVITY STAGE 05 */
+@media (max-width: 1024px) {
+  .stage-05-variant.methodology__window-text {
+    padding: 40px 20px !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .stage-05-split-layout {
+    flex-direction: column !important;
+    gap: 40px !important;
+    align-items: center !important;
+  }
+
+  .stage-05-left {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .stage-05-right {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .premium-dashboard {
+    width: 95% !important;
+    max-width: 450px !important;
+    min-height: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics-grid {
+    gap: 15px !important;
+  }
+  
+  .metric-value {
+    font-size: 18px !important;
+  }
+  
+  .system-title {
+    font-size: 18px !important;
+  }
+
+  .premium-dashboard {
+    padding: 30px 20px !important;
+  }
+}

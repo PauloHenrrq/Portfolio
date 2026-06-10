@@ -9,9 +9,8 @@ interface Stage05DashboardProps {
 
 export function Stage05Dashboard({ stage, isActive }: Stage05DashboardProps) {
   return (
-    <div className="methodology__window-text full-width">
+    <div className="methodology__window-text full-width stage-05-variant">
       <Stage01Decoration />
-      <div className="methodology__window-side-line"></div>
       <div className="methodology__window-decor-grid"></div>
       
       <div className="stage-05-split-layout">

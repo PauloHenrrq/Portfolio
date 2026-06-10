@@ -91,15 +91,8 @@
     padding: 40px calc(50vw - 160px) 100px calc(50vw - 160px);
   }
   .wf-project-card__desc {
-    display: -webkit-box;
-    -webkit-line-clamp: 4; /* Aumentado para dar contexto */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-size: 0.85rem;
-    margin-bottom: 12px;
-    height: auto;
+    display: none;
   }
-
   .wf-project-card__body {
     padding: 24px;
   }

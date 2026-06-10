@@ -1,0 +1,139 @@
+.methodology {
+  background: transparent;
+  padding-bottom: 0px;
+  position: relative;
+  /* ScrollTrigger lidará com o layout fixo dessa seção através do pin-spacer */
+}
+
+.methodology__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.methodology__header {
+  max-width: 900px;
+}
+
+.methodology__context-phrase {
+  font-size: 1.1rem;
+  color: #A1A1A1;
+  line-height: 1.6;
+  margin-top: 16px;
+  max-width: 600px;
+  font-weight: 450;
+}
+
+/* 📚 STACK CONTAINER */
+.methodology__stack-container {
+  position: relative;
+  width: 95%; /* Increased width for better presence */
+  height: clamp(600px, 75vh, 850px); /* Epic scale for production */
+  perspective: 1000px;
+  margin: 64px auto 0;
+}
+
+/* 🪟 JANELA (CARD) */
+.methodology__window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 12, 12, 0.85); /* Fundo muito escuro com leve translucidez */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform-origin: top center;
+  will-change: transform, filter, opacity;
+}
+
+/* 🍎 TOPBAR (Estilo macOS / Navegador / IDE) */
+.methodology__window-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 2px; /* Global tight padding */
+  background: rgba(255, 255, 255, 0.03); 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 20;
+}
+
+.methodology__window-controls {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.control-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.control-btn.close { background: #FF5F56; }
+.control-btn.min { background: #FFBD2E; }
+.control-btn.max { background: #27C93F; }
+
+.methodology__window-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+}
+
+/* 📖 CONTEÚDO DA JANELA */
+.methodology__window-content {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+/* Divisor central elegante - Escondido no mobile para ganhar espaço */
+.methodology__window-content::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  bottom: 5%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.15), transparent);
+  z-index: 10;
+}
+
+/* Hide separator for Stage 01, Stage 03 and Stage 05 as they handle their own layouts */
+.window-stage-01 .methodology__window-content::after,
+.window-stage-03 .methodology__window-content::after,
+.window-stage-05 .methodology__window-content::after {
+  display: none !important;
+}
+
+.methodology__window.layout-left .methodology__window-content,
+.methodology__window.layout-right .methodology__window-content {
+  flex-direction: row;
+}
+
+.methodology__window-text {
+  flex: 1;
+  padding: 0 10%; /* Symmetrical horizontal padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Maintain left-aligned text logic but center the block */
+  position: relative;
+  min-height: 100%;
+}

@@ -155,7 +155,7 @@ export function MethodologySection() {
 
       const mm = gsap.matchMedia();
 
-      mm.add("(min-width: 901px)", () => {
+      mm.add("(min-width: 1000px)", () => {
         const isMobile = window.innerWidth <= 768;
         const isSmallMobile = window.innerWidth <= 480;
         const gapY = isSmallMobile ? 15 : (isMobile ? 25 : 40); 
@@ -217,7 +217,7 @@ export function MethodologySection() {
                 gsap.to(cards[currentIndex], {
                   x: gapX,
                   y: -gapY,
-                  filter: "blur(4px)",
+                  filter: "blur(2px)",
                   duration: isMobile ? 0.25 : 0.6,
                   ease: "power2.out",
                   overwrite: "auto"
@@ -238,7 +238,7 @@ export function MethodologySection() {
 
             cards.forEach((card, idx) => {
               if (idx < currentIndex) {
-                gsap.set(card, { x: gapX, y: -gapY, filter: "blur(4px)", opacity: 1 });
+                gsap.set(card, { x: gapX, y: -gapY, filter: "blur(2px)", opacity: 1 });
               } else if (idx > nextIndex) {
                 gsap.set(card, { x: -window.innerWidth, opacity: 0 });
               }
@@ -248,7 +248,7 @@ export function MethodologySection() {
       });
 
       // Mobile Flow Default
-      mm.add("(max-width: 900px)", () => {
+      mm.add("(max-width: 999px)", () => {
         cards.forEach((card, i) => {
           gsap.set(card, { 
             x: 0, 
@@ -326,8 +326,6 @@ export function MethodologySection() {
           {METHOD_STAGES.map((stage, idx) => {
             const isEven = idx % 2 === 0;
             const isActive = activeIndex === idx;
-            const isMobile = typeof window !== 'undefined' && window.innerWidth <= 900;
-
             return (
               <div 
                 key={stage.id}
@@ -335,11 +333,10 @@ export function MethodologySection() {
                 ref={el => { cardsRef.current[idx] = el; }}
                 style={{ 
                   zIndex: idx + 1,
-                  pointerEvents: isMobile ? 'auto' : (idx <= activeIndex ? 'auto' : 'none')
+                  pointerEvents: idx <= activeIndex ? 'auto' : 'none'
                 }}
                 onClick={() => handleWindowClick(idx)}
               >
-
                 <div className="methodology__window-topbar">
                   <div className="methodology__window-controls">
                     <span className="control-btn close"></span>

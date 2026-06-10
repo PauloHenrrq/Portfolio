@@ -33,7 +33,6 @@ export function Stage01Card({ stage, isActive }: Stage01CardProps) {
   return (
     <div className="methodology__window-text full-width">
       <Stage01Decoration />
-      <div className="methodology__window-side-line"></div>
       <div className="methodology__window-decor-grid"></div>
       <div className="stage-01-split-layout">
         <div className="stage-01-left">
