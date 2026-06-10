@@ -7,6 +7,7 @@ This document tracks the evolution, technical decisions, and customization of th
 - **Resolução ~1200px (Stage 03)**: Ajustadas as colunas do `.stage-03-split-layout` no breakpoint de `1280px` a `901px` para usar a proporção `1fr 1.15fr`, garantindo que a coluna direita tenha largura suficiente para renderizar a janela de revisão técnica.
 - **Prevenção de Truncamento**: Elevada a propriedade `max-width` do `.stage-03-review-terminal` de `440px` para `500px` nesta faixa de resolução, eliminando o corte horizontal da palavra "Entrega" no fluxo interno de execução.
 - **Formalização do Layout de Métricas**: Substituída a definição base do `.metrics-grid` de `grid` para `flex` horizontal (`display: flex; flex-direction: row;`), tornando o layout nativamente robusto contra colisões e compatível com o design planejado em todas as resoluções de desktop.
+- **Posicionamento de 15px da Extrema Direita (Hero)**: Adicionado media query para resoluções acima de 1300px (visando telas ~1440px ou maiores) no `hero.css` para posicionar o texto de fundo "DEVELOPER" (`.hero__bg-text`) e o bloco "PH" (`.hero__portrait-stage`) a apenas `15px` da borda direita da tela, ampliando o layout.
 
 ### [2026-06-09] Ajuste de Responsividade e Efeito 3D no Stage 02
 

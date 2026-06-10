@@ -14,7 +14,7 @@
   z-index: 10;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .wf-topbar {
     padding: 16px 24px;
     gap: 16px;
@@ -74,10 +74,16 @@
   background: var(--color-bg-primary);
 }
 
+@media (max-width: 1300px) {
+  .wf-hero {
+    padding: 60px 48px 64px 48px;
+    min-height: calc(100svh - 60px);
+  }
+}
+
 @media (max-width: 768px) {
   .wf-hero {
     padding: 60px 24px 64px 24px;
-    min-height: calc(100svh - 60px);
   }
 }
 
@@ -210,12 +216,17 @@
   letter-spacing: -0.05em;
 }
 
-@media (max-width: 1024px) and (min-width: 769px) {
+@media (max-width: 1300px) {
+  .hero__bg-text {
+    right: calc(5% + 25px);
+  }
   .hero__portrait-stage {
-    display: none;
+    right: calc(5% + 25px);
+  }
+  .hero__main-content {
+    max-width: 55%;
   }
 }
-
 /* ─── Layer 4: Foreground Content ─── */
 .hero__main-content {
   position: relative;
@@ -413,15 +424,13 @@
 
   .hero__bg-text {
     position: absolute;
-    top: 280px; /* Aumentado de 180px para evitar colisão */
+    top: 180px;
     right: 50%;
     transform: translate(50%, -50%);
-    opacity: 0.08; /* Reduzido levemente para menos ruído visual */
-    z-index: 1; /* Garantir que fique atrás de tudo */
+    opacity: 0.12;
+    z-index: 2;
     width: 100%;
-    pointer-events: none;
   }
-
 
   .hero__bg-line--1 {
     margin-right: 2.5em;
@@ -437,6 +446,7 @@
 
   .hero__main-content {
     margin-left: 0;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -494,5 +504,13 @@
 
   .hero__action-link--alt {
     padding-left: 0;
+  }
+}
+
+/* 💻 EXTRA LARGE SCREEN RESPONSIVENESS (above 1300px) */
+@media (min-width: 1301px) {
+  .hero__bg-text,
+  .hero__portrait-stage {
+    right: 15px;
   }
 }
