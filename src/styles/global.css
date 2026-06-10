@@ -235,7 +235,7 @@ ul, ol { list-style: none; }
    RESPONSIVE BASE
    ═══════════════════════════════════════════════════════════ */
 
-@media (max-width: 900px) {
+@media (max-width: 999px) {
   :root {
     --sidebar-width: 0px;
     --section-padding-x: 1.5rem;

@@ -153,7 +153,7 @@
   padding-top: 20px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 999px) {
   .wf-section {
     padding: 60px 24px;
   }
@@ -163,7 +163,7 @@
   display: none;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 999px) {
   .wf-section__aside {
     display: none;
   }
