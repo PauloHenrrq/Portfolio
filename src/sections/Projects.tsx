@@ -1,45 +1,68 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, animate, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@/styles/projects.css';
 import phhubCard from '@/assets/projects/PHHub/view-image.jpg';
 import phhubModal from '@/assets/projects/PHHub/spoiler-image.jpeg';
+import odontoSyncCard from '@/assets/projects/OdontoSync/view-image.png';
+import ortusAiCard from '@/assets/projects/OrtusAI/view-image.png';
+import antigravityCard from '@/assets/projects/Antigravity/view-image.png';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {
     id: '01',
     title: 'PHHub',
     description: 'Um ecossistema unificado focado em alta performance e design premium. Substitui a fragmentação por eficiência centralizada e integração fluida.',
-    techs: ['Next.js', 'TypeScript', 'Vanilla CSS'],
-    link: '#',
-    github: '#',
+    details: 'Desenvolvido para centralizar ferramentas internas de desenvolvimento com foco em latência ultrabaixa e micro-frontends. Conta com um design system proprietário baseado em glassmorphism e animações fluidas via Framer Motion, integrando painéis de monitoramento de integridade e dados de telemetria em tempo real.',
+    techs: ['Next.js', 'TypeScript', 'Vanilla CSS', 'Zustand'],
+    link: 'https://github.com/PauloHenrrq/Portfolio',
+    github: 'https://github.com/PauloHenrrq/Portfolio',
     cardImage: phhubCard,
     modalImage: phhubModal,
-    themeColor: '#a855f7',
-    themeGlow: 'rgba(168, 85, 247, 0.15)'
+    themeColor: '#FF2A2A',
+    themeGlow: 'rgba(255, 42, 42, 0.15)'
   },
   {
     id: '02',
     title: 'OdontoSync',
-    description: 'Sistema de gestão odontológica que eliminou a fragmentação de dados através de um dashboard unificado, resultando em 30% mais eficiência operacional.',
-    techs: ['Next.js', 'Prisma', 'PostgreSQL', 'Tailwind'],
-    link: '#',
-    github: '#',
+    description: 'Sistema de gestão odontológica que unificou prontuários e agendamentos sob um dashboard em tempo real, gerando 30% mais eficiência operacional.',
+    details: 'Uma plataforma SaaS completa desenvolvida para clínicas odontológicas. Resolve a fragmentação de prontuários clínicos e históricos médicos através de uma arquitetura modularizada, integrando calendários interativos, faturamento integrado e relatórios de métricas administrativas gerados de forma assíncrona.',
+    techs: ['React', 'Node.js', 'Prisma', 'PostgreSQL', 'Socket.io'],
+    link: 'https://github.com/PauloHenrrq',
+    github: 'https://github.com/PauloHenrrq',
+    cardImage: odontoSyncCard,
+    modalImage: odontoSyncCard,
+    themeColor: '#00d2ff',
+    themeGlow: 'rgba(0, 210, 255, 0.15)'
   },
   {
     id: '03',
     title: 'Ortus AI',
-    description: 'Plataforma de IA que automatiza a triagem de leads qualificados, reduzindo o tempo de resposta comercial de horas para segundos.',
-    techs: ['React', 'Node.js', 'OpenAI', 'TypeScript'],
-    link: '#',
-    github: '#',
+    description: 'Plataforma de inteligência artificial que automatiza a triagem de leads qualificados, reduzindo o tempo de resposta comercial de horas para segundos.',
+    details: 'Uma solução inteligente para canais de atendimento e pré-vendas. Utiliza LLMs customizadas (via APIs da OpenAI e LangChain) para analisar intenções de mensagens recebidas em tempo real, estruturando leads automaticamente no banco de dados e disparando webhooks para CRMs parceiros.',
+    techs: ['Next.js', 'Python', 'OpenAI', 'FastAPI', 'TailwindCSS'],
+    link: 'https://github.com/PauloHenrrq',
+    github: 'https://github.com/PauloHenrrq',
+    cardImage: ortusAiCard,
+    modalImage: ortusAiCard,
+    themeColor: '#10b981',
+    themeGlow: 'rgba(16, 185, 129, 0.15)'
   },
   {
     id: '04',
     title: 'Antigravity',
     description: 'Engine de animação física de alto desempenho que permite interfaces ultra-fluídas em ambientes mobile com baixo consumo de memória.',
-    techs: ['React Native', 'Reanimated', 'Skia'],
-    link: '#',
-    github: '#',
+    details: 'Uma biblioteca open-source voltada para performance gráfica extrema no ecossistema mobile. Implementa cálculos de física vetorial diretamente em C++ (via JSI no React Native) permitindo taxas constantes de 120 FPS em listagens complexas e transições de tela com zero sobrecarga na thread principal de JavaScript.',
+    techs: ['React Native', 'Reanimated', 'Skia', 'C++', 'JSI'],
+    link: 'https://github.com/PauloHenrrq',
+    github: 'https://github.com/PauloHenrrq',
+    cardImage: antigravityCard,
+    modalImage: antigravityCard,
+    themeColor: '#f59e0b',
+    themeGlow: 'rgba(245, 158, 11, 0.15)'
   },
 ];
 
@@ -208,37 +231,65 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
 export function ProjectsSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0 });
-
-
-
-
+  const [scrollProgressPct, setScrollProgressPct] = useState(0);
 
   useEffect(() => {
-    const updateConstraints = () => {
-      if (scrollerRef.current) {
-        const viewport = scrollerRef.current;
-        const content = viewport.querySelector('.wf-horiz-scroller-content') as HTMLElement;
-        if (content) {
-          const viewportWidth = viewport.offsetWidth;
-          const contentWidth = content.scrollWidth;
-          setDragConstraints({ left: -(contentWidth - viewportWidth), right: 0 });
-        }
-      }
-    };
+    const ctx = gsap.context(() => {
+      const viewport = scrollerRef.current;
+      const content = viewport?.querySelector('.wf-horiz-scroller-content') as HTMLElement;
+      if (!viewport || !content) return;
 
-    updateConstraints();
-    window.addEventListener('resize', updateConstraints);
-    return () => window.removeEventListener('resize', updateConstraints);
+      const getScrollAmount = () => {
+        const viewportWidth = viewport.offsetWidth;
+        const contentWidth = content.scrollWidth;
+        return -(contentWidth - viewportWidth);
+      };
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1000px)", () => {
+        const scrollAmount = getScrollAmount();
+        
+        gsap.to(content, {
+          x: scrollAmount,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#projects",
+            pin: true,
+            scrub: 1,
+            start: "top top+=80px",
+            end: () => `+=${Math.abs(scrollAmount)}`,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              setScrollProgressPct(self.progress * 100);
+            }
+          }
+        });
+      });
+
+      mm.add("(max-width: 999px)", () => {
+        gsap.set(content, { x: 0 });
+
+        const handleMobileScroll = () => {
+          const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+          const pct = maxScroll > 0 ? (viewport.scrollLeft / maxScroll) * 100 : 0;
+          setScrollProgressPct(pct);
+        };
+
+        viewport.addEventListener('scroll', handleMobileScroll, { passive: true });
+        handleMobileScroll();
+        
+        return () => {
+          viewport.removeEventListener('scroll', handleMobileScroll);
+        };
+      });
+
+    }, scrollerRef);
+
+    return () => ctx.revert();
   }, []);
 
   const activeProject = PROJECTS.find(p => p.id === selectedId);
-  const xDrag = useMotionValue(0);
-  const scrollProgress = useTransform(
-    xDrag, 
-    [dragConstraints.left, 0], 
-    ["100%", "0%"]
-  );
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -276,14 +327,7 @@ export function ProjectsSection() {
             PROJETOS
           </div>
 
-          <motion.div 
-            className="wf-horiz-scroller-content"
-            style={{ x: xDrag }}
-            drag="x"
-            dragConstraints={dragConstraints}
-            dragElastic={0.1}
-            whileTap={{ cursor: "grabbing" }}
-          >
+          <div className="wf-horiz-scroller-content">
             {PROJECTS.map((project) => (
               <ProjectCard key={project.id} project={project} onBreach={(id) => setSelectedId(id)} />
             ))}
@@ -306,13 +350,13 @@ export function ProjectsSection() {
                 </div>
               </div>
             </a>
-          </motion.div>
+          </div>
           <div className="wf-horiz-hint">
             <svg width="20" height="12" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M6 1L1 6L6 11" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M1 6H20" strokeLinecap="round"/>
             </svg>
-            <span>Arraste para explorar</span>
+            <span className="wf-horiz-hint-text">Use o scroll ou arraste</span>
             <svg width="20" height="12" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 1L23 6L18 11" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M23 6H4" strokeLinecap="round"/>
@@ -322,9 +366,9 @@ export function ProjectsSection() {
         
         <div className="wf-horiz-footer" data-reveal="fade-up" data-delay="400">
           <div className="wf-horiz-progress">
-            <motion.div 
+            <div 
               className="wf-horiz-progress__bar" 
-              style={{ width: scrollProgress }}
+              style={{ width: `${scrollProgressPct}%` }}
             />
           </div>
         </div>
@@ -393,10 +437,7 @@ export function ProjectsSection() {
                   </div>
                 </div>
                 <p className="wf-modal-info__desc">
-                  {activeProject.description}
-                  <br /><br />
-                  Este projeto foi construído focando em escalabilidade e performance. 
-                  A solução implementada resolve problemas críticos de latência e garante uma experiência fluida para o usuário final.
+                  {activeProject.details || activeProject.description}
                 </p>
                 <div className="wf-modal-info__actions">
                   <a href={activeProject.link} className="wf-btn wf-btn--primary" target="_blank" rel="noopener noreferrer">ACESSAR DEMO ↗</a>

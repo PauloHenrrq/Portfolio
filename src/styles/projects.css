@@ -44,13 +44,22 @@
   animation: wf-flicker 2s infinite;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 999px) {
   .wf-horiz-scroller-viewport {
     width: calc(100% + 48px);
     margin-left: -24px;
     border: none;
     background: transparent;
     backdrop-filter: none;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .wf-horiz-scroller-viewport::-webkit-scrollbar {
+    display: none;
   }
   .wf-scroller-header {
     display: none;
@@ -62,16 +71,12 @@
   gap: 32px;
   padding: 40px var(--section-padding-x) 60px var(--section-padding-x);
   width: max-content;
-  cursor: grab;
+  cursor: default;
 }
-@media (max-width: 900px) {
+@media (max-width: 999px) {
   .wf-horiz-scroller-content {
     padding: 40px calc(50% - 160px) 100px calc(50% - 160px);
   }
-}
-
-.wf-horiz-scroller-content:active {
-  cursor: grabbing;
 }
 
 /* ─── Project Card ─── */
@@ -80,6 +85,13 @@
   flex-shrink: 0;
   width: 380px;
   height: 480px; /* Enforced consistent height */
+}
+
+@media (max-width: 999px) {
+  .wf-project-card-wrap,
+  .wf-project-card-placeholder {
+    scroll-snap-align: center;
+  }
 }
 
 @media (max-width: 600px) {
@@ -522,7 +534,7 @@
   box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
   transform-origin: center;
 }
-@media (max-width: 992px) {
+@media (max-width: 999px) {
   .wf-project-modal {
     display: flex;
     flex-direction: column;
@@ -550,7 +562,7 @@
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 999px) {
   .wf-project-modal {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
