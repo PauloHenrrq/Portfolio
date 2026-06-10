@@ -55,9 +55,14 @@
   position: relative;
 }
 
-.wf-sidebar__nav-item:hover {
-  background: rgba(255, 255, 255, 0.03);
-  opacity: 0.5;
+.wf-sidebar__nav-item:not(.wf-sidebar__nav-item--active):hover {
+  opacity: 0.85;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.wf-sidebar__nav-item:not(.wf-sidebar__nav-item--active):hover .wf-sidebar__nav-dot {
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .wf-sidebar__nav-item--active {
@@ -116,8 +121,76 @@
   letter-spacing: 0.05em;
 }
 
-@media (max-width: 900px) {
+/* ─── Hover Sidebar for Tablets/Small Monitors ─── */
+.wf-sidebar-trigger {
+  display: none;
+}
+
+@media (max-width: 1600px) {
+  .wf-sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 2000;
+    width: 40px; /* Trigger zone */
+  }
+
+  .wf-sidebar-trigger {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 60px;
+    background: rgba(15, 15, 15, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .trigger-arrow {
+    color: var(--color-accent-primary);
+    width: 20px;
+    height: 20px;
+    animation: arrow-bounce 2s infinite ease-in-out;
+  }
+
   .wf-sidebar {
-    display: none;
+    display: flex !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .wf-sidebar-container:hover .wf-sidebar {
+    transform: translateX(0);
+  }
+
+  .wf-sidebar-container:hover .wf-sidebar-trigger {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Adjust main content padding if necessary, but usually it's fine since it's overlapping */
+}
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+@media (max-width: 600px) {
+  .wf-sidebar-container {
+    display: none; /* Totalmente oculto em celulares muito pequenos se preferir */
   }
 }

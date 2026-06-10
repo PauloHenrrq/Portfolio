@@ -53,55 +53,77 @@ export const Sidebar: React.FC = () => {
   }, []);
 
   const handleNavClick = (id: string) => {
+    if (id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const targetEl = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el;
+      const headerOffset = window.innerWidth <= 900 ? 70 : 0;
+      const elementPosition = targetEl.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
-    <aside className="wf-sidebar">
-      <div>
-        <div className="wf-sidebar__logo">
-          PH<span>.dev</span>
-        </div>
-        
-        <nav className="wf-sidebar__nav">
-          {NAV_SECTIONS.map((item) => (
-            <a 
-              key={item.id} 
-              href={`#${item.id}`}
-              className={`wf-sidebar__nav-item ${activeSection === item.id ? 'wf-sidebar__nav-item--active' : ''}`}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(item.id);
-              }}
-            >
-              <div className="wf-sidebar__nav-dot"></div>
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="wf-sidebar__progress-container">
-          <div className="wf-sidebar__progress-bar">
-            <div 
-              className="wf-sidebar__progress-fill"
-              style={{ 
-                height: `${scrollProgress}%`,
-                backgroundColor: 'var(--color-accent-primary)'
-              }}
-            ></div>
-          </div>
-          <div className="wf-sidebar__progress-text">
-            {Math.round(scrollProgress)}%
-          </div>
+    <div className="wf-sidebar-container">
+      <div className="wf-sidebar-trigger">
+        <div className="trigger-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
         </div>
       </div>
       
-      <div className="wf-sidebar__footer">
-        © PH {new Date().getFullYear()}
-      </div>
-    </aside>
+      <aside className="wf-sidebar">
+        <div>
+          <div className="wf-sidebar__logo">
+            PH<span>.dev</span>
+          </div>
+          
+          <nav className="wf-sidebar__nav">
+            {NAV_SECTIONS.map((item) => (
+              <a 
+                key={item.id} 
+                href={`#${item.id}`}
+                className={`wf-sidebar__nav-item ${activeSection === item.id ? 'wf-sidebar__nav-item--active' : ''}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.id);
+                }}
+              >
+                <div className="wf-sidebar__nav-dot"></div>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+  
+          <div className="wf-sidebar__progress-container">
+            <div className="wf-sidebar__progress-bar">
+              <div 
+                className="wf-sidebar__progress-fill"
+                style={{ 
+                  height: `${scrollProgress}%`,
+                  backgroundColor: 'var(--color-accent-primary)'
+                }}
+              ></div>
+            </div>
+            <div className="wf-sidebar__progress-text">
+              {Math.round(scrollProgress)}%
+            </div>
+          </div>
+        </div>
+        
+        <div className="wf-sidebar__footer">
+          © PH {new Date().getFullYear()}
+        </div>
+      </aside>
+    </div>
   );
 };

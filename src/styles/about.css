@@ -299,7 +299,7 @@
   transition-delay: 0.05s;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
   .about__pillars {
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;

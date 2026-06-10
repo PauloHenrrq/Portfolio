@@ -4,11 +4,10 @@ This document tracks the evolution, technical decisions, and customization of th
 
 ### [2026-06-10] Otimização de Resolução e Proteção de Layout no Stage 03
 
+- **Colapso da Sidebar (1600px)**: Aumentado o breakpoint de recolhimento da sidebar (`.wf-sidebar`) de `1300px` para `1600px`. O menu lateral agora se oculta automaticamente e funciona como um drawer flutuante (ativado por hover) em todas as telas com largura de até 1600px, otimizando o espaço útil das seções de conteúdo do portfólio.
 - **Resolução ~1200px (Stage 03)**: Ajustadas as colunas do `.stage-03-split-layout` no breakpoint de `1280px` a `901px` para usar a proporção `1fr 1.15fr`, garantindo que a coluna direita tenha largura suficiente para renderizar a janela de revisão técnica.
 - **Prevenção de Truncamento**: Elevada a propriedade `max-width` do `.stage-03-review-terminal` de `440px` para `500px` nesta faixa de resolução, eliminando o corte horizontal da palavra "Entrega" no fluxo interno de execução.
 - **Formalização do Layout de Métricas**: Substituída a definição base do `.metrics-grid` de `grid` para `flex` horizontal (`display: flex; flex-direction: row;`), tornando o layout nativamente robusto contra colisões e compatível com o design planejado em todas as resoluções de desktop.
-- **Posicionamento de 15px da Extrema Direita (Hero)**: Adicionado media query para resoluções acima de 1300px (visando telas ~1440px ou maiores) no `hero.css` para posicionar o texto de fundo "DEVELOPER" (`.hero__bg-text`) e o bloco "PH" (`.hero__portrait-stage`) a apenas `15px` da borda direita da tela, ampliando o layout.
-- **Evitar Sobreposição na Hero em Telas Médias (769px a 1440px)**: Adicionada media query no `hero.css` para telas intermediárias, ajustando o tamanho da fonte (`clamp(2.5rem, 4.5vw, 5.5rem)`) e reduzindo as margens de offset do texto decorativo "DEVELOPER" (`margin-right: 1.2em` e `margin-left: 1.0em`), eliminando a sobreposição visual com o nome principal.
 
 ### [2026-06-09] Ajuste de Responsividade e Efeito 3D no Stage 02
 

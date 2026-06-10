@@ -74,7 +74,7 @@
   background: var(--color-bg-primary);
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1600px) {
   .wf-hero {
     padding: 60px 48px 64px 48px;
     min-height: calc(100svh - 60px);
@@ -216,7 +216,7 @@
   letter-spacing: -0.05em;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1600px) {
   .hero__bg-text {
     right: calc(5% + 25px);
   }
@@ -504,28 +504,5 @@
 
   .hero__action-link--alt {
     padding-left: 0;
-  }
-}
-
-/* 💻 EXTRA LARGE SCREEN RESPONSIVENESS (above 1300px) */
-@media (min-width: 1301px) {
-  .hero__bg-text,
-  .hero__portrait-stage {
-    right: 15px;
-  }
-}
-
-/* 💻 INTERMEDIATE SCREEN RESPONSIVENESS (769px - 1440px) */
-@media (max-width: 1440px) and (min-width: 769px) {
-  .hero__bg-line {
-    font-size: clamp(2.5rem, 4.5vw, 5.5rem);
-  }
-
-  .hero__bg-line--1 {
-    margin-right: 1.2em;
-  }
-
-  .hero__bg-line--2 {
-    margin-left: 1.0em;
   }
 }
