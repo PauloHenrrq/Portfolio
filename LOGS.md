@@ -2,6 +2,12 @@
 
 This document tracks the evolution, technical decisions, and customization of the Portfolio PH project.
 
+### [2026-06-10] Otimização de Resolução e Proteção de Layout no Stage 03
+
+- **Resolução ~1200px (Stage 03)**: Ajustadas as colunas do `.stage-03-split-layout` no breakpoint de `1280px` a `901px` para usar a proporção `1fr 1.15fr`, garantindo que a coluna direita tenha largura suficiente para renderizar a janela de revisão técnica.
+- **Prevenção de Truncamento**: Elevada a propriedade `max-width` do `.stage-03-review-terminal` de `440px` para `500px` nesta faixa de resolução, eliminando o corte horizontal da palavra "Entrega" no fluxo interno de execução.
+- **Formalização do Layout de Métricas**: Substituída a definição base do `.metrics-grid` de `grid` para `flex` horizontal (`display: flex; flex-direction: row;`), tornando o layout nativamente robusto contra colisões e compatível com o design planejado em todas as resoluções de desktop.
+
 ### [2026-06-09] Ajuste de Responsividade e Efeito 3D no Stage 02
 
 - **Efeito 3D no Mobile (Stage 02)**: Removido o reset de transformações 3D no dispositivo móvel para o `.architecture-img` (estrutura de pastas), permitindo que ele mantenha a mesma rotação e perspectiva isométrica (`rotateX(10deg) rotateY(-20deg)`) da versão desktop ("ficando meio de lado").
