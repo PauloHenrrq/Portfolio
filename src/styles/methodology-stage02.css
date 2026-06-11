@@ -200,6 +200,14 @@
 
   .architecture-img {
     transform: rotateX(10deg) rotateY(-20deg) !important;
+    width: 55% !important;
+    max-width: 220px !important;
+    height: auto !important;
+  }
+
+  .architecture-tree-asset {
+    width: 100% !important;
+    height: auto !important;
   }
 
   .callout-label {
