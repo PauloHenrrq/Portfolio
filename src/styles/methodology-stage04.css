@@ -416,7 +416,7 @@
 }
 
 /* 📱 RESPONSIVITY STAGE 04 */
-@media (max-width: 900px) {
+@media (max-width: 999px) {
   .stage-04-variant.methodology__window-text {
     padding: 40px 20px !important;
     height: auto !important;
