@@ -504,6 +504,11 @@ export function ProjectsSection() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setSelectedId(null)}
           >
+            <button className="wf-modal-close" onClick={() => setSelectedId(null)}>
+              <span className="wf-modal-close__icon">×</span>
+              <span className="wf-modal-close__text">FECHAR [ESC]</span>
+            </button>
+
             <motion.div 
               className="wf-project-modal wf-project-modal--alert"
               layoutId={selectedId!}
@@ -518,10 +523,6 @@ export function ProjectsSection() {
               } as React.CSSProperties}
               onClick={(e) => e.stopPropagation()}
             >
-              <button className="wf-modal-close" onClick={() => setSelectedId(null)}>
-                <span className="wf-modal-close__icon">×</span>
-                <span className="wf-modal-close__text">FECHAR [ESC]</span>
-              </button>
 
               <motion.div 
                 className="wf-modal-video"
