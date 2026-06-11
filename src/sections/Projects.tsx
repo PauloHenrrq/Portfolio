@@ -258,7 +258,6 @@ export function ProjectsSection() {
     xDrag.set(0);
     setScrollProgressPct(0);
     if (window.innerWidth >= 1000) {
-      section.style.cursor = 'grab';
       viewport.style.cursor = 'grab';
     }
 
@@ -268,7 +267,6 @@ export function ProjectsSection() {
       startTranslateX = xDrag.get();
       hasDraggedPassedThreshold = false;
       viewport.style.cursor = 'grabbing';
-      section.style.cursor = 'grabbing';
       document.body.classList.add('is-dragging-projects');
     };
 
@@ -304,7 +302,6 @@ export function ProjectsSection() {
       if (!isDragging) return;
       isDragging = false;
       viewport.style.cursor = 'grab';
-      section.style.cursor = 'grab';
       document.body.classList.remove('is-dragging-projects');
 
       // Snap back if out of bounds
@@ -375,10 +372,10 @@ export function ProjectsSection() {
     };
 
     // Bind event listeners
-    section.addEventListener('mousedown', onMouseDown);
+    viewport.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
-    section.addEventListener('wheel', onWheel, { passive: true });
+    viewport.addEventListener('wheel', onWheel, { passive: true });
 
     viewport.addEventListener('scroll', handleMobileScroll, { passive: true });
 
@@ -386,13 +383,11 @@ export function ProjectsSection() {
     const handleResize = () => {
       const maxScroll = getMaxScroll();
       if (window.innerWidth >= 1000) {
-        section.style.cursor = 'grab';
         viewport.style.cursor = 'grab';
         if (xDrag.get() < maxScroll) {
           xDrag.set(maxScroll);
         }
       } else {
-        section.style.cursor = '';
         viewport.style.cursor = '';
         // Reset translate on mobile, let CSS/native scroll handle it
         xDrag.set(0);
@@ -401,10 +396,10 @@ export function ProjectsSection() {
     window.addEventListener('resize', handleResize);
 
     return () => {
-      section.removeEventListener('mousedown', onMouseDown);
+      viewport.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
-      section.removeEventListener('wheel', onWheel);
+      viewport.removeEventListener('wheel', onWheel);
 
       viewport.removeEventListener('scroll', handleMobileScroll);
       window.removeEventListener('resize', handleResize);
