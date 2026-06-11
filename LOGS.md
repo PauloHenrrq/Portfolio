@@ -271,3 +271,22 @@ _Maintained by Antigravity AI._
   - Eliminado o corte horizontal (truncamento) do texto à esquerda ("Auditoria Técnica") e do cartão de relatório à direita sob a resolução de 950px, forçando o colapso limpo para coluna única (empilhado).
 - **Verificação Visual e Navegador**:
   - Auditados visualmente todos os estágios via subagent de navegador sob a resolução de 950px, com validação de fluidez e adaptabilidade.
+
+---
+
+### [2026-06-11] Refinamentos de Design Premium de Projetos, Modais e Inércia
+
+- **Melhorias de Visual e Cores Temáticas de Projetos**:
+  - Alterada a cor predominante do projeto **PHHub** para roxo neon (`#BD00FF`) com brilho temático correspondente, sincronizando a interface com as imagens.
+  - Aplicada borda temática sutil nos cards de projetos antes do clique (`color-mix(in srgb, var(--project-color) 18%, rgba(255, 255, 255, 0.05))`) acompanhada por sombra dispersa e neon fraco.
+  - Modificada a borda padrão das caixinhas de tecnologias (badges) para herdar a cor do projeto com efeito dinâmico no hover.
+  - Ajustada a opacidade global de todos os textos dos projetos (títulos, descrições e badges do card e do modal) para um branco com **85% de força** (`rgba(255, 255, 255, 0.85)`).
+- **Ajustes de UX e Navegação Horizontal**:
+  - Implementada física de inércia (momentum) com animação de mola (`spring` do Framer Motion) no scroll horizontal do mouse/drag para computadores.
+  - Reposicionado o texto indicativo `"ARRASTE PARA EXPLORAR"` de volta para dentro do componente de carrossel de projetos, posicionado de forma fixa e absoluta na base da viewport, preservando um espaçamento elegante de `90px` abaixo dos cards.
+- **Responsividade e Modais Mobile**:
+  - Criados modais de projetos adaptados para dispositivos móveis com limite de altura a `85vh` e rolagem vertical restrita à caixa de informações textual (`.wf-modal-info`).
+  - Posicionado o botão de fechar (X) como um círculo flutuante translúcido com desfoque de fundo (`backdrop-filter`) travado no topo direito do modal.
+  - Corrigido o alinhamento da imagem de capa nos modais mobile, forçando `object-position: center center` para remover a barra preta lateral.
+  - Reduzido o tamanho dos textos e cartões da metodologia (Stage 04) sob telas de `999px` em exatamente `8px`.
+  - Configurada a exibição do menu sanduíche (trigger sidebar) apenas para telas menores que `500px`.
