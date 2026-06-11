@@ -94,8 +94,8 @@ export function Navbar() {
           <div className="topbar__group">
             <a href="#hero" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('hero'); }}>INÍCIO</a>
             <a href="#about" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('about'); }}>QUEM SOU EU</a>
-            <a href="#projects" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }}>PROJETOS</a>
             <a href="#methodology" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('methodology'); }}>MÉTODO</a>
+            <a href="#projects" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('projects'); }}>PROJETOS</a>
             <a href="#contact" className="topbar__link" onClick={(e) => { e.preventDefault(); handleNavClick('contact'); }}>CONTATO</a>
           </div>
 
