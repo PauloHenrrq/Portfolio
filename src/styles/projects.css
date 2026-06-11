@@ -1,6 +1,9 @@
-/* ==========================================================================
-   Projects Section (Option 3 Horizontal Scroller)
-   ========================================================================== */
+/* Drag cursor overrides */
+body.is-dragging-projects,
+body.is-dragging-projects * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
 
 /* ─── Horizontal Scroller Container ─── */
 .wf-horiz-scroller-viewport {
