@@ -121,7 +121,7 @@ body.is-dragging-projects * {
     overflow: hidden;
     font-size: 0.78rem !important;
     line-height: 1.45 !important;
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
     margin-bottom: 12px !important;
   }
   .wf-project-card__body {
@@ -135,7 +135,7 @@ body.is-dragging-projects * {
 .wf-project-card {
   width: 100%;
   height: 100%; /* Fill the wrapper height */
-  border: 1px solid var(--color-border);
+  border: 1px solid color-mix(in srgb, var(--project-color) 18%, rgba(255, 255, 255, 0.05));
   display: flex;
   flex-direction: column;
   position: relative;
@@ -143,12 +143,13 @@ body.is-dragging-projects * {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   transition: all 0.3s var(--ease-premium);
+  box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.5), 0 0 15px -4px color-mix(in srgb, var(--project-color) 12%, transparent);
 }
 
 .wf-project-card:hover {
-  border-color: var(--project-color, var(--color-accent-primary));
+  border-color: var(--project-color);
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 30px var(--project-glow, rgba(255, 59, 59, 0.15)); /* Dynamic glow based on project */
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 30px color-mix(in srgb, var(--project-color) 25%, transparent);
 }
 
 /* ─── SVG Border Progress ─── */
@@ -271,7 +272,7 @@ body.is-dragging-projects * {
 .wf-project-card__title {
   font-size: 1.35rem;
   font-weight: 800;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.85);
   font-family: var(--font-display);
   white-space: nowrap;
   overflow: hidden;
@@ -279,19 +280,24 @@ body.is-dragging-projects * {
   flex: 1;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.wf-project-card:hover .wf-project-card__title {
+  color: #fff;
 }
 
 .wf-project-card__title span {
-  color: var(--color-accent-primary);
+  color: var(--project-color, var(--color-accent-primary));
   opacity: 1;
   font-family: var(--font-mono);
   margin-right: 6px;
-  filter: drop-shadow(0 0 5px var(--color-accent-primary));
+  filter: drop-shadow(0 0 5px var(--project-color, var(--color-accent-primary)));
 }
 
 .wf-project-card__desc {
   font-size: 0.95rem;
-  color: #e0e0e0;
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
   margin-bottom: 16px;
   display: -webkit-box;
@@ -314,10 +320,10 @@ body.is-dragging-projects * {
 
 .wf-tech-badge {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid color-mix(in srgb, var(--project-color) 25%, rgba(255, 255, 255, 0.08));
   padding: 4px 8px;
   font-size: 10px;
-  color: #b3b3b3;
+  color: rgba(255, 255, 255, 0.85);
   border-radius: 2px;
   font-family: var(--font-mono);
   transition: all 0.3s var(--ease-premium);
@@ -326,9 +332,10 @@ body.is-dragging-projects * {
 }
 
 .wf-tech-badge:hover {
-  background: rgba(255, 25, 25, 0.1);
-  border-color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--project-color) 12%, transparent);
+  border-color: var(--project-color);
   color: #fff;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--project-color) 20%, transparent);
 }
 
 .wf-project-card__links {
@@ -664,7 +671,7 @@ body.is-dragging-projects * {
   .wf-modal-info__desc {
     font-size: 0.82rem !important;
     line-height: 1.55 !important;
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
     margin-bottom: 24px !important;
   }
 
@@ -854,7 +861,7 @@ body.is-dragging-projects * {
 .wf-modal-info__title {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 16px;
   letter-spacing: -0.02em;
   font-family: var(--font-display);
@@ -870,7 +877,7 @@ body.is-dragging-projects * {
 .wf-modal-info__desc {
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 48px;
   flex: 1;
 }
