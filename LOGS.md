@@ -8,7 +8,7 @@ This document tracks the evolution, technical decisions, and customization of th
   - Removido o pinning vertical e a rolagem horizontal vinculada do GSAP ScrollTrigger, adequando a seção de Projetos ao modelo clássico de fluxo e alinhamento natural.
   - O primeiro projeto (`PHHub`) agora aparece perfeitamente alinhado na extrema esquerda ao carregar a página.
   - Implementado sistema de arraste livre (mouse/touch drag-to-scroll) acionável ao segurar em **qualquer parte** dentro do componente de Projetos (incluindo títulos, textos ou o próprio grid), transladando horizontalmente o conteúdo de forma responsiva.
-  - Adicionado suporte a gestos de rolagem horizontal nativos de trackpad/mouse-wheel (wheel deltaX), amortecimento suave com comportamento de rebote elástico nas extremidades, e cancelamento de cliques acidentais nos cartões durante movimentos de arraste.
+  - Adicionado suporte a gestos de rolagem horizontal nativos de trackpad/mouse-wheel (wheel deltaX), amortecimento suave com comportamento de rebote elástico nas extremidades, cancelamento de cliques acidentais nos cartões durante movimentos de arraste, e aplicação global de cursor `grabbing` no `document.body` durante o arraste para evitar oscilações.
 - **Redução de Tamanho de Pastas no Stage 02**:
   - Reduzido o tamanho da imagem de estrutura de pastas (`.architecture-img`) para `55%` de largura com limite máximo de `220px` sob o breakpoint responsivo (`max-width: 999px`), evitando que a visualização de estrutura de pastas ocupe espaço exagerado no mobile.
 - **Correção de Largura de Header e Breakpoints**:
