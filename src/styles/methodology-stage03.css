@@ -349,7 +349,7 @@
 }
 
 /* RESPONSIVE OVERRIDES */
-@media (max-width: 900px) {
+@media (max-width: 999px) {
   .stage-03-variant.methodology__window-text {
     padding: 30px 16px !important;
     height: auto !important;
@@ -598,7 +598,7 @@
 }
 
 /* 💻 LAPTOP/DESKTOP RESPONSIVENESS (~1200px) */
-@media (max-width: 1280px) and (min-width: 901px) {
+@media (max-width: 1280px) and (min-width: 1000px) {
   .stage-03-split-layout {
     grid-template-columns: 1fr 1.15fr;
     gap: 35px;
