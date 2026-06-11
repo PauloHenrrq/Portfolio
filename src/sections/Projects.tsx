@@ -231,6 +231,7 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
 export function ProjectsSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgressPct, setScrollProgressPct] = useState(0);
 
   useEffect(() => {
@@ -254,7 +255,7 @@ export function ProjectsSection() {
           x: scrollAmount,
           ease: "none",
           scrollTrigger: {
-            trigger: "#projects",
+            trigger: sectionRef.current,
             pin: true,
             scrub: 1,
             start: "top top+=80px",
@@ -265,6 +266,50 @@ export function ProjectsSection() {
             }
           }
         });
+
+        // Mouse Drag to Scroll mapping (Desktop)
+        let isDragging = false;
+        let startX = 0;
+        let startScrollY = 0;
+
+        const onMouseDown = (e: MouseEvent) => {
+          if (e.button !== 0) return;
+          isDragging = true;
+          startX = e.clientX;
+          startScrollY = window.scrollY;
+          viewport.style.cursor = 'grabbing';
+        };
+
+        const onMouseMove = (e: MouseEvent) => {
+          if (!isDragging) return;
+          const deltaX = e.clientX - startX;
+          const scrollSpeedFactor = 1.25;
+          const targetScrollY = startScrollY - deltaX * scrollSpeedFactor;
+          window.scrollTo({ top: targetScrollY });
+        };
+
+        const onMouseUp = (e: MouseEvent) => {
+          if (!isDragging) return;
+          isDragging = false;
+          viewport.style.cursor = 'default';
+          if (Math.abs(e.clientX - startX) > 10) {
+            const preventClick = (event: MouseEvent) => {
+              event.stopImmediatePropagation();
+              window.removeEventListener('click', preventClick, true);
+            };
+            window.addEventListener('click', preventClick, true);
+          }
+        };
+
+        viewport.addEventListener('mousedown', onMouseDown);
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+
+        return () => {
+          viewport.removeEventListener('mousedown', onMouseDown);
+          window.removeEventListener('mousemove', onMouseMove);
+          window.removeEventListener('mouseup', onMouseUp);
+        };
       });
 
       mm.add("(max-width: 999px)", () => {
@@ -284,7 +329,7 @@ export function ProjectsSection() {
         };
       });
 
-    }, scrollerRef);
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
@@ -300,7 +345,7 @@ export function ProjectsSection() {
   }, []);
 
   return (
-    <section className="wf-section" id="projects">
+    <section className="wf-section" id="projects" ref={sectionRef}>
       <div className="wf-section__aside">
         <div className="wf-section__aside-label">03 // PROJETOS</div>
       </div>
