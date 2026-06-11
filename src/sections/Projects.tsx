@@ -22,8 +22,8 @@ const PROJECTS = [
     github: 'https://github.com/PauloHenrrq/Portfolio',
     cardImage: phhubCard,
     modalImage: phhubModal,
-    themeColor: '#FF2A2A',
-    themeGlow: 'rgba(255, 42, 42, 0.15)'
+    themeColor: '#BD00FF',
+    themeGlow: 'rgba(189, 0, 255, 0.15)'
   },
   {
     id: '02',
@@ -504,11 +504,6 @@ export function ProjectsSection() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setSelectedId(null)}
           >
-            <button className="wf-modal-close" onClick={() => setSelectedId(null)}>
-              <span className="wf-modal-close__icon">×</span>
-              <span className="wf-modal-close__text">FECHAR [ESC]</span>
-            </button>
-
             <motion.div 
               className="wf-project-modal wf-project-modal--alert"
               layoutId={selectedId!}
@@ -523,6 +518,10 @@ export function ProjectsSection() {
               } as React.CSSProperties}
               onClick={(e) => e.stopPropagation()}
             >
+              <button className="wf-modal-close" onClick={() => setSelectedId(null)}>
+                <span className="wf-modal-close__icon">×</span>
+                <span className="wf-modal-close__text">FECHAR [ESC]</span>
+              </button>
 
               <motion.div 
                 className="wf-modal-video"
@@ -564,7 +563,7 @@ export function ProjectsSection() {
                   {activeProject.details || activeProject.description}
                 </p>
                 <div className="wf-modal-info__actions">
-                  <a href={activeProject.link} className="wf-btn wf-btn--primary" target="_blank" rel="noopener noreferrer">ACESSAR DEMO ↗</a>
+                  <a href={activeProject.link} className="wf-btn wf-btn--primary" target="_blank" rel="noopener noreferrer">ACESSAR PROJETO ↗</a>
                   <a href={activeProject.github} className="wf-btn wf-btn--outline" target="_blank" rel="noopener noreferrer">VER CÓDIGO NO GITHUB</a>
                 </div>
               </motion.div>
