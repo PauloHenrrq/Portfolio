@@ -144,7 +144,7 @@
   display: none;
 }
 
-@media (max-width: 999px) {
+@media (max-width: 500px) {
   .topbar {
     left: 0;
     width: 100%;
@@ -298,7 +298,7 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 501px) {
   .topbar__nav {
     display: none;
   }
