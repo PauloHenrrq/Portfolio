@@ -231,107 +231,176 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
 export function ProjectsSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgressPct, setScrollProgressPct] = useState(0);
+  const xDrag = useMotionValue(0);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const viewport = scrollerRef.current;
-      const content = viewport?.querySelector('.wf-horiz-scroller-content') as HTMLElement;
-      if (!viewport || !content) return;
+    const section = sectionRef.current;
+    const viewport = scrollerRef.current;
+    const content = contentRef.current;
+    if (!section || !viewport || !content) return;
 
-      const getScrollAmount = () => {
-        const viewportWidth = viewport.offsetWidth;
-        const contentWidth = content.scrollWidth;
-        return -(contentWidth - viewportWidth);
-      };
+    let isDragging = false;
+    let startX = 0;
+    let startTranslateX = 0;
+    const dragThreshold = 5;
+    let hasDraggedPassedThreshold = false;
 
-      const mm = gsap.matchMedia();
+    const getMaxScroll = () => {
+      const viewportWidth = viewport.offsetWidth;
+      const contentWidth = content.scrollWidth;
+      return Math.min(0, -(contentWidth - viewportWidth));
+    };
 
-      mm.add("(min-width: 1000px)", () => {
-        const scrollAmount = getScrollAmount();
-        
-        gsap.to(content, {
-          x: scrollAmount,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            pin: true,
-            scrub: 1,
-            start: "top top+=80px",
-            end: () => `+=${Math.abs(scrollAmount)}`,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => {
-              setScrollProgressPct(self.progress * 100);
-            }
-          }
-        });
+    // Initialize/Reset positioning on mount
+    xDrag.set(0);
+    setScrollProgressPct(0);
 
-        // Mouse Drag to Scroll mapping (Desktop)
-        let isDragging = false;
-        let startX = 0;
-        let startScrollY = 0;
+    const handleStart = (clientX: number) => {
+      isDragging = true;
+      startX = clientX;
+      startTranslateX = xDrag.get();
+      hasDraggedPassedThreshold = false;
+      viewport.style.cursor = 'grabbing';
+      section.style.cursor = 'grabbing';
+      document.body.style.userSelect = 'none';
+    };
 
-        const onMouseDown = (e: MouseEvent) => {
-          if (e.button !== 0) return;
-          isDragging = true;
-          startX = e.clientX;
-          startScrollY = window.scrollY;
-          viewport.style.cursor = 'grabbing';
+    const handleMove = (clientX: number) => {
+      if (!isDragging) return;
+      const deltaX = clientX - startX;
+      
+      if (Math.abs(deltaX) > dragThreshold) {
+        hasDraggedPassedThreshold = true;
+      }
+      
+      let newTranslateX = startTranslateX + deltaX;
+      const maxScroll = getMaxScroll();
+
+      // Elastic boundary resistance
+      if (newTranslateX > 0) {
+        newTranslateX = newTranslateX * 0.25;
+      } else if (newTranslateX < maxScroll) {
+        newTranslateX = maxScroll + (newTranslateX - maxScroll) * 0.25;
+      }
+
+      xDrag.set(newTranslateX);
+
+      // Update progress bar
+      const totalDist = Math.abs(maxScroll);
+      if (totalDist > 0) {
+        const pct = Math.min(100, Math.max(0, (Math.abs(newTranslateX) / totalDist) * 100));
+        setScrollProgressPct(pct);
+      }
+    };
+
+    const handleEnd = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      viewport.style.cursor = 'default';
+      section.style.cursor = 'default';
+      document.body.style.userSelect = '';
+
+      // Snap back if out of bounds
+      const maxScroll = getMaxScroll();
+      const currentX = xDrag.get();
+      if (currentX > 0) {
+        animate(xDrag, 0, { type: 'spring', stiffness: 300, damping: 30 });
+        setScrollProgressPct(0);
+      } else if (currentX < maxScroll) {
+        animate(xDrag, maxScroll, { type: 'spring', stiffness: 300, damping: 30 });
+        setScrollProgressPct(100);
+      }
+
+      // Block click propagation if we dragged
+      if (hasDraggedPassedThreshold) {
+        const preventClick = (e: MouseEvent) => {
+          e.stopImmediatePropagation();
+          window.removeEventListener('click', preventClick, true);
         };
+        window.addEventListener('click', preventClick, true);
+      }
+    };
 
-        const onMouseMove = (e: MouseEvent) => {
-          if (!isDragging) return;
-          const deltaX = e.clientX - startX;
-          const scrollSpeedFactor = 1.25;
-          const targetScrollY = startScrollY - deltaX * scrollSpeedFactor;
-          window.scrollTo({ top: targetScrollY });
-        };
+    // Desktop: Drag anywhere in the projects section
+    const onMouseDown = (e: MouseEvent) => {
+      if (window.innerWidth < 1000) return; // Only desktop
+      if (e.button !== 0) return; // Only left click
+      const target = e.target as HTMLElement;
+      if (target.closest('a') || target.closest('button')) return;
+      handleStart(e.clientX);
+    };
 
-        const onMouseUp = (e: MouseEvent) => {
-          if (!isDragging) return;
-          isDragging = false;
-          viewport.style.cursor = 'default';
-          if (Math.abs(e.clientX - startX) > 10) {
-            const preventClick = (event: MouseEvent) => {
-              event.stopImmediatePropagation();
-              window.removeEventListener('click', preventClick, true);
-            };
-            window.addEventListener('click', preventClick, true);
-          }
-        };
+    const onMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 1000) return;
+      handleMove(e.clientX);
+    };
 
-        viewport.addEventListener('mousedown', onMouseDown);
-        window.addEventListener('mousemove', onMouseMove);
-        window.addEventListener('mouseup', onMouseUp);
+    const onMouseUp = () => {
+      if (window.innerWidth < 1000) return;
+      handleEnd();
+    };
 
-        return () => {
-          viewport.removeEventListener('mousedown', onMouseDown);
-          window.removeEventListener('mousemove', onMouseMove);
-          window.removeEventListener('mouseup', onMouseUp);
-        };
-      });
+    // Trackpad / Mouse Wheel Horizontal Scroll support on desktop
+    const onWheel = (e: WheelEvent) => {
+      if (window.innerWidth < 1000) return;
+      if (Math.abs(e.deltaX) === 0) return; // Only process horizontal scroll wheel/trackpad
 
-      mm.add("(max-width: 999px)", () => {
-        gsap.set(content, { x: 0 });
+      const maxScroll = getMaxScroll();
+      let newTranslateX = xDrag.get() - e.deltaX;
+      
+      // Clamp boundaries
+      newTranslateX = Math.max(maxScroll, Math.min(0, newTranslateX));
+      xDrag.set(newTranslateX);
 
-        const handleMobileScroll = () => {
-          const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-          const pct = maxScroll > 0 ? (viewport.scrollLeft / maxScroll) * 100 : 0;
-          setScrollProgressPct(pct);
-        };
+      const totalDist = Math.abs(maxScroll);
+      if (totalDist > 0) {
+        const pct = Math.min(100, Math.max(0, (Math.abs(newTranslateX) / totalDist) * 100));
+        setScrollProgressPct(pct);
+      }
+    };
 
-        viewport.addEventListener('scroll', handleMobileScroll, { passive: true });
-        handleMobileScroll();
-        
-        return () => {
-          viewport.removeEventListener('scroll', handleMobileScroll);
-        };
-      });
+    // Mobile: native scroll tracking
+    const handleMobileScroll = () => {
+      if (window.innerWidth >= 1000) return;
+      const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+      const pct = maxScroll > 0 ? (viewport.scrollLeft / maxScroll) * 100 : 0;
+      setScrollProgressPct(pct);
+    };
 
-    }, sectionRef);
+    // Bind event listeners
+    section.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    section.addEventListener('wheel', onWheel, { passive: true });
 
-    return () => ctx.revert();
+    viewport.addEventListener('scroll', handleMobileScroll, { passive: true });
+
+    // Handle resize
+    const handleResize = () => {
+      const maxScroll = getMaxScroll();
+      if (window.innerWidth >= 1000) {
+        if (xDrag.get() < maxScroll) {
+          xDrag.set(maxScroll);
+        }
+      } else {
+        // Reset translate on mobile, let CSS/native scroll handle it
+        xDrag.set(0);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      section.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+      section.removeEventListener('wheel', onWheel);
+
+      viewport.removeEventListener('scroll', handleMobileScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const activeProject = PROJECTS.find(p => p.id === selectedId);
@@ -372,7 +441,11 @@ export function ProjectsSection() {
             PROJETOS
           </div>
 
-          <div className="wf-horiz-scroller-content">
+          <motion.div 
+            ref={contentRef}
+            className="wf-horiz-scroller-content"
+            style={{ x: xDrag }}
+          >
             {PROJECTS.map((project) => (
               <ProjectCard key={project.id} project={project} onBreach={(id) => setSelectedId(id)} />
             ))}
@@ -395,7 +468,7 @@ export function ProjectsSection() {
                 </div>
               </div>
             </a>
-          </div>
+          </motion.div>
           <div className="wf-horiz-hint">
             <svg width="20" height="12" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M6 1L1 6L6 11" strokeLinecap="round" strokeLinejoin="round"/>
