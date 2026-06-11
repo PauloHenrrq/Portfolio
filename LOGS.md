@@ -2,11 +2,13 @@
 
 This document tracks the evolution, technical decisions, and customization of the Portfolio PH project.
 
-### [2026-06-11] Correções de Posicionamento e Interação na Seção de Projetos e Alinhamento do Header
+### [2026-06-11] Redesenho da Seção de Projetos (Modelo de Arraste Livre) e Alinhamento do Header
 
-- **Correção da Seção de Projetos (Desktop)**:
-  - Corrigido o bug de inicialização do GSAP ScrollTrigger onde o elemento `#projects` não era encontrado devido ao escopo do `gsap.context` restrito à viewport (`scrollerRef`). Substituída a referência de escopo para o elemento principal (`sectionRef`) e utilizando a referência direta ao DOM (`sectionRef.current`) como trigger do ScrollTrigger, resolvendo o bug de deslocamento inicial incorreto.
-  - Implementado mapeamento de clique-e-arraste (mouse drag-to-scroll) horizontal na viewport de desktop, sincronizando o movimento com a rolagem vertical do navegador para permitir navegar livremente nos projetos através do arraste do mouse.
+- **Redesenho do Carrossel de Projetos (Desktop & Mobile)**:
+  - Removido o pinning vertical e a rolagem horizontal vinculada do GSAP ScrollTrigger, adequando a seção de Projetos ao modelo clássico de fluxo e alinhamento natural.
+  - O primeiro projeto (`PHHub`) agora aparece perfeitamente alinhado na extrema esquerda ao carregar a página.
+  - Implementado sistema de arraste livre (mouse/touch drag-to-scroll) acionável ao segurar em **qualquer parte** dentro do componente de Projetos (incluindo títulos, textos ou o próprio grid), transladando horizontalmente o conteúdo de forma responsiva.
+  - Adicionado suporte a gestos de rolagem horizontal nativos de trackpad/mouse-wheel (wheel deltaX), amortecimento suave com comportamento de rebote elástico nas extremidades, e cancelamento de cliques acidentais nos cartões durante movimentos de arraste.
 - **Redução de Tamanho de Pastas no Stage 02**:
   - Reduzido o tamanho da imagem de estrutura de pastas (`.architecture-img`) para `55%` de largura com limite máximo de `220px` sob o breakpoint responsivo (`max-width: 999px`), evitando que a visualização de estrutura de pastas ocupe espaço exagerado no mobile.
 - **Correção de Largura de Header e Breakpoints**:
