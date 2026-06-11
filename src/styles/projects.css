@@ -490,6 +490,7 @@ body.is-dragging-projects * {
 
 .wf-horiz-hint span {
   white-space: nowrap;
+  margin-top: 5px;
 }
 
 /* Subtle bounce for the hint to indicate activity */
