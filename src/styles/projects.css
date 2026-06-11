@@ -73,7 +73,7 @@ body.is-dragging-projects * {
 .wf-horiz-scroller-content {
   display: flex;
   gap: 32px;
-  padding: 40px var(--section-padding-x) 60px var(--section-padding-x);
+  padding: 40px var(--section-padding-x) 80px var(--section-padding-x);
   width: max-content;
   cursor: grab;
 }
@@ -467,12 +467,12 @@ body.is-dragging-projects * {
 /* ─── Hint ─── */
 .wf-horiz-hint {
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.7rem;
   color: var(--color-text-muted);
