@@ -131,7 +131,11 @@ body.is-dragging-projects * {
     display: none;
   }
   .wf-horiz-hint {
+    position: fixed !important;
     bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 100 !important;
   }
 }
 
@@ -504,9 +508,14 @@ body.is-dragging-projects * {
   text-align: center;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  opacity: 0.5;
+  opacity: 0;
   pointer-events: none;
   z-index: 10;
+  transition: opacity 0.4s var(--ease-premium), bottom 0.4s var(--ease-premium);
+}
+
+.wf-horiz-hint.is-visible {
+  opacity: 0.5;
 }
 
 .wf-horiz-hint svg {
@@ -703,6 +712,13 @@ body.is-dragging-projects * {
 
   .wf-modal-video__label {
     display: none !important;
+  }
+  .wf-horiz-hint {
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 100 !important;
   }
 }
 

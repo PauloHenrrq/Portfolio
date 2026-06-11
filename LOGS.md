@@ -283,7 +283,7 @@ _Maintained by Antigravity AI._
   - Ajustada a opacidade global de todos os textos dos projetos (títulos, descrições e badges do card e do modal) para um branco com **85% de força** (`rgba(255, 255, 255, 0.85)`).
 - **Ajustes de UX e Navegação Horizontal**:
   - Implementada física de inércia (momentum) com animação de mola (`spring` do Framer Motion) no scroll horizontal do mouse/drag para computadores.
-  - Reposicionado o texto indicativo `"ARRASTE PARA EXPLORAR"` de volta para dentro do componente de carrossel de projetos, posicionado de forma fixa e absoluta na base da viewport, preservando um espaçamento elegante de `90px` abaixo dos cards.
+  - Reposicionado o texto indicativo `"ARRASTE PARA EXPLORAR"` de volta para dentro do contêiner de carrossel de projetos (absoluto na base da viewport no desktop, e fixado com `position: fixed` nas telas mobile, sumindo de forma suave e automática com fade-out quando a seção sai da tela ou um modal é aberto).
 - **Responsividade e Modais Mobile**:
   - Criados modais de projetos adaptados para dispositivos móveis com limite de altura a `85vh` e rolagem vertical restrita à caixa de informações textual (`.wf-modal-info`).
   - Posicionado o botão de fechar (X) como um círculo flutuante translúcido com desfoque de fundo (`backdrop-filter`) travado no topo direito do modal.

@@ -230,11 +230,25 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
 
 export function ProjectsSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [isSectionInView, setIsSectionInView] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgressPct, setScrollProgressPct] = useState(0);
   const xDrag = useMotionValue(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSectionInView(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -514,7 +528,7 @@ export function ProjectsSection() {
             </a>
           </motion.div>
 
-          <div className="wf-horiz-hint">
+          <div className={`wf-horiz-hint ${isSectionInView && !selectedId ? 'is-visible' : ''}`}>
             <svg width="20" height="12" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M6 1L1 6L6 11" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M1 6H20" strokeLinecap="round"/>
