@@ -478,7 +478,7 @@ export function ProjectsSection() {
               <path d="M6 1L1 6L6 11" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M1 6H20" strokeLinecap="round"/>
             </svg>
-            <span className="wf-horiz-hint-text">Use o scroll ou arraste</span>
+            <span className="wf-horiz-hint-text">Arraste para explorar</span>
             <svg width="20" height="12" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 1L23 6L18 11" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M23 6H4" strokeLinecap="round"/>

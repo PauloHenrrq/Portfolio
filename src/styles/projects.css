@@ -472,7 +472,7 @@ body.is-dragging-projects * {
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 32px;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.7rem;
   color: var(--color-text-muted);
@@ -490,7 +490,6 @@ body.is-dragging-projects * {
 
 .wf-horiz-hint span {
   white-space: nowrap;
-  margin-top: 5px;
 }
 
 /* Subtle bounce for the hint to indicate activity */
