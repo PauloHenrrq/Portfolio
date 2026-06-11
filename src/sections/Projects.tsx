@@ -257,6 +257,10 @@ export function ProjectsSection() {
     // Initialize/Reset positioning on mount
     xDrag.set(0);
     setScrollProgressPct(0);
+    if (window.innerWidth >= 1000) {
+      section.style.cursor = 'grab';
+      viewport.style.cursor = 'grab';
+    }
 
     const handleStart = (clientX: number) => {
       isDragging = true;
@@ -299,8 +303,8 @@ export function ProjectsSection() {
     const handleEnd = () => {
       if (!isDragging) return;
       isDragging = false;
-      viewport.style.cursor = 'default';
-      section.style.cursor = 'default';
+      viewport.style.cursor = 'grab';
+      section.style.cursor = 'grab';
       document.body.style.userSelect = '';
 
       // Snap back if out of bounds
@@ -382,10 +386,14 @@ export function ProjectsSection() {
     const handleResize = () => {
       const maxScroll = getMaxScroll();
       if (window.innerWidth >= 1000) {
+        section.style.cursor = 'grab';
+        viewport.style.cursor = 'grab';
         if (xDrag.get() < maxScroll) {
           xDrag.set(maxScroll);
         }
       } else {
+        section.style.cursor = '';
+        viewport.style.cursor = '';
         // Reset translate on mobile, let CSS/native scroll handle it
         xDrag.set(0);
       }
