@@ -73,13 +73,13 @@ body.is-dragging-projects * {
 .wf-horiz-scroller-content {
   display: flex;
   gap: 32px;
-  padding: 40px var(--section-padding-x) 60px var(--section-padding-x);
+  padding: 40px var(--section-padding-x) 90px var(--section-padding-x);
   width: max-content;
   cursor: grab;
 }
 @media (max-width: 999px) {
   .wf-horiz-scroller-content {
-    padding: 40px calc(50% - 160px) 60px calc(50% - 160px);
+    padding: 40px calc(50% - 160px) 90px calc(50% - 160px);
   }
 }
 
@@ -105,7 +105,7 @@ body.is-dragging-projects * {
     height: 430px;
   }
   .wf-horiz-scroller-content {
-    padding: 30px calc(50vw - 145px) 50px calc(50vw - 145px) !important;
+    padding: 30px calc(50vw - 145px) 80px calc(50vw - 145px) !important;
   }
   .wf-project-card__header {
     height: 170px !important;
@@ -129,6 +129,9 @@ body.is-dragging-projects * {
   }
   .wf-horiz-bg-text {
     display: none;
+  }
+  .wf-horiz-hint {
+    bottom: 20px !important;
   }
 }
 
@@ -488,6 +491,10 @@ body.is-dragging-projects * {
 
 /* ─── Hint ─── */
 .wf-horiz-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -499,6 +506,7 @@ body.is-dragging-projects * {
   text-transform: uppercase;
   opacity: 0.5;
   pointer-events: none;
+  z-index: 10;
 }
 
 .wf-horiz-hint svg {

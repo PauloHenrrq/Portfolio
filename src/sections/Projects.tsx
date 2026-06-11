@@ -513,15 +513,6 @@ export function ProjectsSection() {
               </div>
             </a>
           </motion.div>
-        </div>
-        
-        <div className="wf-horiz-footer" data-reveal="fade-up" data-delay="400">
-          <div className="wf-horiz-progress">
-            <div 
-              className="wf-horiz-progress__bar" 
-              style={{ width: `${scrollProgressPct}%` }}
-            />
-          </div>
 
           <div className="wf-horiz-hint">
             <svg width="20" height="12" viewBox="0 0 24 12" fill="none" stroke="currentColor" strokeWidth="2">
@@ -533,6 +524,15 @@ export function ProjectsSection() {
               <path d="M18 1L23 6L18 11" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M23 6H4" strokeLinecap="round"/>
             </svg>
+          </div>
+        </div>
+        
+        <div className="wf-horiz-footer" data-reveal="fade-up" data-delay="400">
+          <div className="wf-horiz-progress">
+            <div 
+              className="wf-horiz-progress__bar" 
+              style={{ width: `${scrollProgressPct}%` }}
+            />
           </div>
         </div>
       </div>
