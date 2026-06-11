@@ -248,6 +248,11 @@ export function ProjectsSection() {
     const dragThreshold = 5;
     let hasDraggedPassedThreshold = false;
 
+    // Inertia variables
+    let lastX = 0;
+    let lastTime = 0;
+    let velocity = 0;
+
     const getMaxScroll = () => {
       const viewportWidth = viewport.offsetWidth;
       const contentWidth = content.scrollWidth;
@@ -268,6 +273,11 @@ export function ProjectsSection() {
       hasDraggedPassedThreshold = false;
       viewport.style.cursor = 'grabbing';
       document.body.classList.add('is-dragging-projects');
+      
+      xDrag.stop(); // Stop any active inertial animations
+      lastX = clientX;
+      lastTime = performance.now();
+      velocity = 0;
     };
 
     const handleMove = (clientX: number) => {
@@ -289,6 +299,16 @@ export function ProjectsSection() {
       }
 
       xDrag.set(newTranslateX);
+
+      // Track velocity
+      const now = performance.now();
+      const dt = now - lastTime;
+      if (dt > 0) {
+        const instantVelocity = (clientX - lastX) / dt;
+        velocity = velocity * 0.7 + instantVelocity * 0.3; // Low-pass filter to smooth out sudden ticks
+      }
+      lastX = clientX;
+      lastTime = now;
 
       // Update progress bar
       const totalDist = Math.abs(maxScroll);
@@ -313,6 +333,26 @@ export function ProjectsSection() {
       } else if (currentX < maxScroll) {
         animate(xDrag, maxScroll, { type: 'spring', stiffness: 300, damping: 30 });
         setScrollProgressPct(100);
+      } else {
+        // Within bounds: Apply inertia glide
+        if (Math.abs(velocity) > 0.15) {
+          const glideDistance = velocity * 220; // 220ms time constant
+          let targetX = currentX + glideDistance;
+          targetX = Math.max(maxScroll, Math.min(0, targetX));
+
+          animate(xDrag, targetX, {
+            type: 'spring',
+            stiffness: 70, // Smooth gliding stiffness
+            damping: 22,   // Prevent springy bouncing
+            onUpdate: (latest) => {
+              const totalDist = Math.abs(maxScroll);
+              if (totalDist > 0) {
+                const pct = Math.min(100, Math.max(0, (Math.abs(latest) / totalDist) * 100));
+                setScrollProgressPct(pct);
+              }
+            }
+          });
+        }
       }
 
       // Block click propagation if we dragged
