@@ -2,6 +2,17 @@
 
 This document tracks the evolution, technical decisions, and customization of the Portfolio PH project.
 
+### [2026-06-11] Correções de Posicionamento e Interação na Seção de Projetos e Alinhamento do Header
+
+- **Correção da Seção de Projetos (Desktop)**:
+  - Corrigido o bug de inicialização do GSAP ScrollTrigger onde o elemento `#projects` não era encontrado devido ao escopo do `gsap.context` restrito à viewport (`scrollerRef`). Substituída a referência de escopo para o elemento principal (`sectionRef`) e utilizando a referência direta ao DOM (`sectionRef.current`) como trigger do ScrollTrigger, resolvendo o bug de deslocamento inicial incorreto.
+  - Implementado mapeamento de clique-e-arraste (mouse drag-to-scroll) horizontal na viewport de desktop, sincronizando o movimento com a rolagem vertical do navegador para permitir navegar livremente nos projetos através do arraste do mouse.
+- **Redução de Tamanho de Pastas no Stage 02**:
+  - Reduzido o tamanho da imagem de estrutura de pastas (`.architecture-img`) para `55%` de largura com limite máximo de `220px` sob o breakpoint responsivo (`max-width: 999px`), evitando que a visualização de estrutura de pastas ocupe espaço exagerado no mobile.
+- **Correção de Largura de Header e Breakpoints**:
+  - Adicionada regra de estilo para `.topbar` com `width: 100%` e `left: 0` a partir de `1600px` em `navbar.css` para cobrir o espaço vazio deixado quando o menu lateral entra em modo colapsado/gaveta flutuante.
+  - Unificados os breakpoints de navegação no `Navbar.tsx` para coincidir com as regras responsivas globais de `999px`.
+
 ### [2026-06-10] Otimização de Resolução e Proteção de Layout no Stage 03
 
 - **Colapso da Sidebar (1600px)**: Aumentado o breakpoint de recolhimento da sidebar (`.wf-sidebar`) de `1300px` para `1600px`. O menu lateral agora se oculta automaticamente e funciona como um drawer flutuante (ativado por hover) em todas as telas com largura de até 1600px, otimizando o espaço útil das seções de conteúdo do portfólio.
