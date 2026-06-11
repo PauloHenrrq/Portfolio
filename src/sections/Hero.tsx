@@ -204,12 +204,11 @@ export function HeroSection() {
       <div className="wf-hero">
         <div className="hero__bg-gradient" />
         
-        <div className="hero__bg-text" aria-hidden="true">
-          <div ref={bgLine1Ref} className="hero__bg-line hero__bg-line--1">DEVE</div>
-          <div ref={bgLine2Ref} className="hero__bg-line hero__bg-line--2">LOPER</div>
-        </div>
-
         <div ref={portraitRef} className="hero__portrait-stage">
+          <div className="hero__bg-text" aria-hidden="true">
+            <div ref={bgLine1Ref} className="hero__bg-line hero__bg-line--1">DEVE</div>
+            <div ref={bgLine2Ref} className="hero__bg-line hero__bg-line--2">LOPER</div>
+          </div>
           <div className="hero__portrait">
             <div className="hero__portrait-image">
               <span className="hero__portrait-ph-text">PH</span>
