@@ -269,8 +269,7 @@ export function ProjectsSection() {
       hasDraggedPassedThreshold = false;
       viewport.style.cursor = 'grabbing';
       section.style.cursor = 'grabbing';
-      document.body.style.cursor = 'grabbing';
-      document.body.style.userSelect = 'none';
+      document.body.classList.add('is-dragging-projects');
     };
 
     const handleMove = (clientX: number) => {
@@ -306,8 +305,7 @@ export function ProjectsSection() {
       isDragging = false;
       viewport.style.cursor = 'grab';
       section.style.cursor = 'grab';
-      document.body.style.cursor = '';
-      document.body.style.userSelect = '';
+      document.body.classList.remove('is-dragging-projects');
 
       // Snap back if out of bounds
       const maxScroll = getMaxScroll();
@@ -410,7 +408,7 @@ export function ProjectsSection() {
 
       viewport.removeEventListener('scroll', handleMobileScroll);
       window.removeEventListener('resize', handleResize);
-      document.body.style.cursor = '';
+      document.body.classList.remove('is-dragging-projects');
     };
   }, []);
 
