@@ -471,8 +471,51 @@
   }
 
   .tech-report-sheet {
-    padding: 30px 25px;
+    padding: 22px 17px; /* Reduced by 8px from 30px 25px */
     width: 95%;
-    max-width: 400px;
+    max-width: 320px; /* More compact sheet size */
+  }
+
+  .tech-report-sheet-bg-1,
+  .tech-report-sheet-bg-2,
+  .tech-report-sheet-bg-3 {
+    max-width: 320px;
+  }
+
+  .report-sheet-clip {
+    height: 14px; /* Reduced by 8px from 22px */
+    width: 110px; /* Reduced to fit smaller sheet */
+  }
+
+  .report-header-premium {
+    padding-bottom: 17px; /* Reduced by 8px from 25px */
+    margin-bottom: 27px; /* Reduced by 8px from 35px */
+  }
+
+  .report-main-title {
+    font-size: 1.3rem; /* Reduced by 8px (0.5rem = 8px) from 1.8rem */
+  }
+
+  .report-brief-desc {
+    font-size: 0.75rem; /* Proportionaially reduced font size */
+  }
+
+  .report-checklist {
+    gap: 8px; /* Reduced by 8px from 16px */
+  }
+
+  .checklist-row {
+    font-size: 0.8rem;
+    gap: 10px;
+  }
+
+  .report-footer-meta {
+    margin-top: 32px; /* Reduced by 8px from 40px */
+    padding-top: 12px; /* Reduced by 8px from 20px */
+  }
+
+  .stamp-circle.ink-variant {
+    font-size: 0.7rem;
+    padding: 4px 10px; /* Width padding reduced by 8px from 8px 18px */
   }
 }
