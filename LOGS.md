@@ -246,3 +246,15 @@ _Maintained by Antigravity AI._
   - Vinculado o banner do site (`public/og-image.png`) como imagem padrão de compartilhamento.
 - **Verificação de Build**:
   - Validada a compilação do TypeScript e empacotamento do Vite via `npm run build` com sucesso absoluto (Exit Code 0).
+
+---
+
+### [2026-06-11] Alinhamento de Breakpoints Responsivos da Metodologia
+
+- **Unificação de Breakpoints nos Stages**:
+  - Padronizado o breakpoint de colapso de layout de **900px** para **999px** nos arquivos `methodology-stage01.css`, `methodology-stage03.css` e `methodology-stage04.css` para coincidir perfeitamente com a transição de layout global da seção.
+  - Ajustada a faixa de transição do layout desktop intermediário no Stage 03 para cobrir de `1000px` a `1280px` (anteriormente `901px` a `1280px`), evitando quebra de layouts split-grid no intervalo de transição.
+- **Resolução de Overflow no Stage 04**:
+  - Eliminado o corte horizontal (truncamento) do texto à esquerda ("Auditoria Técnica") e do cartão de relatório à direita sob a resolução de 950px, forçando o colapso limpo para coluna única (empilhado).
+- **Verificação Visual e Navegador**:
+  - Auditados visualmente todos os estágios via subagent de navegador sob a resolução de 950px, com validação de fluidez e adaptabilidade.
