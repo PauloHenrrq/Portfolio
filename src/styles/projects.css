@@ -619,8 +619,8 @@ body.is-dragging-projects * {
   }
   
   .wf-modal-video {
-    height: 220px !important;
-    min-height: 220px !important;
+    height: 340px !important;
+    min-height: 340px !important;
     border-right: none !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     flex-shrink: 0 !important;
@@ -640,10 +640,10 @@ body.is-dragging-projects * {
 
   .wf-modal-close {
     position: absolute !important;
-    top: 12px !important;
-    right: 12px !important;
-    width: 32px !important;
-    height: 32px !important;
+    top: 6px !important;
+    right: 8px !important;
+    width: 28px !important;
+    height: 28px !important;
     padding: 0 !important;
     border-radius: 50% !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -724,8 +724,8 @@ body.is-dragging-projects * {
   }
 
   .wf-modal-video {
-    height: 180px !important;
-    min-height: 180px !important;
+    height: 300px !important;
+    min-height: 300px !important;
   }
   
   .wf-modal-info {
@@ -1067,6 +1067,7 @@ body.is-dragging-projects * {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
 }
 
 .wf-modal-gallery-view {
@@ -1076,7 +1077,7 @@ body.is-dragging-projects * {
   justify-content: center;
   padding: 16px;
   background: #000;
-  height: calc(100% - 80px); /* Leave space for thumbnails */
+  overflow: hidden;
 }
 
 .wf-modal-gallery-img {
@@ -1097,6 +1098,12 @@ body.is-dragging-projects * {
   background: rgba(0, 0, 0, 0.4);
   border-top: 1px solid rgba(255, 255, 255, 0.03);
   overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.wf-modal-gallery-nav::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .wf-modal-gallery-thumb {
