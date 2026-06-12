@@ -580,7 +580,8 @@ export function ProjectsSection() {
                           setActiveTab('admin');
                         }}
                       >
-                        🏥 Painel da Clínica
+                        <span className="wf-tab-long">🏥 Painel da Clínica</span>
+                        <span className="wf-tab-short">🏥 Clínica</span>
                       </button>
                       <button 
                         className={`wf-modal-tab-btn ${activeTab === 'user' ? 'active' : ''}`}
@@ -588,7 +589,8 @@ export function ProjectsSection() {
                           setActiveTab('user');
                         }}
                       >
-                        📱 App do Paciente
+                        <span className="wf-tab-long">📱 App do Paciente</span>
+                        <span className="wf-tab-short">📱 Paciente</span>
                       </button>
                     </div>
 
