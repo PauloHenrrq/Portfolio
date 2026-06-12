@@ -293,3 +293,7 @@ _Maintained by Antigravity AI._
   - Corrigida a ordem dos links no menu suspenso mobile (overlay da Navbar), garantindo que o link **MÉTODO** se posicione antes de **PROJETOS** para manter a consistência absoluta com a rolagem vertical da página e a Sidebar desktop.
 - **Simplificação do Portfólio**:
   - Removidos os projetos **Ortus AI** (ainda em planejamento) e **Antigravity** (não alinhado à proposta atual) da constante de projetos em `Projects.tsx`, exibindo agora exclusivamente os cases reais finalizados: **PHHub** e **OdontoSync**.
+- **Mockup e Galeria Interativa do OdontoSync**:
+  - Organizados, renomeados e movidos os assets de imagens reais do OdontoSync para `src/assets/projects/OdontoSync/`.
+  - Gerada uma imagem de exibição global cinematográfica em 3D (mockup com celulares flutuantes sob glow neon) para o card frontal do projeto.
+  - Construído um sistema de galeria interativa de screenshots dentro do modal do OdontoSync, incluindo abas de navegação para alternar entre os fluxos (🏥 Painel da Clínica e 📱 App do Paciente) e navegação individual de telas via miniaturas (thumbnails).
