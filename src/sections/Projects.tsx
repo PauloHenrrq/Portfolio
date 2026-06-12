@@ -6,8 +6,6 @@ import '@/styles/projects.css';
 import phhubCard from '@/assets/projects/PHHub/view-image.jpg';
 import phhubModal from '@/assets/projects/PHHub/spoiler-image.jpeg';
 import odontoSyncCard from '@/assets/projects/OdontoSync/view-image.png';
-import ortusAiCard from '@/assets/projects/OrtusAI/view-image.png';
-import antigravityCard from '@/assets/projects/Antigravity/view-image.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,32 +35,6 @@ const PROJECTS = [
     modalImage: odontoSyncCard,
     themeColor: '#00d2ff',
     themeGlow: 'rgba(0, 210, 255, 0.15)'
-  },
-  {
-    id: '03',
-    title: 'Ortus AI',
-    description: 'Plataforma de inteligência artificial que automatiza a triagem de leads qualificados, reduzindo o tempo de resposta comercial de horas para segundos.',
-    details: 'Uma solução inteligente para canais de atendimento e pré-vendas. Utiliza LLMs customizadas (via APIs da OpenAI e LangChain) para analisar intenções de mensagens recebidas em tempo real, estruturando leads automaticamente no banco de dados e disparando webhooks para CRMs parceiros.',
-    techs: ['Next.js', 'Python', 'OpenAI', 'FastAPI', 'TailwindCSS'],
-    link: 'https://github.com/PauloHenrrq',
-    github: 'https://github.com/PauloHenrrq',
-    cardImage: ortusAiCard,
-    modalImage: ortusAiCard,
-    themeColor: '#10b981',
-    themeGlow: 'rgba(16, 185, 129, 0.15)'
-  },
-  {
-    id: '04',
-    title: 'Antigravity',
-    description: 'Engine de animação física de alto desempenho que permite interfaces ultra-fluídas em ambientes mobile com baixo consumo de memória.',
-    details: 'Uma biblioteca open-source voltada para performance gráfica extrema no ecossistema mobile. Implementa cálculos de física vetorial diretamente em C++ (via JSI no React Native) permitindo taxas constantes de 120 FPS em listagens complexas e transições de tela com zero sobrecarga na thread principal de JavaScript.',
-    techs: ['React Native', 'Reanimated', 'Skia', 'C++', 'JSI'],
-    link: 'https://github.com/PauloHenrrq',
-    github: 'https://github.com/PauloHenrrq',
-    cardImage: antigravityCard,
-    modalImage: antigravityCard,
-    themeColor: '#f59e0b',
-    themeGlow: 'rgba(245, 158, 11, 0.15)'
   },
 ];
 
