@@ -1277,3 +1277,46 @@ body.is-dragging-projects * {
   }
 }
 
+/* ─── Onboarding Virtual Pointer Hint ─── */
+.wf-virtual-click-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+  color: #fff;
+  z-index: 6;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.6));
+}
+
+.wf-virtual-click-hint svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--project-color);
+  fill: rgba(0, 0, 0, 0.25);
+}
+
+.wf-virtual-click-ripple {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--project-color);
+  background: color-mix(in srgb, var(--project-color) 25%, transparent);
+  box-shadow: 0 0 12px var(--project-color);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transform-origin: center;
+}
+
+/* Hide virtual pointer when mouse is hovered on desktop (user is interacting) */
+.wf-modal-gallery-view:hover .wf-virtual-click-hint {
+  opacity: 0 !important;
+  transition: opacity 0.2s ease;
+}
+
