@@ -595,7 +595,12 @@ export function ProjectsSection() {
                     </div>
 
                     <div className="wf-modal-gallery-container">
-                      <div className="wf-modal-gallery-view">
+                      <div 
+                        className="wf-modal-gallery-view"
+                        style={{
+                          '--gallery-bg': `url(${activeProject.cardImage})`
+                        } as React.CSSProperties}
+                      >
                         <img 
                           src={
                             activeTab === 'admin' 
