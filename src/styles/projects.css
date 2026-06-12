@@ -1007,3 +1007,153 @@ body.is-dragging-projects * {
   from { background-position: -200% 0; }
   to { background-position: 200% 0; }
 }
+
+/* ─── Custom Modal Gallery ─── */
+.wf-modal-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 10;
+}
+
+.wf-modal-tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.wf-modal-tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--project-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wf-modal-tab-btn.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.wf-modal-tab-btn.active::after {
+  opacity: 1;
+}
+
+.wf-modal-gallery-container {
+  width: 100%;
+  height: 100%;
+  padding-top: 50px; /* Space for tabs */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.wf-modal-gallery-view {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: #000;
+  height: calc(100% - 80px); /* Leave space for thumbnails */
+}
+
+.wf-modal-gallery-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.wf-modal-gallery-nav {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  overflow-x: auto;
+}
+
+.wf-modal-gallery-thumb {
+  width: 45px;
+  height: 60px;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.wf-modal-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wf-modal-gallery-thumb:hover,
+.wf-modal-gallery-thumb.active {
+  opacity: 1;
+  border-color: var(--project-color);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--project-color) 40%, transparent);
+}
+
+/* Adjustments on mobile for tabs/gallery */
+@media (max-width: 999px) {
+  .wf-modal-tabs {
+    height: 40px;
+  }
+  
+  .wf-modal-tab-btn {
+    font-size: 0.6rem;
+  }
+
+  .wf-modal-gallery-container {
+    padding-top: 40px;
+  }
+
+  .wf-modal-gallery-view {
+    padding: 10px;
+    height: calc(100% - 60px);
+  }
+
+  .wf-modal-gallery-nav {
+    height: 60px;
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .wf-modal-gallery-thumb {
+    width: 30px;
+    height: 44px;
+  }
+}
+
