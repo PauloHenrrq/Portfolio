@@ -22,7 +22,32 @@ import odontoSyncUserAppointments from '@/assets/projects/OdontoSync/user-appoin
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PROJECTS = [
+interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  details: string;
+  techs: string[];
+  link: string;
+  github: string;
+  cardImage?: string;
+  modalImage?: string;
+  themeColor?: string;
+  themeGlow?: string;
+  objectPosition?: string;
+  watermarkPosition?: string;
+  hasTabs?: boolean;
+  tab1Key?: string;
+  tab1LabelLong?: string;
+  tab1LabelShort?: string;
+  tab1Images?: string[];
+  tab2Key?: string;
+  tab2LabelLong?: string;
+  tab2LabelShort?: string;
+  tab2Images?: string[];
+}
+
+const PROJECTS: ProjectItem[] = [
   {
     id: '01',
     title: 'PHHub',
@@ -35,8 +60,6 @@ const PROJECTS = [
     modalImage: phhubCard,
     themeColor: '#BD00FF',
     themeGlow: 'rgba(189, 0, 255, 0.15)',
-    objectPosition: 'center 45%',
-    watermarkPosition: 'center 40%',
     hasTabs: true,
     tab1Key: 'core',
     tab1LabelLong: '🧪 Laboratório Core',
@@ -90,29 +113,7 @@ const PROJECTS = [
 ];
 
 interface ProjectCardProps {
-  project: {
-    id: string;
-    title: string;
-    description: string;
-    techs: string[];
-    link: string;
-    github: string;
-    cardImage?: string;
-    modalImage?: string;
-    themeColor?: string;
-    themeGlow?: string;
-    objectPosition?: string;
-    watermarkPosition?: string;
-    hasTabs?: boolean;
-    tab1Key?: string;
-    tab1LabelLong?: string;
-    tab1LabelShort?: string;
-    tab1Images?: string[];
-    tab2Key?: string;
-    tab2LabelLong?: string;
-    tab2LabelShort?: string;
-    tab2Images?: string[];
-  };
+  project: ProjectItem;
   onBreach: (id: string) => void;
 }
 
