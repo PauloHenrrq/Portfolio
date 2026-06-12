@@ -308,6 +308,7 @@ _Maintained by Antigravity AI._
   - Adicionada física de toque e clique tátil na imagem em destaque (`whileHover={{ scale: 1.015 }}`, `whileTap={{ scale: 0.98 }}` via Framer Motion) para indicar que a foto é um elemento interativo e clicável.
   - Implementada uma tag flutuante de dica de zoom (`.wf-zoom-hint-badge` com legenda "AMPLIAR") que surge suavemente em formato glassmorphic centralizado ao passar o mouse sobre a imagem no desktop, sendo desabilitada no mobile para manter a fluidez de toque puro.
   - Criada uma animação de onboarding interativa com um cursor de seta padrão do mouse (`.wf-virtual-click-hint` com preenchimento escuro realista) e onda de clique pulsante (`.wf-virtual-click-ripple`). A animação executa apenas uma vez ao abrir o modal, deslizando da borda até o centro, simulando o clique (com recuo de escala) e desaparecendo suavemente (fade out) 0.3s depois diretamente onde está, sem retornar para a borda. Além disso, alinhamos a origem da onda de clique (`.wf-virtual-click-ripple`) exatamente na extrema ponta superior esquerda do cursor de seta (`top: 0; left: 0; transform: translate(-50%, -50%)`).
+  - Reduzido o tamanho das fotos exibidas ao abrir o detalhe de um projeto no modal em exatamente 8% (`max-width: 92%` e `max-height: 92%` para `.wf-modal-gallery-img` e `.wf-modal-video__img`), adicionando um espaçamento elegante nas bordas e revelando de forma mais harmoniosa o fundo cinematográfico decorativo.
 
 
 
