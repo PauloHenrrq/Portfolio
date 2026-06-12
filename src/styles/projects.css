@@ -1104,6 +1104,7 @@ body.is-dragging-projects * {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 1;
+  cursor: zoom-in;
 }
 
 .wf-modal-gallery-nav {
@@ -1192,6 +1193,42 @@ body.is-dragging-projects * {
   }
   .wf-tab-short {
     display: inline !important;
+  }
+}
+
+/* ─── Screenshot Zoom Overlay ─── */
+.wf-gallery-zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+}
+
+.wf-gallery-zoom-img {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  cursor: default;
+}
+
+@media (max-width: 999px) {
+  .wf-gallery-zoom-overlay {
+    padding: 12px;
+  }
+  .wf-gallery-zoom-img {
+    max-width: 95%;
+    max-height: 85vh;
   }
 }
 
