@@ -4,7 +4,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import '@/styles/projects.css';
 import phhubCard from '@/assets/projects/PHHub/view-image.jpg';
-import phhubModal from '@/assets/projects/PHHub/spoiler-image.jpeg';
+import phhubCoreHome from '@/assets/projects/PHHub/core-home.jpeg';
+import phhubCoreOverview from '@/assets/projects/PHHub/core-overview.jpeg';
+import phhubCoreTools from '@/assets/projects/PHHub/core-tools.jpeg';
+import phhubCoreWorkflows from '@/assets/projects/PHHub/core-workflows.jpeg';
+import phhubIAPrompts from '@/assets/projects/PHHub/ia-prompts.jpeg';
+import phhubIAMcp from '@/assets/projects/PHHub/ia-mcp.jpeg';
+import phhubIAAllMcp from '@/assets/projects/PHHub/ia-all-mcp.jpeg';
 import odontoSyncCard from '@/assets/projects/OdontoSync/view-image.png';
 import odontoSyncDashboard from '@/assets/projects/OdontoSync/admin-dashboard.jpeg';
 import odontoSyncAgenda from '@/assets/projects/OdontoSync/admin-agenda.jpeg';
@@ -26,9 +32,27 @@ const PROJECTS = [
     link: 'https://github.com/PauloHenrrq/Portfolio',
     github: 'https://github.com/PauloHenrrq/Portfolio',
     cardImage: phhubCard,
-    modalImage: phhubModal,
+    modalImage: phhubCard,
     themeColor: '#BD00FF',
-    themeGlow: 'rgba(189, 0, 255, 0.15)'
+    themeGlow: 'rgba(189, 0, 255, 0.15)',
+    hasTabs: true,
+    tab1Key: 'core',
+    tab1LabelLong: '🧪 Laboratório Core',
+    tab1LabelShort: '🧪 Lab',
+    tab1Images: [
+      phhubCoreHome,
+      phhubCoreOverview,
+      phhubCoreTools,
+      phhubCoreWorkflows
+    ],
+    tab2Key: 'ia',
+    tab2LabelLong: '🧠 IA & Conectores',
+    tab2LabelShort: '🧠 IA',
+    tab2Images: [
+      phhubIAPrompts,
+      phhubIAMcp,
+      phhubIAAllMcp
+    ]
   },
   {
     id: '02',
@@ -42,13 +66,20 @@ const PROJECTS = [
     modalImage: odontoSyncCard,
     themeColor: '#05A093',
     themeGlow: 'rgba(5, 160, 147, 0.15)',
-    adminImages: [
+    hasTabs: true,
+    tab1Key: 'admin',
+    tab1LabelLong: '🏥 Painel da Clínica',
+    tab1LabelShort: '🏥 Clínica',
+    tab1Images: [
       odontoSyncDashboard,
       odontoSyncAgenda,
       odontoSyncPatients,
       odontoSyncProfile
     ],
-    userImages: [
+    tab2Key: 'user',
+    tab2LabelLong: '📱 App do Paciente',
+    tab2LabelShort: '📱 Paciente',
+    tab2Images: [
       odontoSyncUserHome,
       odontoSyncUserAlert,
       odontoSyncUserAppointments
@@ -68,8 +99,15 @@ interface ProjectCardProps {
     modalImage?: string;
     themeColor?: string;
     themeGlow?: string;
-    adminImages?: string[];
-    userImages?: string[];
+    hasTabs?: boolean;
+    tab1Key?: string;
+    tab1LabelLong?: string;
+    tab1LabelShort?: string;
+    tab1Images?: string[];
+    tab2Key?: string;
+    tab2LabelLong?: string;
+    tab2LabelShort?: string;
+    tab2Images?: string[];
   };
   onBreach: (id: string) => void;
 }
@@ -221,9 +259,8 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
 }
 export function ProjectsSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'admin' | 'user'>('admin');
-  const [adminIndex, setAdminIndex] = useState(0);
-  const [userIndex, setUserIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState<'tab1' | 'tab2'>('tab1');
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [showZoomHintAnimation, setShowZoomHintAnimation] = useState(true);
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -446,13 +483,10 @@ export function ProjectsSection() {
   const activeProject = PROJECTS.find(p => p.id === selectedId);
 
   useEffect(() => {
-    if (!selectedId) {
-      setActiveTab('admin');
-      setAdminIndex(0);
-      setUserIndex(0);
-      setIsZoomed(false);
-      setShowZoomHintAnimation(true);
-    }
+    setActiveTab('tab1');
+    setActiveImageIndex(0);
+    setIsZoomed(false);
+    setShowZoomHintAnimation(true);
   }, [selectedId]);
 
   useEffect(() => {
@@ -575,28 +609,30 @@ export function ProjectsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                {activeProject.id === '02' ? (
+                {activeProject.hasTabs ? (
                   <>
                     <div className="wf-modal-tabs">
                       <button 
-                        className={`wf-modal-tab-btn ${activeTab === 'admin' ? 'active' : ''}`}
+                        className={`wf-modal-tab-btn ${activeTab === 'tab1' ? 'active' : ''}`}
                         onClick={() => {
-                          setActiveTab('admin');
+                          setActiveTab('tab1');
+                          setActiveImageIndex(0);
                           setShowZoomHintAnimation(false);
                         }}
                       >
-                        <span className="wf-tab-long">🏥 Painel da Clínica</span>
-                        <span className="wf-tab-short">🏥 Clínica</span>
+                        <span className="wf-tab-long">{activeProject.tab1LabelLong}</span>
+                        <span className="wf-tab-short">{activeProject.tab1LabelShort}</span>
                       </button>
                       <button 
-                        className={`wf-modal-tab-btn ${activeTab === 'user' ? 'active' : ''}`}
+                        className={`wf-modal-tab-btn ${activeTab === 'tab2' ? 'active' : ''}`}
                         onClick={() => {
-                          setActiveTab('user');
+                          setActiveTab('tab2');
+                          setActiveImageIndex(0);
                           setShowZoomHintAnimation(false);
                         }}
                       >
-                        <span className="wf-tab-long">📱 App do Paciente</span>
-                        <span className="wf-tab-short">📱 Paciente</span>
+                        <span className="wf-tab-long">{activeProject.tab2LabelLong}</span>
+                        <span className="wf-tab-short">{activeProject.tab2LabelShort}</span>
                       </button>
                     </div>
 
@@ -609,9 +645,9 @@ export function ProjectsSection() {
                       >
                         <motion.img 
                           src={
-                            activeTab === 'admin' 
-                              ? (activeProject.adminImages ? activeProject.adminImages[adminIndex] : '') 
-                              : (activeProject.userImages ? activeProject.userImages[userIndex] : '')
+                            activeTab === 'tab1' 
+                              ? (activeProject.tab1Images ? activeProject.tab1Images[activeImageIndex] : '') 
+                              : (activeProject.tab2Images ? activeProject.tab2Images[activeImageIndex] : '')
                           } 
                           className="wf-modal-gallery-img" 
                           alt="Screenshot" 
@@ -673,29 +709,29 @@ export function ProjectsSection() {
                       </div>
                       
                       <div className="wf-modal-gallery-nav">
-                        {activeTab === 'admin' 
-                          ? activeProject.adminImages?.map((img, idx) => (
+                        {activeTab === 'tab1' 
+                          ? activeProject.tab1Images?.map((img, idx) => (
                               <button 
                                 key={idx}
-                                className={`wf-modal-gallery-thumb ${adminIndex === idx ? 'active' : ''}`}
+                                className={`wf-modal-gallery-thumb ${activeImageIndex === idx ? 'active' : ''}`}
                                 onClick={() => {
-                                  setAdminIndex(idx);
+                                  setActiveImageIndex(idx);
                                   setShowZoomHintAnimation(false);
                                 }}
                               >
-                                <img src={img} alt={`Thumb Admin ${idx + 1}`} />
+                                <img src={img} alt={`Thumb 1 ${idx + 1}`} />
                               </button>
                             ))
-                          : activeProject.userImages?.map((img, idx) => (
+                          : activeProject.tab2Images?.map((img, idx) => (
                               <button 
                                 key={idx}
-                                className={`wf-modal-gallery-thumb ${userIndex === idx ? 'active' : ''}`}
+                                className={`wf-modal-gallery-thumb ${activeImageIndex === idx ? 'active' : ''}`}
                                 onClick={() => {
-                                  setUserIndex(idx);
+                                  setActiveImageIndex(idx);
                                   setShowZoomHintAnimation(false);
                                 }}
                               >
-                                <img src={img} alt={`Thumb User ${idx + 1}`} />
+                                <img src={img} alt={`Thumb 2 ${idx + 1}`} />
                               </button>
                             ))
                         }
@@ -756,9 +792,9 @@ export function ProjectsSection() {
           >
             <motion.img
               src={
-                activeTab === 'admin' 
-                  ? (activeProject.adminImages ? activeProject.adminImages[adminIndex] : '') 
-                  : (activeProject.userImages ? activeProject.userImages[userIndex] : '')
+                activeTab === 'tab1' 
+                  ? (activeProject.tab1Images ? activeProject.tab1Images[activeImageIndex] : '') 
+                  : (activeProject.tab2Images ? activeProject.tab2Images[activeImageIndex] : '')
               }
               alt="Zoomed Screenshot"
               className="wf-gallery-zoom-img"
