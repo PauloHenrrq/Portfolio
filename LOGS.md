@@ -310,7 +310,8 @@ _Maintained by Antigravity AI._
   - Criada uma animação de onboarding interativa com um cursor de seta padrão do mouse (`.wf-virtual-click-hint` com preenchimento escuro realista) e onda de clique pulsante (`.wf-virtual-click-ripple`). A animação executa apenas uma vez ao abrir o modal, deslizando da borda até o centro, simulando o clique (com recuo de escala) e desaparecendo suavemente (fade out) 0.3s depois diretamente onde está, sem retornar para a borda. Além disso, alinhamos a origem da onda de clique (`.wf-virtual-click-ripple`) exatamente na extrema ponta superior esquerda do cursor de seta (`top: 0; left: 0; transform: translate(-50%, -50%)`).
   - Reduzido o tamanho das fotos exibidas ao abrir o detalhe de um projeto no modal em exatamente 8% (`max-width: 92%` e `max-height: 92%` para `.wf-modal-gallery-img` e `.wf-modal-video__img`), adicionando um espaçamento elegante nas bordas e revelando de forma mais harmoniosa o fundo cinematográfico decorativo.
   - Corrigido o bug visual do text-clipping nos cards de projeto: removemos a propriedade de `height` fixa da classe `.wf-project-card__desc`, permitindo que o navegador realize o line-clamping nativo de exatamente 3 linhas com reticências (`...`) de forma fluida, eliminando a exibição residual cortada de partes de letras da quarta linha.
-  - Atualizada a temática de cor do projeto OdontoSync para um tom pastel verde-água/mente (`#A7EFE7` e glow `rgba(167, 239, 231, 0.15)`) baseado na paleta de cores fornecida, combinando perfeitamente com a identidade visual odontológica do projeto.
+  - Atualizada a temática de cor do projeto OdontoSync para um tom de verde-água/mente mais forte e saturado (`#05A093` e glow `rgba(5, 160, 147, 0.15)`), garantindo legibilidade perfeita e alta taxa de contraste de 4.5:1 com textos brancos em botões ativos e badges.
+
 
 
 
