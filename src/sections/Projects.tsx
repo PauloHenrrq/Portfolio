@@ -225,6 +225,7 @@ export function ProjectsSection() {
   const [adminIndex, setAdminIndex] = useState(0);
   const [userIndex, setUserIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [showZoomHintAnimation, setShowZoomHintAnimation] = useState(true);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -450,6 +451,7 @@ export function ProjectsSection() {
       setAdminIndex(0);
       setUserIndex(0);
       setIsZoomed(false);
+      setShowZoomHintAnimation(true);
     }
   }, [selectedId]);
 
@@ -580,6 +582,7 @@ export function ProjectsSection() {
                         className={`wf-modal-tab-btn ${activeTab === 'admin' ? 'active' : ''}`}
                         onClick={() => {
                           setActiveTab('admin');
+                          setShowZoomHintAnimation(false);
                         }}
                       >
                         <span className="wf-tab-long">🏥 Painel da Clínica</span>
@@ -589,6 +592,7 @@ export function ProjectsSection() {
                         className={`wf-modal-tab-btn ${activeTab === 'user' ? 'active' : ''}`}
                         onClick={() => {
                           setActiveTab('user');
+                          setShowZoomHintAnimation(false);
                         }}
                       >
                         <span className="wf-tab-long">📱 App do Paciente</span>
@@ -611,7 +615,10 @@ export function ProjectsSection() {
                           } 
                           className="wf-modal-gallery-img" 
                           alt="Screenshot" 
-                          onClick={() => setIsZoomed(true)}
+                          onClick={() => {
+                            setIsZoomed(true);
+                            setShowZoomHintAnimation(false);
+                          }}
                           whileHover={{ scale: 1.015 }}
                           whileTap={{ scale: 0.98 }}
                           transition={{ type: 'spring', stiffness: 400, damping: 25 }}
@@ -625,6 +632,50 @@ export function ProjectsSection() {
                           </svg>
                           <span>Ampliar</span>
                         </div>
+
+                        <AnimatePresence>
+                          {showZoomHintAnimation && (
+                            <motion.div
+                              className="wf-virtual-click-hint"
+                              initial={{ x: 60, y: 60, opacity: 0, scale: 1.2 }}
+                              animate={{
+                                x: [60, 0, 0, 0, 60],
+                                y: [60, 0, 0, 0, 60],
+                                opacity: [0, 1, 1, 1, 0],
+                                scale: [1.2, 1, 0.82, 1, 1.2]
+                              }}
+                              exit={{ opacity: 0 }}
+                              transition={{
+                                duration: 3.5,
+                                repeat: Infinity,
+                                repeatDelay: 2.0,
+                                ease: 'easeInOut',
+                                times: [0, 0.35, 0.5, 0.65, 1]
+                              }}
+                            >
+                              <motion.span 
+                                className="wf-virtual-click-ripple"
+                                animate={{
+                                  scale: [0.6, 2.2],
+                                  opacity: [0, 0.6, 0]
+                                }}
+                                transition={{
+                                  duration: 1.0,
+                                  repeat: Infinity,
+                                  repeatDelay: 4.5,
+                                  ease: 'easeOut',
+                                  delay: 1.2
+                                }}
+                              />
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+                                <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+                                <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
+                                <path d="M6 14v-1.5a1.5 1.5 0 0 0-3 0V18a6 6 0 0 0 6 6h4a8 8 0 0 0 8-8v-3.5a1.5 1.5 0 0 0-3 0V14" />
+                              </svg>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                       
                       <div className="wf-modal-gallery-nav">
@@ -633,7 +684,10 @@ export function ProjectsSection() {
                               <button 
                                 key={idx}
                                 className={`wf-modal-gallery-thumb ${adminIndex === idx ? 'active' : ''}`}
-                                onClick={() => setAdminIndex(idx)}
+                                onClick={() => {
+                                  setAdminIndex(idx);
+                                  setShowZoomHintAnimation(false);
+                                }}
                               >
                                 <img src={img} alt={`Thumb Admin ${idx + 1}`} />
                               </button>
@@ -642,7 +696,10 @@ export function ProjectsSection() {
                               <button 
                                 key={idx}
                                 className={`wf-modal-gallery-thumb ${userIndex === idx ? 'active' : ''}`}
-                                onClick={() => setUserIndex(idx)}
+                                onClick={() => {
+                                  setUserIndex(idx);
+                                  setShowZoomHintAnimation(false);
+                                }}
                               >
                                 <img src={img} alt={`Thumb User ${idx + 1}`} />
                               </button>
