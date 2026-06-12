@@ -647,8 +647,6 @@ export function ProjectsSection() {
                               exit={{ opacity: 0 }}
                               transition={{
                                 duration: 3.5,
-                                repeat: Infinity,
-                                repeatDelay: 2.0,
                                 ease: 'easeInOut',
                                 times: [0, 0.35, 0.5, 0.65, 1]
                               }}
@@ -661,17 +659,13 @@ export function ProjectsSection() {
                                 }}
                                 transition={{
                                   duration: 1.0,
-                                  repeat: Infinity,
-                                  repeatDelay: 4.5,
                                   ease: 'easeOut',
-                                  delay: 1.2
+                                  delay: 1.225
                                 }}
                               />
-                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                                <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                                <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                                <path d="M6 14v-1.5a1.5 1.5 0 0 0-3 0V18a6 6 0 0 0 6 6h4a8 8 0 0 0 8-8v-3.5a1.5 1.5 0 0 0-3 0V14" />
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" />
+                                <path d="M13 13l6 6" />
                               </svg>
                             </motion.div>
                           )}
