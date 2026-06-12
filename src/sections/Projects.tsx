@@ -6,6 +6,13 @@ import '@/styles/projects.css';
 import phhubCard from '@/assets/projects/PHHub/view-image.jpg';
 import phhubModal from '@/assets/projects/PHHub/spoiler-image.jpeg';
 import odontoSyncCard from '@/assets/projects/OdontoSync/view-image.png';
+import odontoSyncDashboard from '@/assets/projects/OdontoSync/admin-dashboard.jpeg';
+import odontoSyncAgenda from '@/assets/projects/OdontoSync/admin-agenda.jpeg';
+import odontoSyncPatients from '@/assets/projects/OdontoSync/admin-patients.jpeg';
+import odontoSyncProfile from '@/assets/projects/OdontoSync/admin-profile.jpeg';
+import odontoSyncUserHome from '@/assets/projects/OdontoSync/user-home.jpeg';
+import odontoSyncUserAlert from '@/assets/projects/OdontoSync/user-alert.jpeg';
+import odontoSyncUserAppointments from '@/assets/projects/OdontoSync/user-appointments.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,7 +41,18 @@ const PROJECTS = [
     cardImage: odontoSyncCard,
     modalImage: odontoSyncCard,
     themeColor: '#00d2ff',
-    themeGlow: 'rgba(0, 210, 255, 0.15)'
+    themeGlow: 'rgba(0, 210, 255, 0.15)',
+    adminImages: [
+      odontoSyncDashboard,
+      odontoSyncAgenda,
+      odontoSyncPatients,
+      odontoSyncProfile
+    ],
+    userImages: [
+      odontoSyncUserHome,
+      odontoSyncUserAlert,
+      odontoSyncUserAppointments
+    ]
   },
 ];
 
@@ -50,6 +68,8 @@ interface ProjectCardProps {
     modalImage?: string;
     themeColor?: string;
     themeGlow?: string;
+    adminImages?: string[];
+    userImages?: string[];
   };
   onBreach: (id: string) => void;
 }
@@ -199,9 +219,11 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
     </motion.div>
   );
 }
-
 export function ProjectsSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'admin' | 'user'>('admin');
+  const [adminIndex, setAdminIndex] = useState(0);
+  const [userIndex, setUserIndex] = useState(0);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -422,6 +444,14 @@ export function ProjectsSection() {
   const activeProject = PROJECTS.find(p => p.id === selectedId);
 
   useEffect(() => {
+    if (!selectedId) {
+      setActiveTab('admin');
+      setAdminIndex(0);
+      setUserIndex(0);
+    }
+  }, [selectedId]);
+
+  useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setSelectedId(null);
     };
@@ -541,7 +571,65 @@ export function ProjectsSection() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                {activeProject.modalImage ? (
+                {activeProject.id === '02' ? (
+                  <>
+                    <div className="wf-modal-tabs">
+                      <button 
+                        className={`wf-modal-tab-btn ${activeTab === 'admin' ? 'active' : ''}`}
+                        onClick={() => {
+                          setActiveTab('admin');
+                        }}
+                      >
+                        🏥 Painel da Clínica
+                      </button>
+                      <button 
+                        className={`wf-modal-tab-btn ${activeTab === 'user' ? 'active' : ''}`}
+                        onClick={() => {
+                          setActiveTab('user');
+                        }}
+                      >
+                        📱 App do Paciente
+                      </button>
+                    </div>
+
+                    <div className="wf-modal-gallery-container">
+                      <div className="wf-modal-gallery-view">
+                        <img 
+                          src={
+                            activeTab === 'admin' 
+                              ? (activeProject.adminImages ? activeProject.adminImages[adminIndex] : '') 
+                              : (activeProject.userImages ? activeProject.userImages[userIndex] : '')
+                          } 
+                          className="wf-modal-gallery-img" 
+                          alt="Screenshot" 
+                        />
+                      </div>
+                      
+                      <div className="wf-modal-gallery-nav">
+                        {activeTab === 'admin' 
+                          ? activeProject.adminImages?.map((img, idx) => (
+                              <button 
+                                key={idx}
+                                className={`wf-modal-gallery-thumb ${adminIndex === idx ? 'active' : ''}`}
+                                onClick={() => setAdminIndex(idx)}
+                              >
+                                <img src={img} alt={`Thumb Admin ${idx + 1}`} />
+                              </button>
+                            ))
+                          : activeProject.userImages?.map((img, idx) => (
+                              <button 
+                                key={idx}
+                                className={`wf-modal-gallery-thumb ${userIndex === idx ? 'active' : ''}`}
+                                onClick={() => setUserIndex(idx)}
+                              >
+                                <img src={img} alt={`Thumb User ${idx + 1}`} />
+                              </button>
+                            ))
+                        }
+                      </div>
+                    </div>
+                  </>
+                ) : activeProject.modalImage ? (
                   <img src={activeProject.modalImage} alt={activeProject.title} className="wf-modal-video__img" />
                 ) : (
                   <div className="wf-modal-video__placeholder">
