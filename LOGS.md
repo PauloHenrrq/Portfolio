@@ -304,5 +304,7 @@ _Maintained by Antigravity AI._
 - **Aprimoramentos de Visualização e Correções de UI (OdontoSync)**:
   - Corrigido o bug de duplicação dos nomes de abas no desktop através da declaração correta das classes CSS responsivas `.wf-tab-short` e `.wf-tab-long`.
   - Adicionada a imagem de mockup global cinematográfico (`view-image.png`) como fundo decorativo em marca d'água (`::before` com `opacity: 0.22` e `z-index: 0`) atrás dos capturas reais exibidas na galeria do modal do OdontoSync, aumentando a profundidade e o apelo estético premium da seção.
+  - Implementado um visualizador de zoom em tela cheia (`.wf-gallery-zoom-overlay`) para os screenshots do OdontoSync, ativado via clique na imagem em destaque (com cursor `zoom-in`). O modal de zoom utiliza `backdrop-filter: blur(10px)` e fecha ao clicar em qualquer parte fora da imagem (`e.stopPropagation()` no clique da foto).
+
 
 
