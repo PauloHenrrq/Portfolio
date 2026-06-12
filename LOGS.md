@@ -305,6 +305,9 @@ _Maintained by Antigravity AI._
   - Corrigido o bug de duplicação dos nomes de abas no desktop através da declaração correta das classes CSS responsivas `.wf-tab-short` e `.wf-tab-long`.
   - Adicionada a imagem de mockup global cinematográfico (`view-image.png`) como fundo decorativo em marca d'água (`::before` com `opacity: 0.22` e `z-index: 0`) atrás dos capturas reais exibidas na galeria do modal do OdontoSync, aumentando a profundidade e o apelo estético premium da seção.
   - Implementado um visualizador de zoom em tela cheia (`.wf-gallery-zoom-overlay`) para os screenshots do OdontoSync, ativado via clique na imagem em destaque (com cursor `zoom-in`). O modal de zoom utiliza `backdrop-filter: blur(10px)` e fecha ao clicar em qualquer parte fora da imagem (`e.stopPropagation()` no clique da foto).
+  - Adicionada física de toque e clique tátil na imagem em destaque (`whileHover={{ scale: 1.015 }}`, `whileTap={{ scale: 0.98 }}` via Framer Motion) para indicar que a foto é um elemento interativo e clicável.
+  - Implementada uma tag flutuante de dica de zoom (`.wf-zoom-hint-badge` com legenda "AMPLIAR") que surge suavemente em formato glassmorphic centralizado ao passar o mouse sobre a imagem no desktop, sendo desabilitada no mobile para manter a fluidez de toque puro.
+
 
 
 
