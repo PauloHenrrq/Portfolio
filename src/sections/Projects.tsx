@@ -40,8 +40,8 @@ const PROJECTS = [
     github: 'https://github.com/PauloHenrrq',
     cardImage: odontoSyncCard,
     modalImage: odontoSyncCard,
-    themeColor: '#A7EFE7',
-    themeGlow: 'rgba(167, 239, 231, 0.15)',
+    themeColor: '#05A093',
+    themeGlow: 'rgba(5, 160, 147, 0.15)',
     adminImages: [
       odontoSyncDashboard,
       odontoSyncAgenda,
