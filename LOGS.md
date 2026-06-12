@@ -291,3 +291,5 @@ _Maintained by Antigravity AI._
   - Reduzido o tamanho dos textos e cartões da metodologia (Stage 04) sob telas de `999px` em exatamente `8px`.
   - Configurada a exibição do menu sanduíche (trigger sidebar) apenas para telas menores que `500px`.
   - Corrigida a ordem dos links no menu suspenso mobile (overlay da Navbar), garantindo que o link **MÉTODO** se posicione antes de **PROJETOS** para manter a consistência absoluta com a rolagem vertical da página e a Sidebar desktop.
+- **Simplificação do Portfólio**:
+  - Removidos os projetos **Ortus AI** (ainda em planejamento) e **Antigravity** (não alinhado à proposta atual) da constante de projetos em `Projects.tsx`, exibindo agora exclusivamente os cases reais finalizados: **PHHub** e **OdontoSync**.
