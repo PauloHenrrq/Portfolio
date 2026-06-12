@@ -224,6 +224,7 @@ export function ProjectsSection() {
   const [activeTab, setActiveTab] = useState<'admin' | 'user'>('admin');
   const [adminIndex, setAdminIndex] = useState(0);
   const [userIndex, setUserIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -448,6 +449,7 @@ export function ProjectsSection() {
       setActiveTab('admin');
       setAdminIndex(0);
       setUserIndex(0);
+      setIsZoomed(false);
     }
   }, [selectedId]);
 
@@ -609,6 +611,7 @@ export function ProjectsSection() {
                           } 
                           className="wf-modal-gallery-img" 
                           alt="Screenshot" 
+                          onClick={() => setIsZoomed(true)}
                         />
                       </div>
                       
@@ -675,6 +678,33 @@ export function ProjectsSection() {
                 </div>
               </motion.div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isZoomed && activeProject && (
+          <motion.div
+            className="wf-gallery-zoom-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsZoomed(false)}
+          >
+            <motion.img
+              src={
+                activeTab === 'admin' 
+                  ? (activeProject.adminImages ? activeProject.adminImages[adminIndex] : '') 
+                  : (activeProject.userImages ? activeProject.userImages[userIndex] : '')
+              }
+              alt="Zoomed Screenshot"
+              className="wf-gallery-zoom-img"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              onClick={(e) => e.stopPropagation()}
+            />
           </motion.div>
         )}
       </AnimatePresence>
