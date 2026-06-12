@@ -1232,3 +1232,48 @@ body.is-dragging-projects * {
   }
 }
 
+/* ─── Zoom Hint Floating Badge ─── */
+.wf-zoom-hint-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: rgba(5, 5, 5, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  pointer-events: none; /* Make click trigger on target behind it */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.wf-zoom-hint-badge svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--project-color);
+}
+
+/* Show badge on hover of the parent container */
+.wf-modal-gallery-view:hover .wf-zoom-hint-badge {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* On mobile, don't show the hover badge because it's tap-to-trigger */
+@media (max-width: 999px) {
+  .wf-zoom-hint-badge {
+    display: none !important;
+  }
+}
+
