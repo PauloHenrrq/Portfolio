@@ -297,3 +297,8 @@ _Maintained by Antigravity AI._
   - Organizados, renomeados e movidos os assets de imagens reais do OdontoSync para `src/assets/projects/OdontoSync/`.
   - Gerada uma imagem de exibição global cinematográfica em 3D (mockup com celulares flutuantes sob glow neon) para o card frontal do projeto.
   - Construído um sistema de galeria interativa de screenshots dentro do modal do OdontoSync, incluindo abas de navegação para alternar entre os fluxos (🏥 Painel da Clínica e 📱 App do Paciente) e navegação individual de telas via miniaturas (thumbnails).
+- **Ajustes Finais na Galeria do OdontoSync**:
+  - Removidas as barras de rolagem (scrollbars) nativas no desktop para a navegação de miniaturas e visualizadores através de propriedades específicas CSS (`scrollbar-width: none`, `-ms-overflow-style: none` e pseudoelemento `::-webkit-scrollbar`).
+  - Corrigido o layout quebrado do modal no mobile: aumentado o espaço da área da galeria (`.wf-modal-video` ampliado para `340px` no mobile geral e `300px` em telas pequenas), permitindo a perfeita visualização dos celulares em tamanho confortável.
+  - Resolvida a colisão com o botão de fechar (X) no mobile adicionando um espaçamento seguro (`padding-right: 44px`) na barra de abas e implementando textos responsivos inteligentes (exibindo "🏥 Painel da Clínica" no desktop e reduzindo para "🏥 Clínica" no mobile).
+
