@@ -639,28 +639,28 @@ export function ProjectsSection() {
                               className="wf-virtual-click-hint"
                               initial={{ x: 60, y: 60, opacity: 0, scale: 1.2 }}
                               animate={{
-                                x: [60, 0, 0, 0, 60],
-                                y: [60, 0, 0, 0, 60],
-                                opacity: [0, 1, 1, 1, 0],
-                                scale: [1.2, 1, 0.82, 1, 1.2]
+                                x: [60, 0, 0, 0],
+                                y: [60, 0, 0, 0],
+                                opacity: [0, 1, 1, 0],
+                                scale: [1.2, 1, 0.82, 1]
                               }}
                               exit={{ opacity: 0 }}
                               transition={{
-                                duration: 3.5,
+                                duration: 1.7,
                                 ease: 'easeInOut',
-                                times: [0, 0.35, 0.5, 0.65, 1]
+                                times: [0, 0.7, 0.82, 1]
                               }}
                             >
                               <motion.span 
                                 className="wf-virtual-click-ripple"
                                 animate={{
-                                  scale: [0.6, 2.2],
-                                  opacity: [0, 0.6, 0]
+                                  scale: [0.6, 2.0],
+                                  opacity: [0, 0.7, 0]
                                 }}
                                 transition={{
-                                  duration: 1.0,
+                                  duration: 0.5,
                                   ease: 'easeOut',
-                                  delay: 1.225
+                                  delay: 1.2
                                 }}
                               />
                               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
