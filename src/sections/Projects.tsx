@@ -35,6 +35,8 @@ const PROJECTS = [
     modalImage: phhubCard,
     themeColor: '#BD00FF',
     themeGlow: 'rgba(189, 0, 255, 0.15)',
+    objectPosition: 'center 45%',
+    watermarkPosition: 'center 40%',
     hasTabs: true,
     tab1Key: 'core',
     tab1LabelLong: '🧪 Laboratório Core',
@@ -99,6 +101,8 @@ interface ProjectCardProps {
     modalImage?: string;
     themeColor?: string;
     themeGlow?: string;
+    objectPosition?: string;
+    watermarkPosition?: string;
     hasTabs?: boolean;
     tab1Key?: string;
     tab1LabelLong?: string;
@@ -224,7 +228,14 @@ function ProjectCard({ project, onBreach }: ProjectCardProps) {
         </AnimatePresence>
 
         <div className="wf-project-card__preview">
-          {project.cardImage && <img src={project.cardImage} alt={project.title} className="wf-project-card__img" />}
+          {project.cardImage && (
+            <img 
+              src={project.cardImage} 
+              alt={project.title} 
+              className="wf-project-card__img" 
+              style={{ objectPosition: project.objectPosition || 'center' }} 
+            />
+          )}
           <div className="wf-project-card__grain" />
           
           <AnimatePresence>
@@ -640,7 +651,8 @@ export function ProjectsSection() {
                       <div 
                         className="wf-modal-gallery-view"
                         style={{
-                          '--gallery-bg': `url(${activeProject.cardImage})`
+                          '--gallery-bg': `url(${activeProject.cardImage})`,
+                          '--gallery-bg-pos': activeProject.watermarkPosition || 'center'
                         } as React.CSSProperties}
                       >
                         <motion.img 
