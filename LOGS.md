@@ -311,6 +311,10 @@ _Maintained by Antigravity AI._
   - Reduzido o tamanho das fotos exibidas ao abrir o detalhe de um projeto no modal em exatamente 8% (`max-width: 92%` e `max-height: 92%` para `.wf-modal-gallery-img` e `.wf-modal-video__img`), adicionando um espaçamento elegante nas bordas e revelando de forma mais harmoniosa o fundo cinematográfico decorativo.
   - Corrigido o bug visual do text-clipping nos cards de projeto: removemos a propriedade de `height` fixa da classe `.wf-project-card__desc`, permitindo que o navegador realize o line-clamping nativo de exatamente 3 linhas com reticências (`...`) de forma fluida, eliminando a exibição residual cortada de partes de letras da quarta linha.
   - Atualizada a temática de cor do projeto OdontoSync para um tom de verde-água/mente mais forte e saturado (`#05A093` e glow `rgba(5, 160, 147, 0.15)`), garantindo legibilidade perfeita e alta taxa de contraste de 4.5:1 com textos brancos em botões ativos e badges.
+  - Implementada a galeria interativa para o projeto PHHub no mesmo estilo premium do OdontoSync: estruturamos as 7 capturas de tela enviadas pelo usuário em duas abas (🧪 Laboratório Core e 🧠 IA & Conectores) e copiamos os arquivos para `src/assets/projects/PHHub/`.
+  - Geramos uma imagem cinematográfica com IA para o PHHub baseada no print do dashboard principal da aplicação, salvando-a em `view-image.jpg` para ser exibida nos cards do portfólio e como fundo de marca d'água no modal.
+  - Refatoramos e generalizamos completamente o componente `Projects.tsx` para tratar a interface de galeria interativa, zoom, onboarding e abas de forma genérica (via flag `hasTabs`), permitindo que ambos os projetos (PHHub e OdontoSync) compartilhem a mesma lógica sem duplicação de código.
+
 
 
 
