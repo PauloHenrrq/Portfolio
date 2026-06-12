@@ -1078,6 +1078,22 @@ body.is-dragging-projects * {
   padding: 16px;
   background: #000;
   overflow: hidden;
+  position: relative;
+}
+
+.wf-modal-gallery-view::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--gallery-bg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.22; /* 22% opacity */
+  pointer-events: none;
+  z-index: 0;
 }
 
 .wf-modal-gallery-img {
@@ -1086,6 +1102,8 @@ body.is-dragging-projects * {
   object-fit: contain;
   border-radius: 4px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
 }
 
 .wf-modal-gallery-nav {
@@ -1161,6 +1179,19 @@ body.is-dragging-projects * {
   .wf-modal-gallery-thumb {
     width: 30px;
     height: 44px;
+  }
+}
+
+.wf-tab-short {
+  display: none !important;
+}
+
+@media (max-width: 999px) {
+  .wf-tab-long {
+    display: none !important;
+  }
+  .wf-tab-short {
+    display: inline !important;
   }
 }
 
