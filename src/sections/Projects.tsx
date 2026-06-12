@@ -91,6 +91,8 @@ const PROJECTS: ProjectItem[] = [
     modalImage: odontoSyncCard,
     themeColor: '#05A093',
     themeGlow: 'rgba(5, 160, 147, 0.15)',
+    objectPosition: 'center top',
+    watermarkPosition: 'center top',
     hasTabs: true,
     tab1Key: 'admin',
     tab1LabelLong: '🏥 Painel da Clínica',
