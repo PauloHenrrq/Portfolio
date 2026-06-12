@@ -317,7 +317,6 @@ body.is-dragging-projects * {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: calc(1.6em * 3);
   font-weight: 450;
 }
 
