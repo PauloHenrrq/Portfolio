@@ -301,4 +301,8 @@ _Maintained by Antigravity AI._
   - Removidas as barras de rolagem (scrollbars) nativas no desktop para a navegação de miniaturas e visualizadores através de propriedades específicas CSS (`scrollbar-width: none`, `-ms-overflow-style: none` e pseudoelemento `::-webkit-scrollbar`).
   - Corrigido o layout quebrado do modal no mobile: aumentado o espaço da área da galeria (`.wf-modal-video` ampliado para `340px` no mobile geral e `300px` em telas pequenas), permitindo a perfeita visualização dos celulares em tamanho confortável.
   - Resolvida a colisão com o botão de fechar (X) no mobile adicionando um espaçamento seguro (`padding-right: 44px`) na barra de abas e implementando textos responsivos inteligentes (exibindo "🏥 Painel da Clínica" no desktop e reduzindo para "🏥 Clínica" no mobile).
+- **Aprimoramentos de Visualização e Correções de UI (OdontoSync)**:
+  - Corrigido o bug de duplicação dos nomes de abas no desktop através da declaração correta das classes CSS responsivas `.wf-tab-short` e `.wf-tab-long`.
+  - Adicionada a imagem de mockup global cinematográfico (`view-image.png`) como fundo decorativo em marca d'água (`::before` com `opacity: 0.22` e `z-index: 0`) atrás dos capturas reais exibidas na galeria do modal do OdontoSync, aumentando a profundidade e o apelo estético premium da seção.
+
 
