@@ -1302,8 +1302,8 @@ body.is-dragging-projects * {
 
 .wf-virtual-click-ripple {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 0;
+  left: 0;
   transform: translate(-50%, -50%);
   width: 44px;
   height: 44px;
