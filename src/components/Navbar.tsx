@@ -66,6 +66,7 @@ export function Navbar() {
 
           <a 
             href="/cv.pdf" 
+            download="Paulo_Henrique_Curriculo.pdf"
             target="_blank" 
             rel="noopener noreferrer"
             className="topbar__link topbar__link--cv"
@@ -103,6 +104,7 @@ export function Navbar() {
 
           <a 
             href="/cv.pdf" 
+            download="Paulo_Henrique_Curriculo.pdf"
             className="topbar__link topbar__link--cv-mobile"
             target="_blank"
             rel="noopener noreferrer"
