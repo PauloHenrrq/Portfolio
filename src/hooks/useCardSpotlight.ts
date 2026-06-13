@@ -6,6 +6,7 @@ import { useEffect } from 'react';
  */
 export function useCardSpotlight() {
   useEffect(() => {
+    if (window.innerWidth < 1000) return;
     let rafId: number | null = null;
 
     const handleMouseMove = (e: MouseEvent) => {
