@@ -232,7 +232,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsZoomed(false)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsZoomed(false);
+            }}
           >
             <motion.img
               src={
