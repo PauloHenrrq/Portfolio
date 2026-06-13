@@ -606,6 +606,19 @@ body.is-dragging-projects * {
     padding: 16px !important;
   }
 
+  /* Disable expensive infinitely running pulse animations on mobile */
+  .wf-project-modal--alert {
+    animation: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  /* Disable expensive backdrop-filter on project cards on mobile */
+  .wf-project-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(15, 15, 17, 0.96) !important;
+  }
+
   .wf-project-modal {
     display: flex !important;
     flex-direction: column !important;
@@ -1223,6 +1236,9 @@ body.is-dragging-projects * {
 @media (max-width: 999px) {
   .wf-gallery-zoom-overlay {
     padding: 12px;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(5, 5, 5, 0.98) !important;
   }
   .wf-gallery-zoom-img {
     max-width: 95%;

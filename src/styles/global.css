@@ -241,4 +241,14 @@ ul, ol { list-style: none; }
     --section-padding-x: 1.5rem;
     --section-padding-y: 4rem;
   }
+
+  /* Hide expensive floating particles on mobile */
+  .global-particles {
+    display: none !important;
+  }
+
+  /* Disable expensive CPU-bound SVG grain noise filters on mobile */
+  [class*="grain"] {
+    background-image: none !important;
+  }
 }
