@@ -1,37 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
   <defs>
+    <!-- Premium Metallic/Neon Gradient (Red -> Orange -> Yellow) -->
     <linearGradient id="phGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FF003C" />
-      <stop offset="50%" stop-color="#FF6A00" />
+      <stop offset="0%" stop-color="#FF004C" />
+      <stop offset="50%" stop-color="#FF5D00" />
       <stop offset="100%" stop-color="#FFB800" />
     </linearGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
+    
+    <!-- Background Glassmorphic Plate Gradient -->
+    <radialGradient id="plateBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#16161a" />
+      <stop offset="100%" stop-color="#070708" />
+    </radialGradient>
+
+    <!-- Glowing effect -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur1" />
+      <feGaussianBlur stdDeviation="24" result="blur2" />
       <feMerge>
-        <feMergeNode in="blur" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
+
+    <!-- Drop Shadow for 3D depth -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.65" />
+    </filter>
   </defs>
-  <!-- Outer decorative tech circles -->
-  <circle cx="256" cy="256" r="220" stroke="url(#phGradient)" stroke-width="4" stroke-dasharray="20 10 5 10" opacity="0.4" />
-  <circle cx="256" cy="256" r="236" stroke="url(#phGradient)" stroke-width="2" opacity="0.2" />
-  
-  <!-- Connected PH Monogram in solid geometric shapes -->
-  <g filter="url(#glow)">
-    <!-- P Left Stem -->
-    <rect x="110" y="110" width="50" height="292" rx="25" fill="url(#phGradient)" />
-    
-    <!-- H Right Stem -->
-    <rect x="350" y="110" width="50" height="292" rx="25" fill="url(#phGradient)" />
-    
-    <!-- H Left Stem (under P bow, merging) -->
-    <rect x="230" y="210" width="50" height="192" rx="25" fill="url(#phGradient)" />
-    
-    <!-- H Crossbar -->
-    <rect x="260" y="231" width="110" height="50" rx="25" fill="url(#phGradient)" />
-    
-    <!-- P Bow (Outer curve and inner cutout) -->
-    <path d="M 160 110 H 230 A 50 50 0 0 1 280 160 V 210 A 50 50 0 0 1 230 260 H 160 V 210 H 215 A 15 15 0 0 0 230 195 V 175 A 15 15 0 0 0 215 160 H 160 Z" fill="url(#phGradient)" />
+
+  <!-- 3D Glassmorphic Base Plate -->
+  <g filter="url(#dropShadow)">
+    <circle cx="256" cy="256" r="210" fill="url(#plateBg)" stroke="url(#phGradient)" stroke-width="3" opacity="0.85" />
+    <!-- Tech outer HUD ring -->
+    <circle cx="256" cy="256" r="222" stroke="url(#phGradient)" stroke-width="1.5" stroke-dasharray="16 8 4 8" opacity="0.3" />
+    <circle cx="256" cy="256" r="230" stroke="url(#phGradient)" stroke-width="0.75" stroke-dasharray="2 6" opacity="0.15" />
+  </g>
+
+  <!-- High-end Stylized Connected PH Monogram -->
+  <g filter="url(#neonGlow)">
+    <!-- Main unified PH Ribbon -->
+    <path 
+      d="M 184 140 V 372
+         M 184 140 C 184 140, 276 96, 276 196 C 276 276, 184 252, 184 252
+         H 328
+         M 328 140 V 372" 
+      stroke="url(#phGradient)" 
+      stroke-width="38" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" />
+      
+    <!-- Volumetric Inner highlight to make it look 3D glass/chrome -->
+    <path 
+      d="M 184 146 V 366
+         M 184 146 C 184 146, 270 106, 270 196 C 270 268, 184 252, 184 252
+         H 328
+         M 328 146 V 366" 
+      stroke="#FFFFFF" 
+      stroke-width="6" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      opacity="0.35" />
   </g>
 </svg>
