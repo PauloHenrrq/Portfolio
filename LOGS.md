@@ -315,9 +315,8 @@ _Maintained by Antigravity AI._
   - Criada a imagem de capa definitiva para o PHHub no formato de mockup 3D isométrico e minimalista de produto: uma mão minimalista apontando diretamente para um painel flutuante de vidro (glassmorphism) que exibe exatamente a tela original do projeto (`core-home.jpeg`). A cena é enriquecida com ícones 3D minimalistas de automação (fluxogramas, engrenagens e nós de IA) flutuando ao redor com glows em neon roxo, sobre um estúdio escuro de alta fidelidade que espelha perfeitamente o padrão e refinamento estabelecidos no OdontoSync.
   - Refatoramos e generalizamos completamente o componente `Projects.tsx` para tratar a interface de galeria interativa, zoom, onboarding e abas de forma genérica (via flag `hasTabs`), permitindo que ambos os projetos (PHHub e OdontoSync) compartilhem a mesma lógica sem duplicação de código.
   - Adicionamos suporte a enquadramento customizado de imagens (`objectPosition` e `watermarkPosition`) no TypeScript e CSS do portfólio para ajustar visualizações específicas em cards e fundos de modal.
-
-
-
+  - Realizado o desacoplamento completo do módulo de projetos (`Projects.tsx`), reduzindo o componente principal de 828 para apenas 110 linhas. Criamos subcomponentes isolados (`ProjectCard.tsx`, `ProjectModal.tsx`), centralizamos dados estáticos em `projectsData.ts`, definimos tipos compartilhados em `types.ts` e isolamos a lógica matemática de scroll horizontal via drag em um hook customizado `useHorizScroller.ts`.
+  - Configurada conformidade estrita de tipagem utilizando `import type` para satisfazer as regras da diretiva `verbatimModuleSyntax` do compilador TypeScript, validada e compilada com sucesso.
 
 
 
