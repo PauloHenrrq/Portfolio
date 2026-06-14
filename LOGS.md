@@ -2,6 +2,15 @@
 
 This document tracks the evolution, technical decisions, and customization of the Portfolio PH project.
 
+### [2026-06-13] Otimizações de Performance Mobile
+
+- **Desacoplamento do Scroll Progress de Projetos**: Substituído o estado reativo `scrollProgressPct` no carrossel de projetos por uma referência direta ao DOM (`progressBarRef`). Isso impede que o evento `scroll` nativo force re-renderizações cíclicas de `ProjectsSection` e seus cartões a cada pixel de movimento no mobile, mantendo a inércia do scroll suave e fluida.
+- **Estabilização de Layout de Bits Flutuantes (Stage 01 e 05)**: Aplicado `useMemo` na geração das coordenadas e delays randômicos de `.data-bit` em `Stage01Decoration`, eliminando repinturas contínuas (layout thrashing) no navegador do celular.
+- **Gerenciamento de Timer do Pipeline (Stage 03)**: Condicionado o loop `setInterval` da demonstração de desenvolvimento ao estado `isActive`. O timer agora é pausado e limpo automaticamente quando a janela sai da tela, reduzindo consumo de CPU/bateria em segundo plano.
+- **Alívio de Estresse Visual e Animações no Stage 04**: No mobile, removemos o `backdrop-filter: blur(40px)`, ocultamos a atmosfera dinâmica e simplificamos sombras em `methodology-stage04.css`. No código, desativamos as transições de entrada do Framer Motion para as folhas de fundo e o carimbo, tornando o carregamento do dossiê estático e instantâneo.
+- **Otimização de GPU e Zoom no Modal de Projetos**: Implementada a classe `projects-modal-open` no `document.body` quando o modal estiver aberto, ocultando todas as outras seções do site por trás via `visibility: hidden !important`. Isso libera a GPU de processamento desnecessário, tornando o gesto de zoom e pinça extremamente rápidos.
+- **Validação de Build**: Executada com sucesso a build de produção local (`npm run build`) sem avisos de compilação ou erros de tipagem do TypeScript.
+
 ### [2026-06-11] Redesenho da Seção de Projetos (Modelo de Arraste Livre) e Alinhamento do Header
 
 - **Redesenho do Carrossel de Projetos (Desktop & Mobile)**:
