@@ -296,6 +296,22 @@
 
 /* 📱 RESPONSIVITY STAGE 05 */
 @media (max-width: 1024px) {
+  /* Otimizações extremas de GPU para o mobile */
+  .premium-dashboard {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(13, 13, 14, 0.98) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .dashboard-particles {
+    display: none !important;
+  }
+
+  .flow-line {
+    filter: none !important; /* Desativa drop-shadow caro em animação infinita de SVG no mobile */
+  }
+
   .stage-05-variant.methodology__window-text {
     padding: 40px 20px !important;
     height: auto !important;
