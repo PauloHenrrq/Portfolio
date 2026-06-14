@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StageCounter } from './StageCounter';
 import type { MethodStage } from '@/lib/types';
 
@@ -8,20 +8,30 @@ interface Stage01CardProps {
 }
 
 export function Stage01Decoration() {
+  const bits = useMemo(() => {
+    return [...Array(6)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      moveX: `${(Math.random() - 0.5) * 200}px`,
+      moveY: `${(Math.random() - 0.5) * 200}px`,
+      delay: `${Math.random() * 5}s`
+    }));
+  }, []);
+
   return (
     <div className="stage-01-decoration">
       <div className="stage-01-grid"></div>
       <div className="stage-01-scanner"></div>
-      {[...Array(6)].map((_, i) => (
+      {bits.map((bit, i) => (
         <div 
           key={i} 
           className="data-bit"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            '--move-x': `${(Math.random() - 0.5) * 200}px`,
-            '--move-y': `${(Math.random() - 0.5) * 200}px`,
-            animationDelay: `${Math.random() * 5}s`
+            left: bit.left,
+            top: bit.top,
+            '--move-x': bit.moveX,
+            '--move-y': bit.moveY,
+            animationDelay: bit.delay
           } as React.CSSProperties}
         ></div>
       ))}

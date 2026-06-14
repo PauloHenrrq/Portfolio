@@ -12,11 +12,13 @@ export function Stage03Dashboard({ stage, isActive }: Stage03DashboardProps) {
   const steps = ['Entrada', 'Análise', 'Geração', 'Validação', 'Entrega'];
 
   useEffect(() => {
+    if (!isActive) return;
+
     const interval = setInterval(() => {
       setActiveStep((prev) => (prev + 1) % steps.length);
     }, 1500);
     return () => clearInterval(interval);
-  }, [steps.length]);
+  }, [isActive, steps.length]);
 
   return (
     <div className="methodology__window-text full-width stage-03-variant">
