@@ -89,6 +89,10 @@ src/
   - Decisions: Preservar layout idêntico no desktop, desativando componentes dinâmicos pesados apenas no mobile para otimização extrema de CPU/GPU.
   - Workflows: /perf, /commit, /log
   - Next: Aguardar validação do usuário em dispositivos móveis reais.
+- [2026-06-14] perf: Faxina extrema de performance móvel nos Stages 04 e 05
+  - What: Desativados elementos 3D traseiros, texturas de ruído (soft-light) e máscara fractal de carimbo (ink stamp) no Stage 04; removido backdrop-filter, partículas de fundo e drop-shadow do SVG de telemetria no Stage 05; desacoplado ScrollTrigger do carrossel no mobile.
+  - Decisions: Remover do viewport mobile tudo o que gera repaints de GPU excessivos, mantendo apenas a estrutura limpa dos painéis de relatório e dashboard.
+  - Workflows: /perf, /commit, /log
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
