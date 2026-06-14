@@ -895,7 +895,8 @@ body.is-dragging-projects * {
   color: var(--project-color, var(--color-accent-primary));
   font-size: 0.9rem;
   margin-bottom: 8px;
-  opacity: 0.6;
+  opacity: 1;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--project-color, var(--color-accent-primary)) 60%, transparent);
 }
 
 .wf-modal-info__title {
@@ -1152,11 +1153,11 @@ body.is-dragging-projects * {
   height: 60px;
   border-radius: 3px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid color-mix(in srgb, var(--project-color) 20%, rgba(255, 255, 255, 0.05));
   padding: 0;
   background: none;
   cursor: pointer;
-  opacity: 0.6;
+  opacity: 0.65;
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
@@ -1202,6 +1203,10 @@ body.is-dragging-projects * {
   .wf-modal-gallery-thumb {
     width: 30px;
     height: 44px;
+    border-color: color-mix(in srgb, var(--project-color) 30%, rgba(255, 255, 255, 0.08)) !important;
+  }
+  .wf-modal-gallery-thumb.active {
+    border-color: var(--project-color) !important;
   }
 }
 
