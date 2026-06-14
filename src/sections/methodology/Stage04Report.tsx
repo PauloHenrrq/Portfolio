@@ -63,26 +63,26 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
               <motion.div 
                 className="tech-report-sheet-bg-3"
                 initial={isMobile ? { opacity: 1, rotate: 8, x: 15, y: 8 } : { opacity: 0, rotate: 0, x: 0, y: 15 }}
-                animate={isMobile ? {} : (showContent ? { opacity: 1, rotate: 8, x: 15, y: 8 } : {})}
+                animate={isMobile ? { opacity: 1, rotate: 8, x: 15, y: 8 } : (showContent ? { opacity: 1, rotate: 8, x: 15, y: 8 } : {})}
                 transition={isMobile ? { duration: 0 } : { duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               />
               <motion.div 
                 className="tech-report-sheet-bg-2"
                 initial={isMobile ? { opacity: 1, rotate: 5, x: 10, y: 5 } : { opacity: 0, rotate: 0, x: 0, y: 10 }}
-                animate={isMobile ? {} : (showContent ? { opacity: 1, rotate: 5, x: 10, y: 5 } : {})}
+                animate={isMobile ? { opacity: 1, rotate: 5, x: 10, y: 5 } : (showContent ? { opacity: 1, rotate: 5, x: 10, y: 5 } : {})}
                 transition={isMobile ? { duration: 0 } : { duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               />
               <motion.div 
                 className="tech-report-sheet-bg-1"
                 initial={isMobile ? { opacity: 1, rotate: 2, x: 5, y: 2 } : { opacity: 0, rotate: 0, x: 0, y: 5 }}
-                animate={isMobile ? {} : (showContent ? { opacity: 1, rotate: 2, x: 5, y: 2 } : {})}
+                animate={isMobile ? { opacity: 1, rotate: 2, x: 5, y: 2 } : (showContent ? { opacity: 1, rotate: 2, x: 5, y: 2 } : {})}
                 transition={isMobile ? { duration: 0 } : { duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               />
 
           <motion.div 
             className="tech-report-sheet"
             initial={isMobile ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-            animate={isMobile ? {} : (showContent ? { y: 0, opacity: 1 } : {})}
+            animate={isMobile ? { y: 0, opacity: 1 } : (showContent ? { y: 0, opacity: 1 } : {})}
             transition={isMobile ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="report-sheet-clip"></div>
@@ -100,7 +100,7 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
                     key={idx} 
                     className="checklist-row has-tooltip"
                     initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
-                    animate={isMobile ? {} : (showContent ? { opacity: 1, x: 0 } : {})}
+                    animate={isMobile ? { opacity: 1, x: 0 } : (showContent ? { opacity: 1, x: 0 } : {})}
                     transition={isMobile ? { duration: 0 } : { delay: 0.2, duration: 0.8 }}
                   >
                     <span className="check-box">✔</span>
@@ -118,7 +118,7 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
                   <motion.div 
                     className="stamp-circle ink-variant"
                     initial={isMobile ? { scale: 1, opacity: 1, rotate: -12 } : { scale: 2, opacity: 0, rotate: -25 }}
-                    animate={isMobile ? {} : (showContent ? { 
+                    animate={isMobile ? { scale: 1, opacity: 1, rotate: -12 } : (showContent ? { 
                       scale: 1,
                       opacity: 1, 
                       rotate: -12
