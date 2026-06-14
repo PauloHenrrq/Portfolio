@@ -84,6 +84,11 @@ src/
 - [2026-05-01] Refinamento Premium das seções Sobre e Stacks.
 - [2026-05-02] Finalização da navegação responsiva e modais de projeto.
 - [2026-05-03] Finalização da seção de Metodologia e responsividade mobile profunda.
+- [2026-06-13] perf: Otimizações de performance mobile no Stage 04 e no Modal de Projetos
+  - What: Desativadas animações complexas no mobile e adicionado ocultamento de seções em background via visibility:hidden durante exibição do modal de projetos.
+  - Decisions: Preservar layout idêntico no desktop, desativando componentes dinâmicos pesados apenas no mobile para otimização extrema de CPU/GPU.
+  - Workflows: /perf, /commit, /log
+  - Next: Aguardar validação do usuário em dispositivos móveis reais.
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
