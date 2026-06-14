@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { StageCounter } from './StageCounter';
 import { Stage01Decoration } from './Stage01Card';
 import type { MethodStage } from '@/lib/types';
@@ -8,9 +9,18 @@ interface Stage05DashboardProps {
 }
 
 export function Stage05Dashboard({ stage, isActive }: Stage05DashboardProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1000);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div className="methodology__window-text full-width stage-05-variant">
-      <Stage01Decoration />
+      {!isMobile && <Stage01Decoration />}
       <div className="methodology__window-decor-grid"></div>
       
       <div className="stage-05-split-layout">
