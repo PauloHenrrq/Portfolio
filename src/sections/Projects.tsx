@@ -10,7 +10,8 @@ export function ProjectsSection() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const { scrollProgressPct, xDrag } = useHorizScroller(scrollerRef, contentRef);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const { xDrag } = useHorizScroller(scrollerRef, contentRef, progressBarRef);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -99,8 +100,8 @@ export function ProjectsSection() {
         <div className="wf-horiz-footer" data-reveal="fade-up" data-delay="400">
           <div className="wf-horiz-progress">
             <div 
+              ref={progressBarRef}
               className="wf-horiz-progress__bar" 
-              style={{ width: `${scrollProgressPct}%` }}
             />
           </div>
         </div>

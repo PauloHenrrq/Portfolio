@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { RefObject } from 'react';
 import { useMotionValue, animate, MotionValue } from 'framer-motion';
 
 interface UseHorizScrollerReturn {
-  scrollProgressPct: number;
   xDrag: MotionValue<number>;
 }
 
 export function useHorizScroller(
   scrollerRef: RefObject<HTMLDivElement | null>,
-  contentRef: RefObject<HTMLDivElement | null>
+  contentRef: RefObject<HTMLDivElement | null>,
+  progressBarRef: RefObject<HTMLDivElement | null>
 ): UseHorizScrollerReturn {
-  const [scrollProgressPct, setScrollProgressPct] = useState(0);
   const xDrag = useMotionValue(0);
 
   useEffect(() => {
     const viewport = scrollerRef.current;
     const content = contentRef.current;
+    const progressBar = progressBarRef.current;
     if (!viewport || !content) return;
 
     let isDragging = false;
@@ -36,9 +36,15 @@ export function useHorizScroller(
       return Math.min(0, -(contentWidth - viewportWidth));
     };
 
+    const updateProgressBar = (pct: number) => {
+      if (progressBar) {
+        progressBar.style.width = `${pct}%`;
+      }
+    };
+
     // Initialize/Reset positioning on mount
     xDrag.set(0);
-    setScrollProgressPct(0);
+    updateProgressBar(0);
     if (window.innerWidth >= 1000) {
       viewport.style.cursor = 'grab';
     }
@@ -91,7 +97,7 @@ export function useHorizScroller(
       const totalDist = Math.abs(maxScroll);
       if (totalDist > 0) {
         const pct = Math.min(100, Math.max(0, (Math.abs(newTranslateX) / totalDist) * 100));
-        setScrollProgressPct(pct);
+        updateProgressBar(pct);
       }
     };
 
@@ -106,10 +112,10 @@ export function useHorizScroller(
       const currentX = xDrag.get();
       if (currentX > 0) {
         animate(xDrag, 0, { type: 'spring', stiffness: 300, damping: 30 });
-        setScrollProgressPct(0);
+        updateProgressBar(0);
       } else if (currentX < maxScroll) {
         animate(xDrag, maxScroll, { type: 'spring', stiffness: 300, damping: 30 });
-        setScrollProgressPct(100);
+        updateProgressBar(100);
       } else {
         // Within bounds: Apply inertia glide
         if (Math.abs(velocity) > 0.15) {
@@ -125,7 +131,7 @@ export function useHorizScroller(
               const totalDist = Math.abs(maxScroll);
               if (totalDist > 0) {
                 const pct = Math.min(100, Math.max(0, (Math.abs(latest) / totalDist) * 100));
-                setScrollProgressPct(pct);
+                updateProgressBar(pct);
               }
             }
           });
@@ -176,7 +182,7 @@ export function useHorizScroller(
       const totalDist = Math.abs(maxScroll);
       if (totalDist > 0) {
         const pct = Math.min(100, Math.max(0, (Math.abs(newTranslateX) / totalDist) * 100));
-        setScrollProgressPct(pct);
+        updateProgressBar(pct);
       }
     };
 
@@ -185,7 +191,7 @@ export function useHorizScroller(
       if (window.innerWidth >= 1000) return;
       const maxScroll = viewport.scrollWidth - viewport.clientWidth;
       const pct = maxScroll > 0 ? (viewport.scrollLeft / maxScroll) * 100 : 0;
-      setScrollProgressPct(pct);
+      updateProgressBar(pct);
     };
 
     // Bind event listeners
@@ -221,7 +227,7 @@ export function useHorizScroller(
       viewport.removeEventListener('scroll', handleMobileScroll);
       window.removeEventListener('resize', handleResize);
     };
-  }, [scrollerRef, contentRef, xDrag]);
+  }, [scrollerRef, contentRef, progressBarRef, xDrag]);
 
-  return { scrollProgressPct, xDrag };
+  return { xDrag };
 }
