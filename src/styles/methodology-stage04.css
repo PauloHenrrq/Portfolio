@@ -518,4 +518,21 @@
     font-size: 0.7rem;
     padding: 4px 10px; /* Width padding reduced by 8px from 8px 18px */
   }
+
+  .tech-report-sheet {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(13, 13, 14, 0.98) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .tech-report-sheet-bg-1,
+  .tech-report-sheet-bg-2,
+  .tech-report-sheet-bg-3 {
+    box-shadow: -2px 5px 15px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .report-atmosphere-glow {
+    display: none !important;
+  }
 }

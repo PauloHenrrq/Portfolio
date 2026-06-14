@@ -21,6 +21,17 @@ export function ProjectsSection() {
     return () => window.removeEventListener('keydown', handleEsc);
   }, []);
 
+  useEffect(() => {
+    if (selectedId) {
+      document.body.classList.add('projects-modal-open');
+    } else {
+      document.body.classList.remove('projects-modal-open');
+    }
+    return () => {
+      document.body.classList.remove('projects-modal-open');
+    };
+  }, [selectedId]);
+
   const activeProject = PROJECTS.find((p) => p.id === selectedId);
 
   return (

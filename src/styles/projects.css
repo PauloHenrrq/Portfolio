@@ -1337,3 +1337,28 @@ body.is-dragging-projects * {
   transition: opacity 0.2s ease;
 }
 
+/* ─── Background Optimization when Project Modal is Open ─── */
+body.projects-modal-open .wf-hero,
+body.projects-modal-open .about,
+body.projects-modal-open .wf-about,
+body.projects-modal-open .methodology,
+body.projects-modal-open .wf-methodology,
+body.projects-modal-open .contact,
+body.projects-modal-open .wf-contact,
+body.projects-modal-open .global-particles,
+body.projects-modal-open .wf-sidebar,
+body.projects-modal-open .wf-topbar,
+body.projects-modal-open .navbar,
+body.projects-modal-open .wf-section__aside,
+body.projects-modal-open .wf-section__label,
+body.projects-modal-open .wf-section__title,
+body.projects-modal-open .wf-section__desc,
+body.projects-modal-open .wf-horiz-scroller-viewport {
+  visibility: hidden !important;
+}
+
+body.projects-modal-open .wf-project-modal-overlay,
+body.projects-modal-open .wf-project-modal-overlay * {
+  visibility: visible !important;
+}
+
