@@ -109,6 +109,10 @@ src/
   - What: Reescritas as descrições e detalhes do PHHub e OdontoSync para um tom altamente profissional e técnico, preservando a essência original.
   - Decisions: Apresentar a stack e a finalidade de cada projeto com um vocabulário refinado, ressaltando o valor técnico e prático de cada solução.
   - Workflows: /commit, /log
+- [2026-06-14] style: Background 100% opaco para todas as janelas de Metodologia
+  - What: Alterada a regra de background de `.methodology__window` em `methodology-base.css` de translúcida (`rgba(12, 12, 12, 0.85)`) para sólido (`#0c0c0c`).
+  - Decisions: Eliminar a transparência nos cards da seção de metodologia, garantindo que o conteúdo da página não vaze pelo fundo durante a rolagem de todos os stages.
+  - Workflows: /commit, /log
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
