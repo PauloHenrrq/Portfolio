@@ -602,6 +602,12 @@ body.is-dragging-projects * {
 }
 
 @media (max-width: 999px) {
+  /* Desativar totalmente texto de background gigante e sua animação de gradiente clipado */
+  .wf-horiz-bg-text {
+    display: none !important;
+    animation: none !important;
+  }
+
   .wf-project-modal-overlay {
     padding: 16px !important;
   }
