@@ -18,6 +18,14 @@ const checklistItems = [
 
 export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
   const [hasBeenActive, setHasBeenActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1000);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (isActive) setHasBeenActive(true);
@@ -54,28 +62,28 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
             <div className="report-sheet-stack">
               <motion.div 
                 className="tech-report-sheet-bg-3"
-                initial={{ opacity: 0, rotate: 0, x: 0, y: 15 }}
-                animate={showContent ? { opacity: 1, rotate: 8, x: 15, y: 8 } : {}}
-                transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                initial={isMobile ? { opacity: 1, rotate: 8, x: 15, y: 8 } : { opacity: 0, rotate: 0, x: 0, y: 15 }}
+                animate={isMobile ? {} : (showContent ? { opacity: 1, rotate: 8, x: 15, y: 8 } : {})}
+                transition={isMobile ? { duration: 0 } : { duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               />
               <motion.div 
                 className="tech-report-sheet-bg-2"
-                initial={{ opacity: 0, rotate: 0, x: 0, y: 10 }}
-                animate={showContent ? { opacity: 1, rotate: 5, x: 10, y: 5 } : {}}
-                transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                initial={isMobile ? { opacity: 1, rotate: 5, x: 10, y: 5 } : { opacity: 0, rotate: 0, x: 0, y: 10 }}
+                animate={isMobile ? {} : (showContent ? { opacity: 1, rotate: 5, x: 10, y: 5 } : {})}
+                transition={isMobile ? { duration: 0 } : { duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               />
               <motion.div 
                 className="tech-report-sheet-bg-1"
-                initial={{ opacity: 0, rotate: 0, x: 0, y: 5 }}
-                animate={showContent ? { opacity: 1, rotate: 2, x: 5, y: 2 } : {}}
-                transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                initial={isMobile ? { opacity: 1, rotate: 2, x: 5, y: 2 } : { opacity: 0, rotate: 0, x: 0, y: 5 }}
+                animate={isMobile ? {} : (showContent ? { opacity: 1, rotate: 2, x: 5, y: 2 } : {})}
+                transition={isMobile ? { duration: 0 } : { duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               />
 
           <motion.div 
             className="tech-report-sheet"
-            initial={{ y: 20, opacity: 0 }}
-            animate={showContent ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            initial={isMobile ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+            animate={isMobile ? {} : (showContent ? { y: 0, opacity: 1 } : {})}
+            transition={isMobile ? { duration: 0 } : { duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="report-sheet-clip"></div>
             <div className="report-header-premium">
@@ -91,9 +99,9 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
                   <motion.div 
                     key={idx} 
                     className="checklist-row has-tooltip"
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={showContent ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.2, duration: 0.8 }}
+                    initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 10 }}
+                    animate={isMobile ? {} : (showContent ? { opacity: 1, x: 0 } : {})}
+                    transition={isMobile ? { duration: 0 } : { delay: 0.2, duration: 0.8 }}
                   >
                     <span className="check-box">✔</span>
                     <span className="check-text">{item.label}</span>
@@ -109,13 +117,13 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
                 <div className="report-footer-stamp">
                   <motion.div 
                     className="stamp-circle ink-variant"
-                    initial={{ scale: 2, opacity: 0, rotate: -25 }}
-                    animate={showContent ? { 
+                    initial={isMobile ? { scale: 1, opacity: 1, rotate: -12 } : { scale: 2, opacity: 0, rotate: -25 }}
+                    animate={isMobile ? {} : (showContent ? { 
                       scale: 1,
                       opacity: 1, 
                       rotate: -12
-                    } : { scale: 2, opacity: 0 }}
-                    transition={{ 
+                    } : { scale: 2, opacity: 0 })}
+                    transition={isMobile ? { duration: 0 } : { 
                       delay: 0.3, 
                       type: "spring",
                       stiffness: 400,
@@ -133,6 +141,6 @@ export function Stage04Report({ stage, isActive }: Stage04ReportProps) {
         </div>
       </div>
     </div>
-  </div>
-);
+    </div>
+  );
 }
