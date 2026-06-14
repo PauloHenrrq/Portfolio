@@ -245,6 +245,21 @@ export function MethodologySection() {
             });
           }
         });
+
+        gsap.fromTo(carouselRef.current, 
+          { opacity: 0, y: 30 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 1, 
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: stackRef.current,
+              start: "top 30%",
+              toggleActions: "play none none none"
+            }
+          }
+        );
       });
 
       // Mobile Flow Default
@@ -266,22 +281,9 @@ export function MethodologySection() {
             onEnterBack: () => setActiveIndex(i),
           });
         });
-      });
 
-      gsap.fromTo(carouselRef.current, 
-        { opacity: 0, y: 30 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 1, 
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: stackRef.current,
-            start: "top 30%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
+        gsap.set(carouselRef.current, { opacity: 1, y: 0 });
+      });
 
     }, sectionRef);
 
