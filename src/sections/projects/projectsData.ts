@@ -22,8 +22,8 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: '01',
     title: 'PHHub',
-    description: 'Um hub dedicado para publicação de conhecimentos e ferramentas que utilizo no dia a dia, como workflows e MCPs.',
-    details: 'É um hub dedicado para eu postar a respeito dos meus conhecimentos e ferramentas que utilizo, como workflows, MCPs etc. Nesse HUB eu também utilizo para adicionar conteúdos constantes e novos servindo tanto para quem quiser consumi-lo, como para própria consulta.',
+    description: 'Hub técnico pessoal para centralização de ferramentas, workflows e MCPs do ecossistema de desenvolvimento.',
+    details: 'Um ecossistema pessoal projetado para documentar e organizar ferramentas avançadas de desenvolvimento, como workflows customizados e MCPs (Model Context Protocol). Além de atuar como repositório de consulta rápida para o meu dia a dia, o hub funciona como uma central de compartilhamento de conhecimento prático para a comunidade técnica.',
     techs: ['Next.js', 'TypeScript', 'Vanilla CSS', 'Zustand'],
     link: 'https://ph-hub-six.vercel.app/',
     github: 'https://github.com/PauloHenrrq/PH-Hub',
@@ -53,8 +53,8 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: '02',
     title: 'OdontoSync',
-    description: 'MVP dedicado para uma clínica odontológica parceira com integração de WhatsApp e fluxos específicos para recepção e pacientes.',
-    details: 'Não se trata de um Saas ainda, mas sim de um MVP dedicado para uma Clínica Odontológica parceira visando utilizar funcionalidades específicas e apropriadas para a Clínica parceira envolvendo o Whatsapp como meio de contato, disponibilizando 2 vertentes sendo a parte para a recepcionista e para Usuário, contendo um sistema completo de Login, Registro, recuperação de senha e práticas de mercado aplicadas.',
+    description: 'MVP sob medida para gestão de clínica odontológica, integrando automação de contatos via WhatsApp e fluxos dedicados.',
+    details: 'Desenvolvido como um MVP customizado para atender às necessidades operacionais de uma clínica odontológica parceira. O sistema centraliza a comunicação usando o WhatsApp como canal ativo, dividindo-se em duas vertentes funcionais: um painel administrativo para a recepção e uma interface dedicada para os pacientes. O projeto implementa práticas consolidadas de mercado, incluindo autenticação segura de ponta a ponta (login, registro e recuperação de credenciais) e fluxo responsivo de agendamento.',
     techs: ['React', 'Node.js', 'Prisma', 'PostgreSQL', 'Socket.io'],
     link: 'https://github.com/PauloHenrrq',
     github: 'https://github.com/PauloHenrrq',
