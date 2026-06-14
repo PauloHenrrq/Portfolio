@@ -97,6 +97,10 @@ src/
   - What: Ajustados padding do dashboard, gap e font-size das métricas para evitar que a palavra "ESTABILIDADE" seja cortada na lateral em celulares estreitos.
   - Decisions: Reduzir a escala das fontes e espaçamentos no mobile para manter toda a informação textual do painel em tela cheia sem vazamento.
   - Workflows: /commit, /log
+- [2026-06-14] style: Escala e posicionamento da imagem da pasta no Stage 02 no mobile
+  - What: Aumentado o tamanho da imagem da pasta de 55% para 70% (com max-width de 280px) e aplicada translação translateY de 25px para deslocar o wrapper mais para baixo no mobile.
+  - Decisions: Melhorar o impacto visual da árvore de arquivos no celular e ajustar o alinhamento em relação às chamadas flutuantes.
+  - Workflows: /commit, /log
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
