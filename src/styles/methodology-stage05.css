@@ -347,18 +347,24 @@
 
 @media (max-width: 480px) {
   .metrics-grid {
-    gap: 15px !important;
+    gap: 10px !important;
+  }
+  
+  .metric-label {
+    font-size: 8px !important;
+    letter-spacing: 0.05em !important;
   }
   
   .metric-value {
-    font-size: 18px !important;
+    font-size: 16px !important;
   }
   
   .system-title {
-    font-size: 18px !important;
+    font-size: 16px !important;
+    letter-spacing: 0.1em !important;
   }
 
   .premium-dashboard {
-    padding: 30px 20px !important;
+    padding: 30px 15px !important;
   }
 }
