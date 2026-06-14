@@ -113,6 +113,10 @@ src/
   - What: Alterada a regra de background de `.methodology__window` em `methodology-base.css` de translúcida (`rgba(12, 12, 12, 0.85)`) para sólido (`#0c0c0c`).
   - Decisions: Eliminar a transparência nos cards da seção de metodologia, garantindo que o conteúdo da página não vaze pelo fundo durante a rolagem de todos os stages.
   - Workflows: /commit, /log
+- [2026-06-14] style: Bloqueio definitivo de transparência e vazamento nos stages da Metodologia
+  - What: Removido backdrop-filter de `.methodology__window` (evitando bugs de composição 3D do browser) e forçado background e background-color sólido `#0c0c0c !important` no container principal, no wrapper de conteúdo (.methodology__window-content) e em todas as classes específicas das janelas (.window-stage-01 a 05).
+  - Decisions: Garantir opacidade absoluta no nível do elemento raiz e de seus contêineres filhos, bloqueando em 100% a visualização de qualquer stage anterior ou fundo durante transições e scroll.
+  - Workflows: /commit, /log
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
