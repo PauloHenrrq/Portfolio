@@ -93,6 +93,10 @@ src/
   - What: Desativados elementos 3D traseiros, texturas de ruído (soft-light) e máscara fractal de carimbo (ink stamp) no Stage 04; removido backdrop-filter, partículas de fundo e drop-shadow do SVG de telemetria no Stage 05; desacoplado ScrollTrigger do carrossel no mobile.
   - Decisions: Remover do viewport mobile tudo o que gera repaints de GPU excessivos, mantendo apenas a estrutura limpa dos painéis de relatório e dashboard.
   - Workflows: /perf, /commit, /log
+- [2026-06-14] fix: Correção de layout e escala no Stage 05 no mobile
+  - What: Ajustados padding do dashboard, gap e font-size das métricas para evitar que a palavra "ESTABILIDADE" seja cortada na lateral em celulares estreitos.
+  - Decisions: Reduzir a escala das fontes e espaçamentos no mobile para manter toda a informação textual do painel em tela cheia sem vazamento.
+  - Workflows: /commit, /log
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
