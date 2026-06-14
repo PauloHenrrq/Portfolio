@@ -193,15 +193,15 @@
     height: auto;
     min-height: 250px;
     padding-bottom: 30px;
-    transform: none !important;
+    transform: translateY(25px) !important;
     justify-content: center;
     align-items: center;
   }
 
   .architecture-img {
     transform: rotateX(10deg) rotateY(-20deg) !important;
-    width: 55% !important;
-    max-width: 220px !important;
+    width: 70% !important;
+    max-width: 280px !important;
     height: auto !important;
   }
 
@@ -224,6 +224,6 @@
   .architecture-img-wrapper {
     width: 100%;
     height: 90%;
-    transform: none !important;
+    transform: translateY(25px) !important;
   }
 }
