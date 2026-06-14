@@ -101,6 +101,10 @@ src/
   - What: Aumentado o tamanho da imagem da pasta para 80% (com max-width de 310px) e aplicada translação translateY de 45px para deslocar o wrapper mais para baixo no mobile.
   - Decisions: Melhorar o impacto visual da árvore de arquivos no celular e ajustar o alinhamento em relação às chamadas flutuantes, posicionando-a mais baixa e 10% maior que o reajuste anterior.
   - Workflows: /commit, /log
+- [2026-06-14] fix: Limpeza de console.log do GSAP e novos textos dos projetos
+  - What: Corrigido o seletor `.wf-topbar` para `.topbar` nas animações de HeroSection, adicionadas validações prévias de nulidade nas referências do GSAP no HeroSection e no MethodologySection; Atualizados os resumos e descrições do PHHub e OdontoSync.
+  - Decisions: Garantir um console 100% limpo sem alertas de seletores GSAP não encontrados e refletir com exatidão a natureza e o escopo de cada projeto no portfólio.
+  - Workflows: /commit, /log
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
