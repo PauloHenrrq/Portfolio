@@ -117,6 +117,10 @@ src/
   - What: Removido backdrop-filter de `.methodology__window` (evitando bugs de composição 3D do browser) e forçado background e background-color sólido `#0c0c0c !important` no container principal, no wrapper de conteúdo (.methodology__window-content) e em todas as classes específicas das janelas (.window-stage-01 a 05).
   - Decisions: Garantir opacidade absoluta no nível do elemento raiz e de seus contêineres filhos, bloqueando em 100% a visualização de qualquer stage anterior ou fundo durante transições e scroll.
   - Workflows: /commit, /log
+- [2026-06-14] style: Melhoria na visibilidade da borda dos cards de projetos e badges no mobile
+  - What: Definida regra de borda explícita no mobile (@media max-width 999px) para `.wf-project-card` e `.wf-tech-badge` usando a cor de tema do projeto com 35% de opacidade/mistura (`color-mix(in srgb, var(--project-color) 35%, rgba(255, 255, 255, 0.12))`).
+  - Decisions: Resolver o problema de invisibilidade dos contornos dos cards e badges de tecnologia no mobile (onde não há estados de hover para acender as bordas) mantendo uma cor de destaque leve e sofisticada.
+  - Workflows: /commit, /log
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
