@@ -22,8 +22,8 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: '01',
     title: 'PHHub',
-    description: 'Um ecossistema unificado focado em alta performance e design premium. Substitui a fragmentação por eficiência centralizada e integração fluida.',
-    details: 'Desenvolvido para centralizar ferramentas internas de desenvolvimento com foco em latência ultrabaixa e micro-frontends. Conta com um design system proprietário baseado em glassmorphism e animações fluidas via Framer Motion, integrando painéis de monitoramento de integridade e dados de telemetria em tempo real.',
+    description: 'Um hub dedicado para publicação de conhecimentos e ferramentas que utilizo no dia a dia, como workflows e MCPs.',
+    details: 'É um hub dedicado para eu postar a respeito dos meus conhecimentos e ferramentas que utilizo, como workflows, MCPs etc. Nesse HUB eu também utilizo para adicionar conteúdos constantes e novos servindo tanto para quem quiser consumi-lo, como para própria consulta.',
     techs: ['Next.js', 'TypeScript', 'Vanilla CSS', 'Zustand'],
     link: 'https://ph-hub-six.vercel.app/',
     github: 'https://github.com/PauloHenrrq/PH-Hub',
@@ -53,8 +53,8 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: '02',
     title: 'OdontoSync',
-    description: 'Sistema de gestão odontológica que unificou prontuários e agendamentos sob um dashboard em tempo real, gerando 30% mais eficiência operacional.',
-    details: 'Uma plataforma SaaS completa desenvolvida para clínicas odontológicas. Resolve a fragmentação de prontuários clínicos e históricos médicos através de uma arquitetura modularizada, integrando calendários interativos, faturamento integrado e relatórios de métricas administrativas gerados de forma assíncrona.',
+    description: 'MVP dedicado para uma clínica odontológica parceira com integração de WhatsApp e fluxos específicos para recepção e pacientes.',
+    details: 'Não se trata de um Saas ainda, mas sim de um MVP dedicado para uma Clínica Odontológica parceira visando utilizar funcionalidades específicas e apropriadas para a Clínica parceira envolvendo o Whatsapp como meio de contato, disponibilizando 2 vertentes sendo a parte para a recepcionista e para Usuário, contendo um sistema completo de Login, Registro, recuperação de senha e práticas de mercado aplicadas.',
     techs: ['React', 'Node.js', 'Prisma', 'PostgreSQL', 'Socket.io'],
     link: 'https://github.com/PauloHenrrq',
     github: 'https://github.com/PauloHenrrq',

@@ -151,7 +151,7 @@ export function MethodologySection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const cards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-      if (!cards.length) return;
+      if (!cards.length || !carouselRef.current) return;
 
       const mm = gsap.matchMedia();
 

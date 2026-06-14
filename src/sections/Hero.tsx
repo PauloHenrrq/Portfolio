@@ -19,14 +19,14 @@ export function HeroSection() {
       const l2 = line2Ref.current;
       const desc = descRef.current;
 
-      if (!l1 || !l2 || !desc) return;
+      if (!l1 || !l2 || !desc || !portraitRef.current || !bgLine1Ref.current || !bgLine2Ref.current || !sectionRef.current) return;
 
       const phText = "PH";
       const titleLine1 = "PAULO";
       const titleLine2 = "HENRIQUE";
 
       // ── Phase 0: Reset ──
-      gsap.set([l1, l2, '.hero__description-wrapper', '.hero__action-card', '.hero__action-link--alt', '.hero__tag', '.wf-topbar', portraitRef.current], { 
+      gsap.set([l1, l2, '.hero__description-wrapper', '.hero__action-card', '.hero__action-link--alt', '.hero__tag', '.topbar', portraitRef.current], { 
         opacity: 0, 
         visibility: 'visible' 
       });
@@ -39,7 +39,7 @@ export function HeroSection() {
 
       // ── Phase 1: Entrance ──
       masterTl
-        .fromTo('.wf-topbar',
+        .fromTo('.topbar',
           { y: -20, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
         )
