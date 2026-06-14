@@ -121,6 +121,10 @@ src/
   - What: Definida regra de borda explícita no mobile (@media max-width 999px) para `.wf-project-card` e `.wf-tech-badge` usando a cor de tema do projeto com 35% de opacidade/mistura (`color-mix(in srgb, var(--project-color) 35%, rgba(255, 255, 255, 0.12))`).
   - Decisions: Resolver o problema de invisibilidade dos contornos dos cards e badges de tecnologia no mobile (onde não há estados de hover para acender as bordas) mantendo uma cor de destaque leve e sofisticada.
   - Workflows: /commit, /log
+- [2026-06-14] style: Customização do numeral do PHHub e cor das miniaturas inativas dos projetos
+  - What: Definida borda com cor tema atenuada para miniaturas inativas (.wf-modal-gallery-thumb) usando a cor do projeto (`color-mix(...)` com 20% no desktop e 30% no mobile). Ajustada a opacidade para 1.0 e adicionada sombra brilhante text-shadow neon no numeral do modal (.wf-modal-info__num).
+  - Decisions: Garantir que miniaturas não clicadas usem um tom muito sutil e escuro derivado da própria marca de cor de cada projeto (roxo para PHHub, verde para OdontoSync) ao invés de cinza neutro. Fazer com que o numeral (01) do PHHub brilhe em roxo neon puro, e o (02) do OdontoSync em verde/azul neon puro.
+  - Workflows: /commit, /log
 <!-- LOG_END -->
 
 > Para o histórico detalhado de todas as alterações técnicas e decisões de design, consulte o arquivo [LOGS.md](file:///c:/Users/paulo/workspace/projetos/Portfolio%20PH/LOGS.md).
