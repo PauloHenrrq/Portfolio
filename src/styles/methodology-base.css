@@ -35,7 +35,6 @@
   perspective: 1000px;
   margin: 64px auto 0;
 }
-
 /* 🪟 JANELA (CARD) */
 .methodology__window {
   position: absolute;
@@ -43,9 +42,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #0c0c0c; /* Fundo sólido, não transparente */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #0c0c0c !important; /* Fundo sólido, não transparente */
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -136,4 +133,16 @@
   align-items: flex-start; /* Maintain left-aligned text logic but center the block */
   position: relative;
   min-height: 100%;
+}
+
+/* Forçar opacidade total e fundo preto sólido para todas as janelas e contêineres de conteúdo */
+.methodology__window,
+.methodology__window-content,
+.window-stage-01,
+.window-stage-02,
+.window-stage-03,
+.window-stage-04,
+.window-stage-05 {
+  background: #0c0c0c !important;
+  background-color: #0c0c0c !important;
 }
