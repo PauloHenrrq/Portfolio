@@ -98,8 +98,8 @@ src/
   - Decisions: Reduzir a escala das fontes e espaçamentos no mobile para manter toda a informação textual do painel em tela cheia sem vazamento.
   - Workflows: /commit, /log
 - [2026-06-14] style: Escala e posicionamento da imagem da pasta no Stage 02 no mobile
-  - What: Aumentado o tamanho da imagem da pasta de 55% para 70% (com max-width de 280px) e aplicada translação translateY de 25px para deslocar o wrapper mais para baixo no mobile.
-  - Decisions: Melhorar o impacto visual da árvore de arquivos no celular e ajustar o alinhamento em relação às chamadas flutuantes.
+  - What: Aumentado o tamanho da imagem da pasta para 80% (com max-width de 310px) e aplicada translação translateY de 45px para deslocar o wrapper mais para baixo no mobile.
+  - Decisions: Melhorar o impacto visual da árvore de arquivos no celular e ajustar o alinhamento em relação às chamadas flutuantes, posicionando-a mais baixa e 10% maior que o reajuste anterior.
   - Workflows: /commit, /log
 <!-- LOG_END -->
 
