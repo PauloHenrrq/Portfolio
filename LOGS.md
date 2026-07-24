@@ -4,7 +4,7 @@ This document tracks the evolution, technical decisions, and customization of th
 
 ### [2026-07-24] Remoção do Card PH da Seção Hero
 
-- **Reinicio do Hero e Reposicionamento do DEVELOPER no Mobile**: No breakpoint mobile (`max-width: 1024px`), a marca d'água "DEVELOPER" ("DEVE" "LOPER") foi posicionada no rodapé da seção Hero abaixo das ações de contato, preenchendo o espaço em branco da viewport com opacidade aumentada (`0.55`) e brilho reforçado, sem alterar a distância relativa para as próximas seções.
+- **Formatação de DEVELOPER idêntica ao PC no Mobile**: A marca d'água "DEVELOPER" no mobile passou a usar exatamente os mesmos estilos do desktop (gradiente prismático animado, varredura de luz `glass-sweep-intense`, stroke e recuos), mantendo-se posicionada no rodapé da seção Hero sem afetar o espaçamento até a próxima seção.
 - **Validação e Build**: Executada a compilação de produção (`npm run build`) com sucesso sem erros de código ou CSS.
 
 ### [2026-06-13] Otimizações de Performance Mobile
