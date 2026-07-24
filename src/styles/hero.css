@@ -382,26 +382,7 @@
   }
 
   .hero__portrait-stage {
-    display: block;
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
-    margin: 0 auto 32px auto;
-    width: clamp(160px, 45vw, 240px);
-    z-index: 3;
-  }
-
-  .hero__bg-text {
-    opacity: 0.12;
-  }
-
-  .hero__bg-line--1 {
-    margin-right: 2.5em;
-  }
-
-  .hero__bg-line--2 {
-    margin-left: 2em;
+    display: none;
   }
   
   .hero__scroll-indicator {
