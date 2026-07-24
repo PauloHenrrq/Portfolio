@@ -209,11 +209,6 @@ export function HeroSection() {
             <div ref={bgLine1Ref} className="hero__bg-line hero__bg-line--1">DEVE</div>
             <div ref={bgLine2Ref} className="hero__bg-line hero__bg-line--2">LOPER</div>
           </div>
-          <div className="hero__portrait">
-            <div className="hero__portrait-image">
-              <span className="hero__portrait-ph-text">PH</span>
-            </div>
-          </div>
         </div>
 
         <div className="hero__main-content">
