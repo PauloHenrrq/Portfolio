@@ -2,6 +2,11 @@
 
 This document tracks the evolution, technical decisions, and customization of the Portfolio PH project.
 
+### [2026-07-24] Remoção do Card PH da Seção Hero
+
+- **Remoção do Card PH**: Removido o cartão contendo a marcação "PH" e seus estilos de gradiente/borda da seção Hero (`Hero.tsx` e `hero.css`), preservando unicamente a tipografia animada de fundo ("DEVELOPER").
+- **Validação e Build**: Executada a compilação de produção (`npm run build`) com sucesso sem erros de código ou CSS.
+
 ### [2026-06-13] Otimizações de Performance Mobile
 
 - **Desacoplamento do Scroll Progress de Projetos**: Substituído o estado reativo `scrollProgressPct` no carrossel de projetos por uma referência direta ao DOM (`progressBarRef`). Isso impede que o evento `scroll` nativo force re-renderizações cíclicas de `ProjectsSection` e seus cartões a cada pixel de movimento no mobile, mantendo a inércia do scroll suave e fluida.
