@@ -4,7 +4,7 @@ This document tracks the evolution, technical decisions, and customization of th
 
 ### [2026-07-24] Remoção do Card PH da Seção Hero
 
-- **Remoção do Card PH**: Removido o cartão contendo a marcação "PH" e seus estilos de gradiente/borda da seção Hero (`Hero.tsx` e `hero.css`), preservando unicamente a tipografia animada de fundo ("DEVELOPER").
+- **Remoção do Card PH e Ocultação Mobile**: Removido o cartão com "PH" da seção Hero (`Hero.tsx` e `hero.css`). No breakpoint mobile (`max-width: 1024px`), a tipografia de fundo "DEVELOPER" foi totalmente ocultada, fazendo a página iniciar diretamente a partir da tag "FULL STACK DEVELOPER & UI/UX DESIGNER".
 - **Validação e Build**: Executada a compilação de produção (`npm run build`) com sucesso sem erros de código ou CSS.
 
 ### [2026-06-13] Otimizações de Performance Mobile
