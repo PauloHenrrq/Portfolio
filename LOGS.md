@@ -2,6 +2,11 @@
 
 This document tracks the evolution, technical decisions, and customization of the Portfolio PH project.
 
+### [2026-11-09] Atualização do Modelo Geral de Currículo para Download
+
+- **Sincronização de Asset**: Substituído o arquivo public/cv.pdf e paulo_rodrigues_default.pdf pelo novo modelo consolidado de 1 página. O documento inclui a experiência como estagiário na ChefPRO (Next.js + Python/FastAPI), os projetos em produção (PH HUB, To-Do List, CV Job Fitter), a grade de habilidades expandida e a formação acadêmica bilateral.
+- **Validação de Download**: Mantida a rota /cv.pdf com nome de arquivo nativo de download Paulo_Henrique_Curriculo.pdf no Navbar.tsx para desktop e mobile.
+
 ### [2026-07-24] Remoção do Card PH da Seção Hero
 
 - **Formatação de DEVELOPER idêntica ao PC no Mobile**: A marca d'água "DEVELOPER" no mobile passou a usar exatamente os mesmos estilos do desktop (gradiente prismático animado, varredura de luz `glass-sweep-intense`, stroke e recuos), mantendo-se posicionada no rodapé da seção Hero sem afetar o espaçamento até a próxima seção.
